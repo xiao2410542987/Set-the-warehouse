@@ -7,6 +7,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -17,6 +20,11 @@
         <option name="userSettingsFile" value="D:\Maven\apache-maven-3.3.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1bFfEvJn04lHMLzABO9WGYB1Ox0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -25,16 +33,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="D:/IDEAProjects/springboot-05-mybatis" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.renyu.pojo" />
+      <recent name="com.renyu.controller" />
+      <recent name="com.renyu.config" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\项目\Set-the-warehouse\storage\src\main\resources" />
     </key>
@@ -43,6 +60,9 @@
     <configuration name="StorageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="storage" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.renyu.StorageApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -61,7 +81,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\人鱼\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -70,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588232653021</updated>
-      <workItem from="1588232660052" duration="950000" />
+      <workItem from="1588232660052" duration="6979000" />
     </task>
     <servers />
   </component>
@@ -82,9 +102,61 @@
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
     <state x="505" y="201" key="#Project_Structure/0.0.1827.1080@0.0.1827.1080" timestamp="1588233205703" />
+    <state x="367" y="198" width="1165" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588240107824">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="367" y="198" width="1165" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1827.1080@0.0.1827.1080" timestamp="1588240107824" />
+    <state x="667" y="381" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1588239912194">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="667" y="381" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1827.1080@0.0.1827.1080" timestamp="1588239912194" />
     <state x="643" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588232901755">
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
     <state x="643" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1827.1080@0.0.1827.1080" timestamp="1588232901755" />
+    <state x="693" y="298" key="FileChooserDialogImpl" timestamp="1588234635502">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="693" y="298" key="FileChooserDialogImpl/0.0.1827.1080@0.0.1827.1080" timestamp="1588234635502" />
+    <state width="1784" height="295" key="GridCell.Tab.0.bottom" timestamp="1588240301249">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.0.bottom/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301249" />
+    <state width="1784" height="295" key="GridCell.Tab.0.center" timestamp="1588240301248">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.0.center/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301248" />
+    <state width="1784" height="295" key="GridCell.Tab.0.left" timestamp="1588240301247">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.0.left/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301247" />
+    <state width="1784" height="295" key="GridCell.Tab.0.right" timestamp="1588240301249">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.0.right/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301249" />
+    <state width="1784" height="295" key="GridCell.Tab.1.bottom" timestamp="1588240301250">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.1.bottom/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301250" />
+    <state width="1784" height="295" key="GridCell.Tab.1.center" timestamp="1588240301250">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.1.center/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301250" />
+    <state width="1784" height="295" key="GridCell.Tab.1.left" timestamp="1588240301249">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.1.left/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301249" />
+    <state width="1784" height="295" key="GridCell.Tab.1.right" timestamp="1588240301250">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state width="1784" height="295" key="GridCell.Tab.1.right/0.0.1827.1080@0.0.1827.1080" timestamp="1588240301250" />
+    <state x="484" y="208" key="Registry" timestamp="1588239876104">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="484" y="208" key="Registry/0.0.1827.1080@0.0.1827.1080" timestamp="1588239876104" />
+    <state x="416" y="185" key="SettingsEditor" timestamp="1588239704970">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="416" y="185" key="SettingsEditor/0.0.1827.1080@0.0.1827.1080" timestamp="1588239704970" />
   </component>
 </project>
