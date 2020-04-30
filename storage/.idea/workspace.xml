@@ -28,7 +28,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\项目\Set-the-warehouse\storage\src\main\resources" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="StorageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -61,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588232653021</updated>
-      <workItem from="1588232660052" duration="245000" />
+      <workItem from="1588232660052" duration="950000" />
     </task>
     <servers />
   </component>
@@ -69,6 +78,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="505" y="201" key="#Project_Structure" timestamp="1588233205703">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="505" y="201" key="#Project_Structure/0.0.1827.1080@0.0.1827.1080" timestamp="1588233205703" />
     <state x="643" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588232901755">
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
