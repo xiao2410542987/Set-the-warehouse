@@ -1,9 +1,15 @@
 package com.renyu.config;
 
+
+
+import com.renyu.StorageApplication;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -16,7 +22,8 @@ import java.util.ArrayList;
 
 @Configuration
 @EnableSwagger2 //开启swagger2
-public class SwaggerConfig {
+public class SwaggerConfig implements WebMvcConfigurer {
+
 
     //分组
     @Bean
@@ -43,6 +50,7 @@ public class SwaggerConfig {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .host("120.79.46.8")
                 .groupName("renyu")
                 .enable(flag)//enable是否启动swagger，如果为false，则swagger不能再浏览器中访问
                 .select()
@@ -51,9 +59,9 @@ public class SwaggerConfig {
                 //none()全部不扫描
                 //withClassAnnotation()扫描类上的注解，参数是一个注解的反射对象
                 //withMethodAnnotation扫描方法上的注解
-                .apis(RequestHandlerSelectors.basePackage("com.renyu.controller"))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 //paths（）过滤什么路径
-                /*.paths(PathSelectors.ant("/"))*/
+                .paths(PathSelectors.any())
                 .build();
     }
 
