@@ -8,7 +8,6 @@ class StorageApplicationTests {
 
     @Test
     void contextLoads() {
-	//demo
     }
 
 }
