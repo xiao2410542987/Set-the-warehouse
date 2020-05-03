@@ -26,7 +26,12 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@120.79.46.8" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="Git.Settings">
@@ -93,7 +98,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:@120.79.46.8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:@120.79.46.8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@618f20b5" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -112,7 +127,7 @@
       <updated>1588232653021</updated>
       <workItem from="1588232660052" duration="7101000" />
       <workItem from="1588402776742" duration="10437000" />
-      <workItem from="1588533255882" duration="526000" />
+      <workItem from="1588533255882" duration="620000" />
     </task>
     <servers />
   </component>
