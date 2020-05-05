@@ -57,8 +57,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 //RequestHandlerSelectors,配置1要扫描接口的方式basePackage("com.renyu.swagger.Controller")
                 //any()扫描全部
                 //none()全部不扫描
-                //withClassAnnotation()扫描类上的注解，参数是一个注解的反射对象
-                //withMethodAnnotation扫描方法上的注解
+                //withClassAnnotation()扫描类上的注解，参数是一个注解的扫描方法上的注解反射对象
+                //withMethodAnnotation
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 //paths（）过滤什么路径
                 .paths(PathSelectors.any())
