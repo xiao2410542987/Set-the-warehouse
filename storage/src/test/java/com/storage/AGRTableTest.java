@@ -36,7 +36,7 @@ public class AGRTableTest {
         mpg.setDataSource(dsc);
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("renyu");
+        pc.setModuleName("storage");
         pc.setParent("com");
         pc.setEntity("pojo");
         pc.setController("controller");
