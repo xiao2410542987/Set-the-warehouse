@@ -1,6 +1,6 @@
-package com.renyu.mapper;
+package com.storage.mapper;
 
-import com.renyu.pojo.Companys;
+import com.storage.pojo.Companys;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

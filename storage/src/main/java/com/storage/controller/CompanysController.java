@@ -1,4 +1,4 @@
-package com.renyu.controller;
+package com.storage.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

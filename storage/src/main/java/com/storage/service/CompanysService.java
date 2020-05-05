@@ -1,6 +1,6 @@
-package com.renyu.service;
+package com.storage.service;
 
-import com.renyu.pojo.Companys;
+import com.storage.pojo.Companys;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

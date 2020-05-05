@@ -1,4 +1,4 @@
-package com.renyu;
+package com.storage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

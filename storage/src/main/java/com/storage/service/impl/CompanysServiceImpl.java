@@ -1,8 +1,8 @@
-package com.renyu.service.impl;
+package com.storage.service.impl;
 
-import com.renyu.pojo.Companys;
-import com.renyu.mapper.CompanysMapper;
-import com.renyu.service.CompanysService;
+import com.storage.pojo.Companys;
+import com.storage.mapper.CompanysMapper;
+import com.storage.service.CompanysService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

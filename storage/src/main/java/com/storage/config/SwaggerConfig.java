@@ -1,8 +1,7 @@
-package com.renyu.config;
+package com.storage.config;
 
 
 
-import com.renyu.StorageApplication;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
