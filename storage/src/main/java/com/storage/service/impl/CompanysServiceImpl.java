@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author renyu
- * @since 2020-05-04
+ * @since 2020-05-07
  */
 @Service
 public class CompanysServiceImpl extends ServiceImpl<CompanysMapper, Companys> implements CompanysService {

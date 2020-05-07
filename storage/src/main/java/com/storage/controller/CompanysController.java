@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author renyu
- * @since 2020-05-04
+ * @since 2020-05-07
  */
 @RestController
-@RequestMapping("/renyu/companys")
+@RequestMapping("/storage/companys")
 public class CompanysController {
 
 }
