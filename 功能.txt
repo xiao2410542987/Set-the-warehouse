@@ -1,0 +1,172 @@
+管理员注册（需要已有管理员审核）
+工作人员注册（需要已有管理员审核）（工作单位）
+管理员登录
+工作人员登录
+注销工作人员账号（管理员）
+客户注册
+客户登录
+
+修改管理员信息
+新建仓库（仓库编号，仓库类型，仓库容量，仓库分配设备，仓库管理人员）
+新增仓库类型
+新增设备类型
+新增工作单位
+更换仓库管理人员（修改）
+删除仓库信息
+修改仓库信息
+全查询仓库
+条件查询仓库（类型，状态，管理人员）
+查询仓库已储存的货物
+查询仓库内设备信息
+修改仓库内设备
+全查询设备数量
+全查询空闲工作人员
+分配搬运工作
+转移货物（从一个仓库的某个货物存放另外一个仓库）
+分配检查工作
+分配管理工作
+分配维修设备工作
+
+
+接受搬运工作任务
+完成搬运工作任务
+接受检查工作任务
+完成检查工作任务
+接受维修工作任务
+完成维修工作任务
+修改工作单位
+修改工作人员信息
+
+
+发起货物存取请求
+查询货物
+
+
+数据库表:
+公司表√
+员工表√
+仓库表√
+仓库类型表√
+设备类型表√
+货物信息表√
+工作单位表√
+工作任务表√
+设备数量表√
+设备分配表√
+货物单位表√
+
+companys   公司表:
+
+id	id						int
+name	公司的名字					varchar
+founder	负责人						varchar
+createtime	创建日期 					datetime
+place	公司位置						varchar
+state	审核状态 默认0 0未通过 1审核通过			int
+phone	公司联系电话					varchar
+
+distribution 设备分配表:
+
+id	id
+state	设备状态 默认0 0正常运行 1损坏或者故障 2已被回收		int
+companyid	所属公司	外键(关联companys   公司表)		int
+warehouseid	所属仓库	外键(关联warehouse	仓库表)		int
+equipmentid	所属设备	外键(关联equipments  设备数量表表) 	int
+name	设备编号名称					varchar
+createtime	创建时间					datetime
+updatetime	修改时间					datetime
+
+equipments  设备数量表:
+
+id	id
+equipmenttypeid	设备名字	外键(关联equipmenttypes 设备类型表)	int
+number	设备总数量					int
+unuse	未使用设备数量					int
+companyid	所属公司	外键(关联companys   公司表)		int
+meteringid	数量单位	外键(关联metering 数量单位类型表) 	int
+
+equipmenttypes	设备类型表:
+
+id	id						int
+name	设备名字						varchar
+companyid	所属公司	外键(关联companys   公司表)		int
+
+goods	货物信息表:
+
+id	id						int
+goodsname	货物名字					varchar
+weight	数量						int
+meteringid	数量单位 外键(关联metering 数量单位类型表) 	int
+username		存放人姓名				varchar
+userphone	存放人电话				varchar
+companyid	所属公司	外键(关联companys   公司表)		int
+warehouseid	存放的仓库  外键(关联warehouse 仓库表) 		int
+static	货物状态 默认0 0未存放或者交接状态 1已存放 2已取		int
+createtime	创建时间					datetime
+
+metering		数量单位类型表:
+
+id	id						int
+name	计量单位名称					varchar
+companyid	所属公司	外键(关联companys   公司表)		int
+
+warehouses	仓库表:
+
+id	id						int
+name	仓库名称						varchar
+waresize		仓库容量					int
+meteringid	数量单位	外键(关联metering 数量单位类型表) 	int
+unusesize		空闲容量					int
+warehousetypeid	仓库类型	外键				int
+companyid	所属公司	外键(关联companys   公司表)		int
+workerid		仓库负责人 外键(关联workers 工作人员表)		int
+state		仓库状态	默认0 0正常使用 1维护或者关闭状态	int
+createtime	创建时间					datetime
+
+warehousetypes		仓库类型表:
+	
+id	id						int
+name		类型名称					varchar
+companyid	所属公司	外键(关联companys   公司表)		int
+
+workers		工作人员表:
+
+id	id						int
+name	工作人员姓名					varchar
+sex	性别						varchar
+phone	电话						varchar
+password	登录密码						varchar
+companyid	所属公司	外键(关联companys   公司表)		int
+worktypeid	工作单位类型 外键				int
+state		审核状态 默认0 0未审核 1通过审核 2开除		int
+working		工作状态 默认0 0未分配工作 1已被分配工作		int
+createtime	创建时间					datetime
+
+works	工作任务表:
+
+id	id										int
+text	工作内容										varchar
+companyid	所属公司	外键(关联companys   公司表)						int
+workerid		工作员工	外键								int
+goodsid		货物(需要搬运的货物外键,如不是货物搬运任务则为空)	外键(关联goods 货物信息表)		int
+distributionid	设备(需要维修的设备外键,如不是维修设备任务则为空)	外键(关联distributions 设备分配表)	int
+warehouseid	仓库	外键(关联warehouse 仓库表) 						int
+state		状态	默认0 0未完成 1已经完成 2撤销任务					int
+createtime	创建时间									datetime
+updatetime	修改时间									datetime
+
+worktypes		工作单位类型表:
+
+id	id										int
+name	单位类型名称									varchar
+companyid	所属公司	外键(关联companys   公司表)						int
+
+
+
+
+
+	
+
+
+
+
