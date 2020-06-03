@@ -174,6 +174,7 @@
       <workItem from="1588565894318" duration="3957000" />
       <workItem from="1588666031420" duration="1935000" />
       <workItem from="1588864191091" duration="2339000" />
+      <workItem from="1589464683283" duration="1256000" />
     </task>
     <servers />
   </component>
@@ -205,10 +206,10 @@
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
     <state x="643" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1827.1080@0.0.1827.1080" timestamp="1588232901755" />
-    <state x="693" y="298" key="FileChooserDialogImpl" timestamp="1588607107210">
+    <state x="693" y="298" key="FileChooserDialogImpl" timestamp="1589465302713">
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
-    <state x="693" y="298" key="FileChooserDialogImpl/0.0.1827.1080@0.0.1827.1080" timestamp="1588607107210" />
+    <state x="693" y="298" key="FileChooserDialogImpl/0.0.1827.1080@0.0.1827.1080" timestamp="1589465302713" />
     <state width="1784" height="295" key="GridCell.Tab.0.bottom" timestamp="1588867367873">
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
@@ -253,9 +254,13 @@
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
     <state x="740" y="479" key="classpath-attribute-editor/0.0.1827.1080@0.0.1827.1080" timestamp="1588405777418" />
-    <state x="606" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1588864203244">
+    <state x="606" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1589464709130">
       <screen x="0" y="0" width="1827" height="1080" />
     </state>
-    <state x="606" y="367" key="com.intellij.ide.util.TipDialog/0.0.1827.1080@0.0.1827.1080" timestamp="1588864203244" />
+    <state x="606" y="367" key="com.intellij.ide.util.TipDialog/0.0.1827.1080@0.0.1827.1080" timestamp="1589464709130" />
+    <state x="288" y="247" key="new project wizard" timestamp="1589465315233">
+      <screen x="0" y="0" width="1827" height="1080" />
+    </state>
+    <state x="288" y="247" key="new project wizard/0.0.1827.1080@0.0.1827.1080" timestamp="1589465315233" />
   </component>
 </project>
