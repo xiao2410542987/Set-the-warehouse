@@ -1,9 +1,14 @@
 package com.storage.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,7 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/storage/workers")
+@CrossOrigin
 public class WorkersController {
+    @ApiOperation("员工注册")
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+//    @ApiImplicitParams(
+//            @ApiImplicitParam(name = "name",value = "员工姓名",dataType = "String"),
+//            @ApiImplicitParam(name = "sex",value = "员工性别",dataType = "String"),
+//            @ApiImplicitParam(name = "phone",value = "员工电话",dataType = "String"),
+//            @ApiImplicitParam(name = "password",value = "登录密码",dataType = "String"),
+//            @ApiImplicitParam(name = "companyid",value = "所在公司(外键)",dataType = "Integer"),
+//            @ApiImplicitParam(name = "worktypeid",value = "员工类型(外键)",dataType = "Integer")
+//    )
+    public Map register(@RequestParam @ApiParam(name = "name" ,value = "员工姓名") String name, @RequestParam @ApiParam(name = "sex" ,value = "员工性别") String sex,
+                        @RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone, @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
+                        @RequestParam @ApiParam(name = "companyid" ,value = "所在公司(外键)") Integer companyid, @RequestParam @ApiParam(name = "worktypeid" ,value = "员工类型(外键)")Integer worktypeid)
 
+    {
+        Map<Object, Object> map = new HashMap<>();
+        return map;
+    }
 }
 

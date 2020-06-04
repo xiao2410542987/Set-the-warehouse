@@ -1,9 +1,15 @@
 package com.storage.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.storage.mapper.CompanysMapper;
+import com.storage.pojo.Companys;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,7 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/storage/companys")
+@CrossOrigin
 public class CompanysController {
 
+    @Autowired
+    private CompanysMapper companysMapper;
+
+    @ApiOperation("查询所有公司与所有职位")
+    @RequestMapping(value = "/selectAllWork",method = RequestMethod.GET)
+    public Map selectAllWork()
+    {
+        List<Companys> companys = companysMapper.selectAllWork();
+        Map map = new HashMap();
+        map.put("companys",companys);
+        return map;
+    }
 }
 

@@ -1,7 +1,11 @@
 package com.storage.mapper;
 
+import com.storage.pojo.Companys;
 import com.storage.pojo.Worktypes;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +15,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author renyu
  * @since 2020-05-07
  */
-public interface WorktypesMapper extends BaseMapper<Worktypes> {
 
+@Mapper
+public interface WorktypesMapper extends BaseMapper<Worktypes> {
+    List<Worktypes> selectAllWorkTypes(int id);
 }

@@ -2,6 +2,7 @@ package com.storage.mapper;
 
 import com.storage.pojo.Metering;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author renyu
  * @since 2020-05-07
  */
+@Mapper
 public interface MeteringMapper extends BaseMapper<Metering> {
 
 }

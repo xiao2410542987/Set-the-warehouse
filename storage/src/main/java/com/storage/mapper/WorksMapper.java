@@ -2,6 +2,7 @@ package com.storage.mapper;
 
 import com.storage.pojo.Works;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -9,8 +10,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author renyu
- * @since 2020-05-08
+ * @since 2020-06-04
  */
+@Mapper
 public interface WorksMapper extends BaseMapper<Works> {
 
 }
