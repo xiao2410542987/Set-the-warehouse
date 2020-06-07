@@ -1,10 +1,13 @@
 package com.storage.controller;
 
 
+import com.storage.mapper.WorkersMapper;
+import com.storage.pojo.Workers;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +25,8 @@ import java.util.Map;
 @RequestMapping("/storage/workers")
 @CrossOrigin
 public class WorkersController {
+    @Autowired
+    private WorkersMapper workersMapper;
     @ApiOperation("员工注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
 //    @ApiImplicitParams(
@@ -40,5 +45,23 @@ public class WorkersController {
         Map<Object, Object> map = new HashMap<>();
         return map;
     }
+
+    @ApiOperation("员工登录")
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public Map login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,@RequestParam @ApiParam(name = "password" ,value = "登录密码") String password){
+        Map<Object, Object> map = new HashMap<>();
+        Workers workers = new Workers();
+        workers.setPhone(phone);
+        workers.setPassword(password);
+        Workers workers1 = workersMapper.queryWorkersList(workers);
+        if(workers1 == null){
+            map.put("账号或者密码错误","账号或者密码错误");
+        }else {
+            map.put("员工姓名",workers1.getName());
+            map.put("员工工作单位",workers1.getWorktypes().getName());
+        }
+        return map;
+    }
+
 }
 
