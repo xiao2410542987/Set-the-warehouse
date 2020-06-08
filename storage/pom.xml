@@ -14,6 +14,8 @@
     <name>storage</name>
     <description>Demo project for Spring Boot</description>
 
+    <packaging>war</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -37,17 +39,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-<!--        &lt;!&ndash;security和thymeleaf的整合&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.thymeleaf.extras</groupId>-->
-<!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
-<!--            <version>3.0.4.RELEASE</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash;security&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
 
         <!-- 模板引擎 -->
         <dependency>
@@ -60,10 +51,6 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.0.5</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -91,6 +78,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope><!-- 打成war的时候打开注释，本地开发用内嵌tomcat时加上注释 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-legacy</artifactId>
+            <version>1.1.0.RELEASE</version>
         </dependency>
 
         <dependency>

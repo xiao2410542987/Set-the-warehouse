@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,28 +58,27 @@ public class WorkersController {
             return Msg.fail().add("tips","注册失败:该手机号已被注册");
         }
 
-        return Msg.success().add("tips","注册成功"));
+        return Msg.success().add("tips","注册成功");
     }
 
     @ApiOperation("员工登录")
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public Map login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,
+    public Msg login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,
                      @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
                     HttpSession session){
-        Map<Object, Object> map = new HashMap<>();
         Workers workers = new Workers();
         workers.setPhone(phone);
         workers.setPassword(password);
         Workers workers1 = workersMapper.queryWorkersList(workers);
         if(workers1 == null){
-            map.put("账号或者密码错误","账号或者密码错误");
+           return Msg.fail().add("账号或者密码错误","账号或者密码错误");
         }else {
             session.setAttribute("login",workers1.getWorktypes().getName());
-            map.put("员工姓名",workers1.getName());
-            map.put("员工工作单位",workers1.getWorktypes().getName());
+            return Msg.success().add("员工姓名",workers1.getName()).add("员工工作单位",workers1.getWorktypes().getName());
         }
-        return map;
+
     }
+
 
 }
 

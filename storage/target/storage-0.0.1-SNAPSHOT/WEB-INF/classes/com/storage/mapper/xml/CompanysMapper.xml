@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.storage.mapper.CompanysMapper">
+<resultMap id="resWork" type="com.storage.pojo.Companys">
+    <id column="id" property="id"></id>
+    <result column="name" property="name"></result>
+    <result column="founder" property="founder"></result>
+    <result column="createtime" property="createtime"></result>
+    <result column="place" property="place"></result>
+    <result column="state" property="state"></result>
+    <result column="phone" property="phone"></result>
+    <collection property="worktypes" column="id" select="com.storage.mapper.WorktypesMapper.selectAllWorkTypes"></collection>
+</resultMap>
+<select id="selectAllWork" resultMap="resWork">
+    select * from companys;
+</select>
+</mapper>
