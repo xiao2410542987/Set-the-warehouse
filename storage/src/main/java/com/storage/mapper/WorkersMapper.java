@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WorkersMapper extends BaseMapper<Workers> {
-
+    Workers queryWorkersList(Workers workers);
 }

@@ -42,6 +42,7 @@ public class Workers implements Serializable {
     private Integer companyid;
 
     private Integer worktypeid;
+    private Worktypes worktypes;//关联Worktypes表
 
     private Integer state;
 
