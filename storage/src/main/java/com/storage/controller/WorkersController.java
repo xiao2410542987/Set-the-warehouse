@@ -2,7 +2,9 @@ package com.storage.controller;
 
 
 import com.storage.mapper.WorkersMapper;
+import com.storage.pojo.Msg;
 import com.storage.pojo.Workers;
+import com.storage.service.impl.WorkersServiceImpl;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +32,8 @@ import java.util.Map;
 public class WorkersController {
     @Autowired
     private WorkersMapper workersMapper;
+
+    private WorkersServiceImpl workersService;
     @ApiOperation("员工注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
 //    @ApiImplicitParams(
@@ -38,13 +44,21 @@ public class WorkersController {
 //            @ApiImplicitParam(name = "companyid",value = "所在公司(外键)",dataType = "Integer"),
 //            @ApiImplicitParam(name = "worktypeid",value = "员工类型(外键)",dataType = "Integer")
 //    )
-    public Map register(@RequestParam @ApiParam(name = "name" ,value = "员工姓名") String name, @RequestParam @ApiParam(name = "sex" ,value = "员工性别") String sex,
+    public Msg register(@RequestParam @ApiParam(name = "name" ,value = "员工姓名") String name, @RequestParam @ApiParam(name = "sex" ,value = "员工性别") String sex,
                         @RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone, @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
                         @RequestParam @ApiParam(name = "companyid" ,value = "所在公司(外键)") Integer companyid, @RequestParam @ApiParam(name = "worktypeid" ,value = "员工类型(外键)")Integer worktypeid)
 
     {
-        Map<Object, Object> map = new HashMap<>();
-        return map;
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("phone",phone);
+        List<Workers> workers1 = workersMapper.selectByMap(map);
+        if(workers1.size()<1)
+        {
+            return Msg.fail().add("tips","注册失败:该手机号已被注册");
+        }
+
+        return Msg.success().add("tips","注册成功"));
     }
 
     @ApiOperation("员工登录")
