@@ -6,7 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cfd47cc-7c0d-4457-9ba1-962bc8249d26" name="Default Changelist" comment="" />
+    <list default="true" id="1cfd47cc-7c0d-4457-9ba1-962bc8249d26" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/storage/controller/WorkersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/storage/controller/WorkersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/controller/WorkersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/storage/controller/WorkersController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -204,7 +208,7 @@
       <workItem from="1588864191091" duration="2339000" />
       <workItem from="1591234634465" duration="15706000" />
       <workItem from="1591447470994" duration="11968000" />
-      <workItem from="1591597409995" duration="161000" />
+      <workItem from="1591597409995" duration="2786000" />
     </task>
     <servers />
   </component>

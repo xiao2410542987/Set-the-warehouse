@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +49,9 @@ public class WorkersController {
 
     @ApiOperation("员工登录")
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public Map login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,@RequestParam @ApiParam(name = "password" ,value = "登录密码") String password){
+    public Map login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,
+                     @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
+                    HttpSession session){
         Map<Object, Object> map = new HashMap<>();
         Workers workers = new Workers();
         workers.setPhone(phone);
@@ -57,6 +60,7 @@ public class WorkersController {
         if(workers1 == null){
             map.put("账号或者密码错误","账号或者密码错误");
         }else {
+            session.setAttribute("login",workers1.getWorktypes().getName());
             map.put("员工姓名",workers1.getName());
             map.put("员工工作单位",workers1.getWorktypes().getName());
         }
