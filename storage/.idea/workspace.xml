@@ -7,16 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cfd47cc-7c0d-4457-9ba1-962bc8249d26" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/storage/pojo/Msg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/storage/pojo/Msg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/storage/controller/WorkersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/storage/controller/WorkersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/storage/pojo/Workers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/storage/pojo/Workers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/storage/StorageApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/storage/StorageApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/controller/WorkersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/storage/controller/WorkersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/pojo/Workers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/storage/pojo/Workers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/storage/StorageApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/storage/StorageApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/mapper/WorkersMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/pojo/Workers.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/service/WorkersService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/storage/service/impl/WorkersServiceImpl.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
