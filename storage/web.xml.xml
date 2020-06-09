@@ -5,7 +5,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>com.</param-value>
+        <param-value>com.storage.StorageApplication</param-value>
     </context-param>
 
     <listener>
