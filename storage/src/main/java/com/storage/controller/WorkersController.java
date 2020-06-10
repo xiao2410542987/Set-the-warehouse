@@ -5,13 +5,18 @@ import com.storage.mapper.WorkersMapper;
 import com.storage.pojo.Msg;
 import com.storage.pojo.Workers;
 import com.storage.service.impl.WorkersServiceImpl;
+import com.sun.deploy.net.HttpResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,7 +70,7 @@ public class WorkersController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public Msg login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,
                      @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
-                    HttpSession session){
+                     HttpServletRequest request,HttpSession session,HttpServletResponse response){
         Workers workers = new Workers();
         workers.setPhone(phone);
         workers.setPassword(password);
@@ -73,7 +78,9 @@ public class WorkersController {
         if(workers1 == null){
            return Msg.fail().add("账号或者密码错误","账号或者密码错误");
         }else {
-            session.setAttribute("login",workers1.getWorktypes().getName());
+            //session.setAttribute("login",workers1.getWorktypes().getName());
+            request.getSession().setAttribute("login",workers1.getWorktypes().getName());
+            System.out.println(session.getAttribute("login"));
             return Msg.success().add("员工姓名",workers1.getName()).add("员工工作单位",workers1.getWorktypes().getName());
         }
 

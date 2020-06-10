@@ -53,6 +53,7 @@ D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\impl\Wareh
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\GoodsMapper.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\WorksMapper.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\impl\WorkersServiceImpl.java
+D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\config\CorsConfig.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\pojo\Workers.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\WorktypesMapper.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\WorkersMapper.java
