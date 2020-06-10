@@ -16,6 +16,7 @@ com\storage\service\impl\EquipmentsServiceImpl.class
 com\storage\mapper\WorktypesMapper.class
 com\storage\pojo\Goods.class
 com\storage\mapper\CompanysMapper.class
+com\storage\config\MybatisPlusConfig.class
 com\storage\controller\WorksController.class
 com\storage\pojo\Distribution.class
 com\storage\controller\WarehousetypesController.class

@@ -27,6 +27,7 @@ D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\Warehousety
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\impl\EquipmentsServiceImpl.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\controller\EquipmenttypesController.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\pojo\Goods.java
+D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\config\MybatisPlusConfig.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\controller\EquipmentsController.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\impl\WarehousetypesServiceImpl.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\GoodsService.java
@@ -39,6 +40,7 @@ D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\pojo\Warehousetype
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\WarehousetypesService.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\pojo\Warehouses.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\service\WorkersService.java
+D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\handler\MyMetaObjectHandler.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\DistributionMapper.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\mapper\EquipmentsMapper.java
 D:\项目\Set-the-warehouse\storage\src\main\java\com\storage\controller\indexController.java

@@ -9,7 +9,6 @@ import com.storage.pojo.Msg;
 import com.storage.pojo.Workers;
 import com.storage.pojo.Worktypes;
 import com.storage.service.impl.WorkersServiceImpl;
-import com.sun.deploy.net.HttpResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +44,7 @@ public class WorkersController {
 
     private WorkersServiceImpl workersService;
     @ApiOperation("员工注册")
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
 //    @ApiImplicitParams(
 //            @ApiImplicitParam(name = "name",value = "员工姓名",dataType = "String"),
 //            @ApiImplicitParam(name = "sex",value = "员工性别",dataType = "String"),

@@ -8,7 +8,7 @@
     </select>
     <select id="audit" resultMap="auditALL">
         select wk.id,wk.name,wk.sex,wk.phone,cps.name,wty.name,wk.createtime from workers as wk, companys as cps,
-        worktypes as wty
+        worktypes as wty WHERE wk.state=0 and wk.companyid=cps.id and wk.worktypeid=wty.id
     </select>
     <resultMap id="auditALL" type="com.storage.pojo.Workers">
         <id column="id" property="id"/>
@@ -21,7 +21,7 @@
         <result column="state" property="state"/>
         <result column="working" property="working"/>
         <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
-
+        <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
     </resultMap>
     <resultMap id="WorkersType" type="com.storage.pojo.Workers">
         <id column="id" property="id"/>
