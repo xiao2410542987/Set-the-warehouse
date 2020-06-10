@@ -17,5 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/storage/worktypes")
 public class WorktypesController {
 
+
 }
 
