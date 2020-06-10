@@ -35,6 +35,8 @@ public class CompanysController {
         List<Companys> companys = companysMapper.selectAllWork();
         Map map = new HashMap();
         map.put("companys",companys);
+
+
         return Msg.success().add("companys",companys);
     }
 }
