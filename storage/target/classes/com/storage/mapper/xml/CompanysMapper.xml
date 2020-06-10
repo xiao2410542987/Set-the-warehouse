@@ -14,4 +14,7 @@
 <select id="selectAllWork" resultMap="resWork">
     select * from companys;
 </select>
+    <select id="selectname" resultType="java.lang.String">
+        select name from companys;
+    </select>
 </mapper>

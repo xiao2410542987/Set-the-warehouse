@@ -71,6 +71,12 @@ public class WorkersController {
     public Msg login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,
                      @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
                      HttpServletRequest request,HttpSession session,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));//设置允许跨域请求地址即为当前请求地址
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "0");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
+        response.setHeader("Access-Control-Allow-Credentials", "true");//允许服务器向浏览器跨域响应时更改浏览器（客户端）的cookie
+        response.setHeader("XDomainRequestAllowed","1");
         Workers workers = new Workers();
         workers.setPhone(phone);
         workers.setPassword(password);

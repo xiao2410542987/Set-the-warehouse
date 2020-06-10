@@ -4,6 +4,7 @@ package com.storage.controller;
 import com.storage.mapper.CompanysMapper;
 import com.storage.pojo.Companys;
 import com.storage.pojo.Msg;
+import com.storage.service.CompanysService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,8 @@ public class CompanysController {
 
     @Autowired
     private CompanysMapper companysMapper;
+    @Autowired
+    private CompanysService companysService;
 
     @ApiOperation("查询所有公司与所有职位")
     @RequestMapping(value = "/selectAllWork",method = RequestMethod.GET)
@@ -38,6 +41,14 @@ public class CompanysController {
 
 
         return Msg.success().add("companys",companys);
+    }
+
+
+    @ApiOperation("查询所有公司的名字--回调方法")
+    @RequestMapping(value = "/selectAllone",method = RequestMethod.GET)
+    public Msg selectAllone()
+    {
+        return Msg.success().add("name",companysMapper.selectname());
     }
 }
 
