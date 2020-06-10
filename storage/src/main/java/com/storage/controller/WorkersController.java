@@ -4,7 +4,9 @@ package com.storage.controller;
 import com.storage.mapper.WorkersMapper;
 import com.storage.pojo.Msg;
 import com.storage.pojo.Workers;
+import com.storage.pojo.Works;
 import com.storage.service.impl.WorkersServiceImpl;
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +34,7 @@ public class WorkersController {
     @Autowired
     private WorkersMapper workersMapper;
 
+    @Autowired
     private WorkersServiceImpl workersService;
     @ApiOperation("员工注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -56,8 +59,15 @@ public class WorkersController {
         {
             return Msg.fail().add("tips","注册失败:该手机号已被注册");
         }
-
-        return Msg.success().add("tips","注册成功"));
+        Workers workers = new Workers();
+        workers.setCompanyid(companyid);
+        workers.setPhone(phone);
+        workers.setPassword(password);
+        workers.setName(name);
+        workers.setSex(sex);
+        workers.setWorktypeid(worktypeid);
+        workersMapper.insert(workers);
+        return Msg.success().add("tips","注册成功");
     }
 
     @ApiOperation("员工登录")

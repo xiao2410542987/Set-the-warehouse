@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.storage.mapper.CompanysMapper;
 import com.storage.mapper.WorkersMapper;
 import com.storage.pojo.Companys;
+import com.storage.pojo.Msg;
 import com.storage.pojo.Workers;
 import com.storage.service.WorkersService;
 import com.storage.service.impl.WorkersServiceImpl;
@@ -46,9 +47,13 @@ class StorageApplicationTests {
     {
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("phone","12345678900");
+        map.put("phone","123");
         List<Workers> workers1 = workersMapper.selectByMap(map);
-        System.out.println(workers1);
+        if(workers1.size()<1)
+        {
+            System.out.println(workers1);
+        }
+
     }
 
 }
