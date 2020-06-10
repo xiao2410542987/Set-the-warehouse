@@ -40,6 +40,7 @@ public class Workers implements Serializable {
     private String password;
 
     private Integer companyid;
+    private Companys companys;//关联Companys表
 
     private Integer worktypeid;
     @TableField(exist = false)

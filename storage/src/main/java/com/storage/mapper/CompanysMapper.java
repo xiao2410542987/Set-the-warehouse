@@ -18,7 +18,7 @@ import java.util.List;
 public interface CompanysMapper extends BaseMapper<Companys> {
     List<Companys> selectAllWork();
 
-    List<Companys> selectname(Companys companys);
+    List<Companys> selectname();
 
 
 }
