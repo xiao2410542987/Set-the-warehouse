@@ -2,6 +2,7 @@ package com.storage.service;
 
 import com.storage.pojo.Workers;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
