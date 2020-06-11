@@ -4,7 +4,7 @@ import com.storage.pojo.Workers;
 import com.storage.mapper.WorkersMapper;
 import com.storage.service.WorkersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
