@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.storage.mapper.DistributionMapper">
+<resultMap id="resD" type="com.storage.pojo.Distribution">
+    <id column="id" property="id"></id>
 
+    <result column="state" property="state"></result>
+    <result column="companyid" property="companyid"></result>
+    <result column="equipmentid" property="equipmentid"></result>
+    <result column="name" property="name"></result>
+    <result column="createtime" property="createtime"></result>
+    <result column="updatetime" property="updatetime"></result>
+    <association property="warehouses"  column="warehouseid" select="com.storage.mapper.WarehousesMapper.selectWarehouses"></association>
+</resultMap>
+
+    <select id="selectDistribution" resultMap="resD">
+        select * from distribution where equipmentid=#{id}
+
+    </select>
 </mapper>

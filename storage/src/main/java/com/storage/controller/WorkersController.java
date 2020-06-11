@@ -43,8 +43,7 @@ public class WorkersController {
     @Autowired
     private WorkersMapper workersMapper;
 
-    @Autowired
-    private WorkersServiceImpl workersService;
+
     @ApiOperation("员工注册")
     @RequestMapping(value = "/register",method = RequestMethod.GET)
 //    @ApiImplicitParams(
@@ -71,7 +70,7 @@ public class WorkersController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("phone",phone);
         List<Workers> workers1 = workersMapper.selectByMap(map);
-        if(workers1.size()<1)
+        if(workers1.size()>0)
         {
             return Msg.fail().add("tips","注册失败:该手机号已被注册");
         }

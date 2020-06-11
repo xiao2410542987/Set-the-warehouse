@@ -8,8 +8,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -24,6 +26,8 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="Workers对象", description="")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Workers implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +44,7 @@ public class Workers implements Serializable {
     private String password;
 
     private Integer companyid;
+    @TableField(exist = false)
     private Companys companys;//关联Companys表
 
     private Integer worktypeid;

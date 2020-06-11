@@ -1,9 +1,14 @@
 package com.storage;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.storage.mapper.CompanysMapper;
+import com.storage.mapper.EquipmentsMapper;
+import com.storage.mapper.EquipmenttypesMapper;
 import com.storage.mapper.WorkersMapper;
 import com.storage.pojo.Companys;
+import com.storage.pojo.Equipments;
+import com.storage.pojo.Equipmenttypes;
 import com.storage.pojo.Workers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +21,27 @@ import java.util.Map;
 @SpringBootTest
 class StorageApplicationTests {
 
-    @Autowired
-    private CompanysMapper companysMapper;
-
-    @Autowired
-    private WorkersMapper workersMapper;
+//    @Autowired
+//    private CompanysMapper companysMapper;
+//
+//    @Autowired
+//    private WorkersMapper workersMapper;
 
     /*@Autowired
+    private EquipmenttypesMapper equipmenttypesMapper;
+    @Autowired
+    private EquipmenttypesMapper equipmenttypesMapper;*/
+    @Autowired
+    private EquipmentsMapper equipmentsMapper;
+    /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
-    @Test
-    void contextLoads() {
-	//de
-        List<Companys> companys = companysMapper.selectAllWork();
-        System.out.println(companys);
-
-    }
+//    @Test
+//    void contextLoads() {
+//	//de
+//        List<Companys> companys = companysMapper.selectAllWork();
+//        System.out.println(companys);
+//
+//    }
     /*@Test
     public void login(){
         Workers workers = new Workers();
@@ -47,5 +58,19 @@ class StorageApplicationTests {
         List<Workers> workers1 = workersMapper.selectByMap(map);
         System.out.println(workers1);
     }*/
-
+    /*@Test
+    public void Test2()
+    {
+        List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(1);
+        System.out.println(equipmenttypes);
+    }*/
+    @Test
+    public void Test3()
+    {
+        QueryWrapper<Equipments> queryWrapper = new QueryWrapper<Equipments>();
+        queryWrapper.eq("equipmenttypeid",1);
+        Equipments equipments = new Equipments();
+        equipments.setEquipmenttypeid(0);
+        equipmentsMapper.update(equipments,queryWrapper);
+    }
 }

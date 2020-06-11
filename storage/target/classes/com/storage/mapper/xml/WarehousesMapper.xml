@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.storage.mapper.WarehousesMapper">
+<resultMap id="resW" type="com.storage.pojo.Warehouses">
+    <id column="id" property="id"></id>
 
+    <result column="name" property="name"></result>
+    <result column="waresize" property="waresize"></result>
+
+    <result column="unusesize" property="unusesize"></result>
+    <result column="warehousetypeid" property="warehousetypeid"></result>
+    <result column="companyid" property="companyid"></result>
+    <result column="workerid" property="workerid"></result>
+    <result column="state" property="state"></result>
+    <result column="createtime" property="createtime"></result>
+    <association column="metering" property="meteringid" select="com.storage.mapper.MeteringMapper.selectMetering"></association>
+</resultMap>
+    <select id="selectWarehouses" resultMap="resW">
+        select * from warehouses where id=#{id}
+    </select>
 </mapper>
