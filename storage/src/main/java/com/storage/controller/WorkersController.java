@@ -43,7 +43,10 @@ public class WorkersController {
     @Autowired
     private WorkersMapper workersMapper;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5c8b5e71ff8e756a6e87de8c9b605af095b2bbb4
     @ApiOperation("员工注册")
     @RequestMapping(value = "/register",method = RequestMethod.GET)
 //    @ApiImplicitParams(
