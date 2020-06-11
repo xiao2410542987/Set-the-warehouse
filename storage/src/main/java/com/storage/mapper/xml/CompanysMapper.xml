@@ -14,4 +14,12 @@
 <select id="selectAllWork" resultMap="resWork">
     select * from companys;
 </select>
+    <select id="selectname" resultType="com.storage.pojo.Companys">
+        select id,name from companys;
+    </select>
+
+    <select id="auditcps" resultType="com.storage.pojo.Companys" parameterType="integer">
+        select name from companys where id=#{id}
+    </select>
+    
 </mapper>

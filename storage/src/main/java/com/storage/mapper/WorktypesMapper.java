@@ -19,4 +19,5 @@ import java.util.List;
 @Mapper
 public interface WorktypesMapper extends BaseMapper<Worktypes> {
     List<Worktypes> selectAllWorkTypes(int id);
+
 }

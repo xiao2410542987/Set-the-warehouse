@@ -1,18 +1,14 @@
 package com.storage;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
+
 import com.storage.mapper.CompanysMapper;
 import com.storage.mapper.WorkersMapper;
 import com.storage.pojo.Companys;
-import com.storage.pojo.Msg;
 import com.storage.pojo.Workers;
-import com.storage.service.WorkersService;
-import com.storage.service.impl.WorkersServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +31,7 @@ class StorageApplicationTests {
         System.out.println(companys);
 
     }
-    @Test
+    /*@Test
     public void login(){
         Workers workers = new Workers();
         workers.setPhone("12345678900");
@@ -47,13 +43,9 @@ class StorageApplicationTests {
     {
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("phone","123");
+        map.put("phone","12345678900");
         List<Workers> workers1 = workersMapper.selectByMap(map);
-        if(workers1.size()<1)
-        {
-            System.out.println(workers1);
-        }
-
-    }
+        System.out.println(workers1);
+    }*/
 
 }
