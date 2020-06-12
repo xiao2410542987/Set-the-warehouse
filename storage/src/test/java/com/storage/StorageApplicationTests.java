@@ -80,7 +80,7 @@ class StorageApplicationTests {
     {
         Equipments equipments = new Equipments();
         equipments.setId(1);
-        
+
         equipments.setMeteringid(3);
 
         equipmentsMapper.updateById(equipments);
