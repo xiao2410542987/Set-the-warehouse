@@ -38,7 +38,7 @@ public class DistributionController {
         distribution.setEquipmentid(equipmentid);
         distribution.setCompanyid(companyid);
         distribution.setName(name);
-        int insert = distributionMapper.insert(distribution);
+        int i = distributionMapper.insert(distribution);
         if(i==0)
         {
             return Msg.fail().add("tips","添加失败");
