@@ -41,7 +41,7 @@ public class EquipmenttypesController {
 
         return Msg.success().add("tips",equipmenttypes);
     }
-    @ApiOperation("修改新设备类型")
+    @ApiOperation("修改设备类型名称")
     @RequestMapping(value = "/updEquipmenttype",method = RequestMethod.GET)
     public Msg updEquipmenttype(@RequestParam @ApiParam(name = "id" ,value = "id") int id,@RequestParam @ApiParam(name = "name" ,value = "设备新名称") String name)
     {

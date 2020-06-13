@@ -75,7 +75,7 @@ class StorageApplicationTests {
         equipments.setEquipmenttypeid(0);
         equipmentsMapper.update(equipments,queryWrapper);
     }*/
-    @Test
+   /* @Test
     public void Test4()
     {
         Equipments equipments = new Equipments();
@@ -85,5 +85,5 @@ class StorageApplicationTests {
 
         equipmentsMapper.updateById(equipments);
 
-    }
+    }*/
 }
