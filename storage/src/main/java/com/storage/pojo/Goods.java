@@ -49,7 +49,7 @@ public class Goods implements Serializable {
 
     private Integer warehouseid;
 
-    //private Integer static;
+    private Integer state;
 
     @TableField(fill = FieldFill.INSERT)
     private Date createtime;

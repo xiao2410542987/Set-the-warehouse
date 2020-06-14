@@ -10,6 +10,7 @@ import com.storage.pojo.Companys;
 import com.storage.pojo.Equipments;
 import com.storage.pojo.Equipmenttypes;
 import com.storage.pojo.Workers;
+import com.storage.service.impl.EquipmentsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,7 @@ class StorageApplicationTests {
     private EquipmenttypesMapper equipmenttypesMapper;*/
     @Autowired
     private EquipmentsMapper equipmentsMapper;
+
     /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
 //    @Test
@@ -65,6 +67,7 @@ class StorageApplicationTests {
         System.out.println(equipmenttypes);
     }*/
    /* @Test
+    /*@Test
     public void Test3()
     {
         QueryWrapper<Equipments> queryWrapper = new QueryWrapper<Equipments>();
@@ -72,5 +75,16 @@ class StorageApplicationTests {
         Equipments equipments = new Equipments();
         equipments.setEquipmenttypeid(0);
         equipmentsMapper.update(equipments,queryWrapper);
+    }*/
+   /* @Test
+    public void Test4()
+    {
+        Equipments equipments = new Equipments();
+        equipments.setId(1);
+
+        equipments.setMeteringid(3);
+
+        equipmentsMapper.updateById(equipments);
+
     }*/
 }

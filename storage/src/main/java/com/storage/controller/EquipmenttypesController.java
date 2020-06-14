@@ -41,7 +41,20 @@ public class EquipmenttypesController {
 
         return Msg.success().add("tips",equipmenttypes);
     }
-
+    @ApiOperation("修改设备类型名称")
+    @RequestMapping(value = "/updEquipmenttype",method = RequestMethod.GET)
+    public Msg updEquipmenttype(@RequestParam @ApiParam(name = "id" ,value = "id") int id,@RequestParam @ApiParam(name = "name" ,value = "设备新名称") String name)
+    {
+        Equipmenttypes equipmenttypes = new Equipmenttypes();
+        equipmenttypes.setId(id);
+        equipmenttypes.setName(name);
+        int i = equipmenttypesMapper.updateById(equipmenttypes);
+        if(i==0)
+        {
+            return Msg.fail().add("tips","修改失败");
+        }
+        return Msg.success().add("tips","修改成功");
+    }
 
     @ApiOperation("添加新设备类型")
     @RequestMapping(value = "/addEquipmenttype",method = RequestMethod.GET)
@@ -49,8 +62,6 @@ public class EquipmenttypesController {
                                 @RequestParam @ApiParam(name = "meteringid" ,value = "新设备名称") int meteringid)
     {
         Equipmenttypes equipmenttypes = new Equipmenttypes();
-
-
         equipmenttypes.setCompanyid(companyid);
         equipmenttypes.setName(name);
         Map map = new HashMap();
