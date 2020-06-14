@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: com.storage.StorageApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 11.314 s <<< FAILURE! - in com.storage.StorageApplicationTests
+Test3  Time elapsed: 0.544 s  <<< ERROR!
+org.springframework.dao.DataIntegrityViolationException: 
+
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`storage`.`equipments`, CONSTRAINT `equipments_ibfk_3` FOREIGN KEY (`equipmenttypeid`) REFERENCES `equipmenttypes` (`id`))
+### The error may involve com.storage.mapper.EquipmentsMapper.update-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE equipments  SET equipmenttypeid=?     WHERE  equipmenttypeid = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`storage`.`equipments`, CONSTRAINT `equipments_ibfk_3` FOREIGN KEY (`equipmenttypeid`) REFERENCES `equipmenttypes` (`id`))
+; Cannot add or update a child row: a foreign key constraint fails (`storage`.`equipments`, CONSTRAINT `equipments_ibfk_3` FOREIGN KEY (`equipmenttypeid`) REFERENCES `equipmenttypes` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`storage`.`equipments`, CONSTRAINT `equipments_ibfk_3` FOREIGN KEY (`equipmenttypeid`) REFERENCES `equipmenttypes` (`id`))
+	at com.storage.StorageApplicationTests.Test3(StorageApplicationTests.java:74)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`storage`.`equipments`, CONSTRAINT `equipments_ibfk_3` FOREIGN KEY (`equipmenttypeid`) REFERENCES `equipmenttypes` (`id`))
+	at com.storage.StorageApplicationTests.Test3(StorageApplicationTests.java:74)
+

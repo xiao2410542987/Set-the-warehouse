@@ -23,10 +23,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * <p>
@@ -43,10 +42,6 @@ public class WorkersController {
     @Autowired
     private WorkersMapper workersMapper;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5c8b5e71ff8e756a6e87de8c9b605af095b2bbb4
     @ApiOperation("员工注册")
     @RequestMapping(value = "/register",method = RequestMethod.GET)
 //    @ApiImplicitParams(
@@ -60,9 +55,7 @@ public class WorkersController {
     public Msg register(@RequestParam @ApiParam(name = "name" ,value = "员工姓名") String name, @RequestParam @ApiParam(name = "sex" ,value = "员工性别") String sex,
                         @RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone, @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
                         @RequestParam @ApiParam(name = "companyid" ,value = "所在公司(外键)") Integer companyid, @RequestParam @ApiParam(name = "worktypeid" ,value = "员工类型(外键)")Integer worktypeid,
-                        HttpServletRequest request,HttpSession session,HttpServletResponse response)
-
-    {
+                        HttpServletRequest request,HttpSession session,HttpServletResponse response)  {
 
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));//设置允许跨域请求地址即为当前请求地址
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
@@ -85,6 +78,13 @@ public class WorkersController {
         workers.setName(name);
         workers.setSex(sex);
         workers.setWorktypeid(worktypeid);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+        try {
+            workers.setCreatetime(df.parse(df.format(new Date())));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         workersMapper.insert(workers);
 
         return Msg.success().add("tips","注册成功");
@@ -106,12 +106,12 @@ public class WorkersController {
         workers.setPassword(password);
         Workers workers1 = workersMapper.queryWorkersList(workers);
         if(workers1 == null){
-           return Msg.fail().add("账号或者密码错误","账号或者密码错误");
+           return Msg.fail().add("err","账号或者密码错误");
         }else {
             //session.setAttribute("login",workers1.getWorktypes().getName());
             request.getSession().setAttribute("login",workers1.getWorktypes().getName());
             System.out.println(session.getAttribute("login"));
-            return Msg.success().add("员工姓名",workers1.getName()).add("员工工作单位",workers1.getWorktypes().getName());
+            return Msg.success().add("worker",workers1);
         }
 
     }
@@ -135,12 +135,29 @@ public class WorkersController {
 
     @ApiOperation("查询未审核的员工")
     @RequestMapping(value = "/audit",method = RequestMethod.GET)
-    public IPage<Workers> audit(Page<Workers> page, Integer state) {
+    public IPage<Workers> audit(Integer start,Integer state) {
         // 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题，这时候你需要自己查询 count 部分
         // page.setOptimizeCountSql(false);
         // 当 total 为小于 0 或者设置 setSearchCount(false) 分页插件不会进行 count 查询
         // 要点!! 分页返回的对象与传入的对象是同一个
-        return workersMapper.audit(page,state);
+        Page<Workers> workersPage = new Page<>(start,state);
+        System.out.println(workersPage.getTotal());
+        System.out.println(workersPage.getCurrent());
+        System.out.println(workersPage.getSize());
+        System.out.println(workersPage.getRecords());
+        return workersMapper.audit(workersPage,new QueryWrapper<Workers>());
+    }
+    @ApiOperation("审核员工")
+    @RequestMapping(value = "/assessor",method = RequestMethod.GET)
+    public Msg assessor(@RequestParam @ApiParam(name = "id" ,value = "员工id") int id){
+        Workers workers = new Workers();
+        workers.setId(id);
+        workers.setState(1);
+        int updateById = workersMapper.updateById(workers);
+        if(updateById ==1){
+            return Msg.success();
+        }
+        return Msg.fail();
     }
 }
 

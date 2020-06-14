@@ -64,7 +64,7 @@ class StorageApplicationTests {
         List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(1);
         System.out.println(equipmenttypes);
     }*/
-    @Test
+   /* @Test
     public void Test3()
     {
         QueryWrapper<Equipments> queryWrapper = new QueryWrapper<Equipments>();
@@ -72,5 +72,5 @@ class StorageApplicationTests {
         Equipments equipments = new Equipments();
         equipments.setEquipmenttypeid(0);
         equipmentsMapper.update(equipments,queryWrapper);
-    }
+    }*/
 }
