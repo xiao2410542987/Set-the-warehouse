@@ -7,6 +7,6 @@
     <result column="companyid" property="companyid"></result>
 </resultMap>
     <select id="selectMetering" resultMap="resM">
-        select * from metering where id=#{id}
+        select id,name,companyid from metering  where id=#{id}
     </select>
 </mapper>

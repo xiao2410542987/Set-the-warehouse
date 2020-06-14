@@ -142,10 +142,6 @@ public class WorkersController {
         // 当 total 为小于 0 或者设置 setSearchCount(false) 分页插件不会进行 count 查询
         // 要点!! 分页返回的对象与传入的对象是同一个
         Page<Workers> workersPage = new Page<>(start,state);
-        System.out.println(workersPage.getTotal());
-        System.out.println(workersPage.getCurrent());
-        System.out.println(workersPage.getSize());
-        System.out.println(workersPage.getRecords());
         return workersMapper.audit(workersPage,new QueryWrapper<Workers>());
     }
     @ApiOperation("审核员工")

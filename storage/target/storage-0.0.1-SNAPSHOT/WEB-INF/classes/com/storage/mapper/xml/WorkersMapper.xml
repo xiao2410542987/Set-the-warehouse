@@ -6,9 +6,8 @@
     <select id="queryWorkersList" parameterType="com.storage.pojo.Workers" resultMap="WorkersType" useCache="true">
         select * from workers where phone=#{phone} and password=#{password};
     </select>
-    <select id="audit" resultMap="auditALL">
-        select wk.id,wk.name,wk.sex,wk.phone,cps.name,wty.name,wk.createtime from workers as wk, companys as cps,
-        worktypes as wty WHERE wk.state=0 and wk.companyid=cps.id and wk.worktypeid=wty.id
+    <select id="audit" resultMap="WorkersType">
+        select id,name,sex,phone,companyid,worktypeid from workers WHERE state=0
     </select>
     <resultMap id="auditALL" type="com.storage.pojo.Workers">
         <id column="id" property="id"/>
@@ -36,4 +35,8 @@
         <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
         <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
     </resultMap>
+
+    <select id="QueryW" resultMap="WorkersType">
+        select id,name,sex,phone,companyid,worktypeid from workers where id=#{id}
+    </select>
 </mapper>

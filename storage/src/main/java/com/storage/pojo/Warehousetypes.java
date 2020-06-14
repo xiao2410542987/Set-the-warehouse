@@ -35,6 +35,7 @@ public class Warehousetypes implements Serializable {
     private String name;
 
     private Integer companyid;
+    private Companys companys;//关联外键companys表
 
 
 }

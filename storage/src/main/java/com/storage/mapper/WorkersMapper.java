@@ -22,5 +22,8 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface WorkersMapper extends BaseMapper<Workers> {
     Workers queryWorkersList(Workers workers);
+
+
+
     IPage<Workers> audit(IPage<Workers> page, @Param(Constants.WRAPPER) Wrapper<Workers> QueryWrapper);
 }

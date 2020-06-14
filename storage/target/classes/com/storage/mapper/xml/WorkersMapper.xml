@@ -35,4 +35,8 @@
         <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
         <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
     </resultMap>
+
+    <select id="QueryW" resultMap="WorkersType">
+        select id,name,sex,phone,companyid,worktypeid from workers where id=#{id}
+    </select>
 </mapper>

@@ -40,18 +40,26 @@ public class Warehouses implements Serializable {
     private Integer waresize;
 
     private Integer meteringid;
+    @TableField(exist = false)
+    private Metering metering;//外键metering表
 
     private Integer unusesize;
 
     private Integer warehousetypeid;
+    @TableField(exist = false)
+    private Warehousetypes warehousetypes;//外键warehousetypes表
 
     private Integer companyid;
+    @TableField(exist = false)
+    private Companys companys;//外键companys表
 
     private Integer workerid;
+    @TableField(exist = false)
+    private Workers workers;//外键workers表
 
     private Integer state;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,exist = false)
     private Date createtime;
 
 

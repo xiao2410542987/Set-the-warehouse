@@ -49,10 +49,10 @@ public class Works implements Serializable {
 
     private Integer state;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,exist = false)
     private Date createtime;
 
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.UPDATE,exist = false)
     private Date updatetime;
 
 
