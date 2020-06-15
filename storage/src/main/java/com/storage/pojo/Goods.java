@@ -51,7 +51,7 @@ public class Goods implements Serializable {
 
     private Integer state;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,exist = false)
     private Date createtime;
 
 

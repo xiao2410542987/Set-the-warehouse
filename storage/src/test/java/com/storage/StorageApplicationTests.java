@@ -66,6 +66,7 @@ class StorageApplicationTests {
         List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(1);
         System.out.println(equipmenttypes);
     }*/
+   /* @Test
     /*@Test
     public void Test3()
     {

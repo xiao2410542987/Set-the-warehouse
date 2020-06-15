@@ -48,10 +48,10 @@ public class Distribution implements Serializable {
 
     private String name;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,exist = false)
     private Date createtime;
 
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.UPDATE,exist = false)
     private Date updatetime;
 
 

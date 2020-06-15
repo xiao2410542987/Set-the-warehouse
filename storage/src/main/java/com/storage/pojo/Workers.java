@@ -55,7 +55,7 @@ public class Workers implements Serializable {
 
     private Integer working;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT,exist = false)
     private Date createtime;
 
 

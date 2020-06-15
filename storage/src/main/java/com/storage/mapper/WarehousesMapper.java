@@ -1,9 +1,14 @@
 package com.storage.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.storage.pojo.Distribution;
 import com.storage.pojo.Warehouses;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.storage.pojo.Workers;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +23,6 @@ import java.util.List;
 @Mapper
 public interface WarehousesMapper extends BaseMapper<Warehouses> {
     Warehouses selectWarehouses(int id);
+
+    IPage<Warehouses> QueryWarehouse(IPage<Warehouses> page, @Param(Constants.WRAPPER) Wrapper<Warehouses> QueryWrapper);
 }

@@ -19,7 +19,7 @@
     </select>
 
     <select id="auditcps" resultType="com.storage.pojo.Companys" parameterType="integer">
-        select name from companys where id=#{id}
+        select id,name,founder,createtime,place,state,phone from companys where id=#{id}
     </select>
     
 </mapper>
