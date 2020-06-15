@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -76,5 +78,15 @@ public class GoodsController {
         }
         return Msg.success().add("tips","修失败成功");
     }
+    @ApiOperation("修改订单")
+    @RequestMapping(value = "/selectGoods",method = RequestMethod.POST)
+    public Msg selectGoods(@RequestParam @ApiParam(name = "companyid" ,value = "公司id") int companyid)
+    {
+        List<Goods> goods = goodsMapper.selectAllGoods(companyid);
+
+        return Msg.success().add("tips",goods);
+
+    }
+
 }
 
