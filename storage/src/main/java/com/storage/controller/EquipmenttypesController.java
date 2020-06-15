@@ -33,7 +33,7 @@ public class EquipmenttypesController {
     @Autowired
     private EquipmentsMapper equipmentsMapper;
     @ApiOperation("查询设备类型")
-    @RequestMapping(value = "/selectEquipmenttypes",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectEquipmenttype",method = RequestMethod.GET)
     public Msg selectEquipmenttype(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id") int companyid)
     {
         List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(companyid);
