@@ -78,7 +78,7 @@ public class GoodsController {
         }
         return Msg.success().add("tips","修失败成功");
     }
-    @ApiOperation("修改订单")
+    @ApiOperation("查询订单")
     @RequestMapping(value = "/selectGoods",method = RequestMethod.POST)
     public Msg selectGoods(@RequestParam @ApiParam(name = "companyid" ,value = "公司id") int companyid)
     {
