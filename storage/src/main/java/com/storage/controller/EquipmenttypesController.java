@@ -59,7 +59,7 @@ public class EquipmenttypesController {
     @ApiOperation("添加新设备类型")
     @RequestMapping(value = "/addEquipmenttype",method = RequestMethod.GET)
     public Msg addEquipmenttype(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id") int companyid,@RequestParam @ApiParam(name = "name" ,value = "新设备名称") String name,
-                                @RequestParam @ApiParam(name = "meteringid" ,value = "新设备名称") int meteringid)
+                                @RequestParam @ApiParam(name = "meteringid" ,value = "计量单位") int meteringid)
     {
         Equipmenttypes equipmenttypes = new Equipmenttypes();
         equipmenttypes.setCompanyid(companyid);
