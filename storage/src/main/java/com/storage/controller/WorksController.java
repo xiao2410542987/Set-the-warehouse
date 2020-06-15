@@ -18,6 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/storage/works")
 @CrossOrigin
 public class WorksController {
-
+    
 }
 

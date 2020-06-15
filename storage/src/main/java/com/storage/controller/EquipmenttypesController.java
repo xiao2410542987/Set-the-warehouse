@@ -82,7 +82,7 @@ public class EquipmenttypesController {
             return Msg.fail().add("tips","添加失败");
         }
         List<Equipmenttypes> list1 = equipmenttypesMapper.selectByMap(map);
-        Integer companyid1 = list1.get(0).getCompanyid();
+        Integer companyid1 = list1.get(0).getId();
         Equipments equipments = new Equipments();
         equipments.setEquipmenttypeid(companyid1);
         equipments.setNumber(0);
