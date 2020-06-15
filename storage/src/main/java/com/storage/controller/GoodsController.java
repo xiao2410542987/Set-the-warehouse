@@ -50,7 +50,7 @@ public class GoodsController {
         return Msg.success().add("tips","添加成功");
     }
 
-    @ApiOperation("提交新订单")
+    @ApiOperation("修改订单")
     @RequestMapping(value = "/updGoods",method = RequestMethod.POST)
     public Msg updGoods(@RequestParam @ApiParam(name = "id" ,value = "id") int id,
             @RequestParam @ApiParam(name = "goodsname" ,value = "订单物品名称") String goodsname, @RequestParam @ApiParam(name = "weight" ,value = "重量") int weight,
