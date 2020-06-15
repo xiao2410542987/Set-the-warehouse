@@ -10,6 +10,6 @@
 
     <select id="selectEquipmenttype" resultMap="resEt">
 
-        select * from equipmenttypes where companyid=#{companyid}
+        select id,name,companyid from equipmenttypes where companyid=#{companyid}
     </select>
 </mapper>

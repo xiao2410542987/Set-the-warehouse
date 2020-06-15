@@ -67,19 +67,13 @@ public class WorktypesController {
 
     @ApiOperation("删除工作类型")
     @RequestMapping(value = "/deleteworktype",method = RequestMethod.GET)
-    public Msg deleteworktype(@RequestParam @ApiParam(name = "id" ,value = "公司的id") int id,
-                              @RequestParam @ApiParam(name = "name" ,value = "工作类别") String name)
+    public Msg deleteworktype(@RequestParam @ApiParam(name = "name" ,value = "工作类别id") int id)
     {
-        HashMap<String, Object> map = new HashMap();
-        Worktypes worktypes = new Worktypes();
-        worktypes.setCompanyid(id);
-        worktypes.setName(name);
-        Worktypes worktypes1=worktypesMapper.selectOne(new QueryWrapper<>(worktypes));
-        worktypes1.getId();
-        map.put("worktypeid",worktypes1.getId());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("worktypeid",id);
         List<Workers> workers = workersMapper.selectByMap(map);
         if (workers.size() == 0){
-            worktypesMapper.deleteById(worktypes1.getId());
+            worktypesMapper.deleteById(id);
             return Msg.success();
         }
         return Msg.fail();
