@@ -33,7 +33,7 @@ class StorageApplicationTests {
     @Autowired
     private EquipmenttypesMapper equipmenttypesMapper;*/
     @Autowired
-    private EquipmentsMapper equipmentsMapper;
+    private EquipmenttypesMapper equipmenttypesMapper;
 
     /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
@@ -87,4 +87,10 @@ class StorageApplicationTests {
         equipmentsMapper.updateById(equipments);
 
     }*/
+    @Test
+    public void Test5()
+    {
+        List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(1);
+        System.out.println(equipmenttypes);
+    }
 }

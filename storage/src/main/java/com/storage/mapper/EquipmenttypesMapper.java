@@ -18,4 +18,6 @@ import java.util.List;
 @Mapper
 public interface EquipmenttypesMapper extends BaseMapper<Equipmenttypes> {
     List<Equipmenttypes> selectEquipmenttype(int companyid);
+
+
 }
