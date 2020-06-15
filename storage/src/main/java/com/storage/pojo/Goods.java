@@ -41,6 +41,9 @@ public class Goods implements Serializable {
 
     private Integer meteringid;
 
+    @TableField(exist = false)
+    private Metering metering;
+
     private String username;
 
     private String userphone;
@@ -48,6 +51,9 @@ public class Goods implements Serializable {
     private Integer companyid;
 
     private Integer warehouseid;
+    
+    @TableField(exist = false)
+    private Warehouses warehouses;
 
     private Integer state;
 
