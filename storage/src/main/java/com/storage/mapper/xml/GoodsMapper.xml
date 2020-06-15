@@ -10,7 +10,7 @@
     <result column="state" property="state"></result>
     <result column="createtime" property="createtime"></result>
     <association property="metering" column="meteringid" select="com.storage.mapper.MeteringMapper.selectMetering"></association>
-    <association property="warehouseid" column="warehouses" select="com.storage.mapper.WarehousesMapper.selectWarehouses"></association>
+    <association property="warehouses" column="warehouseid" select="com.storage.mapper.WarehousesMapper.selectWarehouses"></association>
 
 
 </resultMap>

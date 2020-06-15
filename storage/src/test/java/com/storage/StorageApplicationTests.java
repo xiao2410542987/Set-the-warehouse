@@ -2,14 +2,8 @@ package com.storage;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.storage.mapper.CompanysMapper;
-import com.storage.mapper.EquipmentsMapper;
-import com.storage.mapper.EquipmenttypesMapper;
-import com.storage.mapper.WorkersMapper;
-import com.storage.pojo.Companys;
-import com.storage.pojo.Equipments;
-import com.storage.pojo.Equipmenttypes;
-import com.storage.pojo.Workers;
+import com.storage.mapper.*;
+import com.storage.pojo.*;
 import com.storage.service.impl.EquipmentsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +27,7 @@ class StorageApplicationTests {
     @Autowired
     private EquipmenttypesMapper equipmenttypesMapper;*/
     @Autowired
-    private EquipmenttypesMapper equipmenttypesMapper;
+    private GoodsMapper goodsMapper;
 
     /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
@@ -90,7 +84,7 @@ class StorageApplicationTests {
     @Test
     public void Test5()
     {
-        List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(1);
-        System.out.println(equipmenttypes);
+        List<Goods> goods = goodsMapper.selectAllGoods(1);
+        System.out.println(goods);
     }
 }
