@@ -45,7 +45,7 @@ public class WarehousetypesController {
 
     }
     @ApiOperation("查询仓库类型")
-    @RequestMapping(value = "/selectWarehouseType",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectWarehouseType",method = RequestMethod.POST)
     public Msg selectWarehouseType(@RequestParam @ApiParam(name = "companyid" ,value = "公司id") int companyid)
     {
         Map<String, Object> map = new HashMap<>();
