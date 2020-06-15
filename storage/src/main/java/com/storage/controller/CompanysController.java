@@ -38,8 +38,6 @@ public class CompanysController {
         List<Companys> companys = companysMapper.selectAllWork();
         Map map = new HashMap();
         map.put("companys",companys);
-
-
         return Msg.success().add("companys",companys);
     }
 
@@ -50,5 +48,13 @@ public class CompanysController {
     {
         return Msg.success().add("name",companysMapper.selectname());
     }
+
+    @ApiOperation("查询已审核公司的信息")
+    @RequestMapping(value = "/selectaudit",method = RequestMethod.GET)
+    public Msg selectaudit()
+    {
+        return Msg.success().add("name",companysMapper.selectname());
+    }
+
 }
 

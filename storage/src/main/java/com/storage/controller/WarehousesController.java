@@ -71,5 +71,32 @@ public class WarehousesController {
     }
 
 
+    @ApiOperation("修改仓库基本信息")
+    @RequestMapping(value = "/repairWarehouse", method = RequestMethod.GET)
+    public Msg repairWarehouse(@RequestParam @ApiParam(name = "id", value = "仓库id") int id,
+                               @RequestParam @ApiParam(name = "name", value = "仓库名字") String name,
+                               @RequestParam @ApiParam(name = "waresize", value = "仓库容量") int waresize,
+                               @RequestParam @ApiParam(name = "meteringid", value = "数量单位\t外键(关联metering 数量单位类型表)") int meteringid,
+                               @RequestParam @ApiParam(name = "unusesize", value = "空闲容量") int unusesize,
+                               @RequestParam @ApiParam(name = "warehousetypeid", value = "仓库类型\t外键") int warehousetypeid,
+                               @RequestParam @ApiParam(name = "companyid", value = "所属公司\t外键(关联companys   公司表)") int companyid,
+                               @RequestParam @ApiParam(name = "workerid", value = "仓库负责人 外键(关联workers 工作人员表)") int workerid
+            )
+
+    {
+        Warehouses warehouses = new Warehouses();
+        warehouses.setId(id);
+        warehouses.setCompanyid(companyid);
+        warehouses.setWarehousetypeid(warehousetypeid);
+        warehouses.setUnusesize(unusesize);
+        warehouses.setWaresize(waresize);
+        warehouses.setMeteringid(meteringid);
+        warehouses.setName(name);
+        int updateById = warehousesMapper.updateById(warehouses);
+        if (updateById == 1){
+            return Msg.success();
+        }
+        return Msg.fail();
+    }
 }
 

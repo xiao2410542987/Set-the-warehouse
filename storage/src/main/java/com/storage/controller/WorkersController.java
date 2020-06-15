@@ -111,11 +111,19 @@ public class WorkersController {
         }else {
             //session.setAttribute("login",workers1.getWorktypes().getName());
             request.getSession().setAttribute("login",workers1.getWorktypes().getName());
+            request.getSession(false).setMaxInactiveInterval(((60*60)*24)*7);
             System.out.println(session.getAttribute("login"));
             return Msg.success().add("worker",workers1);
         }
 
     }
+    @ApiOperation("退出")
+    @RequestMapping(value = "/exit",method = RequestMethod.GET)
+    public Msg exit(HttpServletRequest request){
+        request.getSession().invalidate();//移除seesion
+        return Msg.success();
+    }
+
 
     @ApiOperation("开除员工")
     @RequestMapping(value = "/dismiss",method = RequestMethod.GET)
@@ -151,6 +159,13 @@ public class WorkersController {
             return Msg.success();
         }
         return Msg.fail();
+    }
+
+    @ApiOperation("查询已审核的员工")
+    @RequestMapping(value = "/checked",method = RequestMethod.GET)
+    public IPage<Workers> checked(@RequestParam @ApiParam(name = "companyid" ,value = "外键companys公司id") int companyid,Integer start,Integer state) {
+        Page<Workers> workersPage = new Page<>(start,state);
+        return workersMapper.checked(workersPage,new QueryWrapper<Workers>(),companyid);
     }
 }
 
