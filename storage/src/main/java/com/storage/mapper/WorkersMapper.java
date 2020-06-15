@@ -25,5 +25,5 @@ public interface WorkersMapper extends BaseMapper<Workers> {
 
 
 
-    IPage<Workers> audit(IPage<Workers> page, @Param(Constants.WRAPPER) Wrapper<Workers> QueryWrapper);
+    IPage<Workers> audit(IPage<Workers> page, @Param(Constants.WRAPPER) Wrapper<Workers> QueryWrapper,Integer companyid);
 }

@@ -136,13 +136,9 @@ public class WorkersController {
 
     @ApiOperation("查询未审核的员工")
     @RequestMapping(value = "/audit",method = RequestMethod.GET)
-    public IPage<Workers> audit(Integer start,Integer state) {
-        // 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题，这时候你需要自己查询 count 部分
-        // page.setOptimizeCountSql(false);
-        // 当 total 为小于 0 或者设置 setSearchCount(false) 分页插件不会进行 count 查询
-        // 要点!! 分页返回的对象与传入的对象是同一个
+    public IPage<Workers> audit(@RequestParam @ApiParam(name = "companyid" ,value = "外键companys公司id") int companyid,Integer start,Integer state) {
         Page<Workers> workersPage = new Page<>(start,state);
-        return workersMapper.audit(workersPage,new QueryWrapper<Workers>());
+        return workersMapper.audit(workersPage,new QueryWrapper<Workers>(),companyid);
     }
     @ApiOperation("审核员工")
     @RequestMapping(value = "/assessor",method = RequestMethod.GET)
