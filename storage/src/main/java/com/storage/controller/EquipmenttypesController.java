@@ -37,7 +37,7 @@ public class EquipmenttypesController {
     public Msg selectEquipmenttype(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id") int companyid)
     {
         List<Equipmenttypes> equipmenttypes = equipmenttypesMapper.selectEquipmenttype(companyid);
-        System.out.println(equipmenttypes);
+
 
         return Msg.success().add("tips",equipmenttypes);
     }
