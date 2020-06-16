@@ -2,4 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.storage.mapper.WorksMapper">
 
+    <select id="noWork" resultMap="work">
+        select id,name,sex,phone,worktypeid,createtime from workers where state=1 and working=0 and companyid=#{companyid}
+    </select>
+    <select id="haveWork" resultMap="work">
+        select id,name,sex,phone,worktypeid,createtime from workers where state=1 and working=1 and companyid=#{companyid}
+    </select>
+    <select id="workData" resultType="com.storage.pojo.Works">
+        SELECT createtime FROM works GROUP BY DATE_FORMAT(createtime,'%Y%m%d')
+    </select>
+    <select id="workDataOne" resultType="com.storage.pojo.Works">
+        SELECT * FROM works where  DATE_FORMAT(createtime,'%Y%m%d') =#{createtime}
+    </select>
+
+    <resultMap id="work" type="com.storage.pojo.Workers">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="sex" property="sex"></result>
+        <result column="phone" property="phone"></result>
+        <result column="worktypeid" property="worktypeid"></result>
+        <result column="createtime" property="createtime"></result>
+        <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
+    </resultMap>
 </mapper>

@@ -114,5 +114,14 @@ public class CompanysController {
         if(updateById == 1)return Msg.success();
         return Msg.fail();
     }
+
+    @ApiOperation("查询指定的公司信息")
+    @RequestMapping(value = "/selectOne",method = RequestMethod.GET)
+    public Msg selectOne(@RequestParam @ApiParam(name = "id" ,value = "公司id")int id)
+    {
+        Companys companys = companysMapper.selectById(id);
+        return Msg.success().add("message",companys);
+    }
+
 }
 

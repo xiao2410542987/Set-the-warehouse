@@ -49,6 +49,7 @@ public class Companys implements Serializable {
     private Integer state;
 
     private String phone;
+
     @TableField(exist = false)
     private List<Worktypes> worktypes;
 }
