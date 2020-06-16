@@ -85,14 +85,14 @@ class StorageApplicationTests {
     public void Test5()
     {
         Works works = new Works();
-        works.setId(3);
-        works.setText("存放大型设备(未完成)");
+
+        works.setText("存放大型设备(未完成)xx");
         works.setCompanyid(1);
         works.setWorkerid(5);
         works.setGoodsid(2);
         works.setWarehouseid(4);
         works.setState(0);
-        int i = worksMapper.updateById(works);
+        int i = worksMapper.insert(works);
         System.out.println(i);
     }
 }
