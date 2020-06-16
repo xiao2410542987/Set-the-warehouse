@@ -95,7 +95,7 @@ public class WorkersController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public Msg login(@RequestParam @ApiParam(name = "phone" ,value = "员工电话") String phone,
                      @RequestParam @ApiParam(name = "password" ,value = "登录密码") String password,
-                     HttpServletRequest request,HttpSession session,HttpServletResponse response){
+                     HttpServletRequest request,HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));//设置允许跨域请求地址即为当前请求地址
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "0");
@@ -110,9 +110,11 @@ public class WorkersController {
            return Msg.fail().add("err","账号或者密码错误");
         }else {
             //session.setAttribute("login",workers1.getWorktypes().getName());
-            request.getSession().setAttribute("login",workers1.getWorktypes().getName());
-            request.getSession(false).setMaxInactiveInterval(((60*60)*24)*7);
-            System.out.println(session.getAttribute("login"));
+            HttpSession session = request.getSession();
+            session.setAttribute("login",workers1.getWorktypes().getName());
+            session.setMaxInactiveInterval(((60*60)*24)*7);
+            /*request.getSession().setAttribute("login",workers1.getWorktypes().getName());
+            request.getSession().setMaxInactiveInterval(((60*60)*24)*7);*/
             return Msg.success().add("worker",workers1);
         }
 

@@ -25,7 +25,6 @@ public class LoginVerification implements HandlerInterceptor {
         response.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
         response.setHeader("Access-Control-Allow-Credentials", "true");//允许服务器向浏览器跨域响应时更改浏览器（客户端）的cookie
         response.setHeader("XDomainRequestAllowed","1");
-        System.out.println(request.getSession().getAttribute("login"));
         //这里的User是登陆时放入session的
         if (request.getSession().getAttribute("login") == null){
             //这个方法返回false表示忽略当前请求，如果一个用户调用了需要登陆才能使用的接口，如果他没有登陆这里会直接忽略掉

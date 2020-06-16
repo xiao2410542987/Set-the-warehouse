@@ -67,7 +67,7 @@ public class WorktypesController {
 
     @ApiOperation("删除工作类型")
     @RequestMapping(value = "/deleteworktype",method = RequestMethod.GET)
-    public Msg deleteworktype(@RequestParam @ApiParam(name = "name" ,value = "工作类别id") int id)
+    public Msg deleteworktype(@RequestParam @ApiParam(name = "id" ,value = "工作类别id") int id)
     {
         HashMap<String, Object> map = new HashMap<>();
         map.put("worktypeid",id);
@@ -79,5 +79,29 @@ public class WorktypesController {
         return Msg.fail();
     }
 
+    @ApiOperation("查找不同公司的工作类型")
+    @RequestMapping(value = "/selectType",method = RequestMethod.GET)
+    public Msg selectType(@RequestParam @ApiParam(name = "companyid" ,value = "所属公司\t外键") int companyid)
+    {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("companyid",companyid);
+        List<Worktypes> worktypes = worktypesMapper.selectByMap(map);
+        return Msg.success().add("type",worktypes);
+    }
+
+    @ApiOperation("修改工作类型")
+    @RequestMapping(value = "/updateType",method = RequestMethod.GET)
+    public Msg updateType(@RequestParam @ApiParam(name = "id" ,value = "工作类型id") int id,
+                          @RequestParam @ApiParam(name = "name" ,value = "工作类型名字") String name)
+    {
+        Worktypes worktypes = new Worktypes();
+        worktypes.setId(id);
+        worktypes.setName(name);
+        int updateById = worktypesMapper.updateById(worktypes);
+        if(updateById == 1){
+            return Msg.success();
+        }
+        return Msg.fail();
+    }
 }
 
