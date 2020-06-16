@@ -1,6 +1,7 @@
 package com.storage.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -36,5 +37,6 @@ public class Worktypes implements Serializable {
 
     private Integer companyid;
 
-
+    @TableField(exist = false)
+    private Companys companys;
 }
