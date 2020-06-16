@@ -27,7 +27,7 @@ class StorageApplicationTests {
     @Autowired
     private EquipmenttypesMapper equipmenttypesMapper;*/
     @Autowired
-    private GoodsMapper goodsMapper;
+    private WarehousetypesMapper warehousetypesMapper;
 
     /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
@@ -84,7 +84,9 @@ class StorageApplicationTests {
     @Test
     public void Test5()
     {
-        List<Goods> goods = goodsMapper.selectAllGoods(1);
-        System.out.println(goods);
+        Map<String, Object> map = new HashMap<>();
+        map.put("companyid",1);
+        List<Warehousetypes> warehousetypes = warehousetypesMapper.selectByMap(map);
+        System.out.println(warehousetypes);
     }
 }
