@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.storage.mapper.WorkersMapper">
+
+    <!--查询员工登录名(手机号)和密码，和职务-->
+    <select id="queryWorkersList" parameterType="com.storage.pojo.Workers" resultMap="WorkersType" useCache="true">
+        select * from workers where phone=#{phone} and password=#{password};
+    </select>
+    <select id="audit" parameterType="integer" resultMap="WorkersType">
+        select id,name,sex,phone,companyid,worktypeid from workers WHERE state=0 and companyid=#{companyid}
+    </select>
+    <resultMap id="auditALL" type="com.storage.pojo.Workers">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="phone" property="phone"/>
+        <result column="password" property="password"/>
+        <result column="companyid" property="companyid"/>
+        <result column="worktypeid" property="worktypeid"/>
+        <result column="state" property="state"/>
+        <result column="working" property="working"/>
+        <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
+        <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
+    </resultMap>
+    <resultMap id="WorkersType" type="com.storage.pojo.Workers">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="phone" property="phone"/>
+        <result column="password" property="password"/>
+        <result column="companyid" property="companyid"/>
+        <result column="worktypeid" property="worktypeid"/>
+        <result column="state" property="state"/>
+        <result column="working" property="working"/>
+        <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
+        <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
+    </resultMap>
+
+    <select id="QueryW" resultMap="WorkersType">
+        select id,name,sex,phone,companyid,worktypeid,state,working from workers where id=#{id}
+    </select>
+    <select id="checked" parameterType="integer" resultMap="WorkersType">
+        select id,name,sex,phone,companyid,worktypeid from workers WHERE state=1 and companyid=#{companyid}
+    </select>
+</mapper>
