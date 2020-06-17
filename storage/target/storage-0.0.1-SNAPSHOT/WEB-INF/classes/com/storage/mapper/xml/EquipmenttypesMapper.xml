@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.storage.mapper.EquipmenttypesMapper">
+<resultMap id="resEt" type="com.storage.pojo.Equipmenttypes">
+    <id column="id" property="id"></id>
+    <result column="name" property="name"></result>
+    <result column="companyid" property="companyid"></result>
+    <association property="equipments"  column="id" select="com.storage.mapper.EquipmentsMapper.selectEquipment"></association>
+</resultMap>
+
+    <select id="selectEquipmenttype" resultMap="resEt">
+        select id,name,companyid from equipmenttypes where companyid=#{companyid}
+    </select>
+    <select id="selectET" resultType="com.storage.pojo.Equipmenttypes">
+        select id,name,companyid from equipmenttypes where id=#{id}
+    </select>
+</mapper>
