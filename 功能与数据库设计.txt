@@ -44,16 +44,16 @@
 
 数据库表:
 公司表√
-员工表√
-仓库表√
+员工表
+仓库表
 仓库类型表√
 设备类型表√
-货物信息表√
-工作单位表√
-工作任务表√
+货物信息表
+职业类型表√
+工作任务表
 设备数量表√
-设备分配表√
-货物单位表√
+设备分配表
+计量单位表√
 
 companys   公司表:
 
@@ -62,7 +62,7 @@ name	公司的名字					varchar
 founder	负责人						varchar
 createtime	创建日期 					datetime
 place	公司位置						varchar
-state	审核状态 默认0 0未通过 1审核通过			int
+state	审核状态 默认0 0未通过 1审核通过 2下架公司		int
 phone	公司联系电话					varchar
 
 distribution 设备分配表:
@@ -104,7 +104,7 @@ warehouseid	存放的仓库  外键(关联warehouse 仓库表) 		int
 state	货物状态 默认0 0未存放或者交接状态 1已存放 2已取		int
 createtime	创建时间					datetime
 
-metering		数量单位类型表:
+metering		计量单位类型表:
 
 id	id						int
 name	计量单位名称					varchar
