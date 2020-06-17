@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Home</title>
+
+
+</head>
+<style>
+	* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /* 需要隐藏最外层不可见区域以使视差生效 */
+  overflow: hidden;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  perspective: 100px;
+  transform-style: preserve-3d;
+  /* 3D的容器要允许overflow才能生效 */
+  overflow-y: auto;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 130px;
+  width: 100%;
+  
+}
+::-webkit-scrollbar{
+				display:none;
+			}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  overflow: hidden;
+}
+
+.list-item:hover .item-image::before {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.item-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(-50px) scale(2.4);
+  z-index: -1;
+}
+
+.item-image::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.item-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-text {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  color: #ffffff;
+}
+
+.item-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.item-desc {
+  font-size: 1.2rem;
+}
+</style>
+ </head>
+ <body>
+    <main class="main">
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/1.jpg">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「智能集仓库」</div>
+        <div class="item-desc">提供仓储+搬运一条龙服务。</div>
+      </div>
+    </section>
+
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/2.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「除虫保洁」</div>
+        <div class="item-desc">
+        	
+        	史伟莎_除虫灭鼠_定期打扫卫生。
+        	
+        </div>
+      </div>
+    </section>
+
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/3.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「小型储物仓」</div>
+        <div class="item-desc">小型储物仓适合存放小型设备物品。</div>
+      </div>
+    </section>
+
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/4.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「中型储物仓」</div>
+        <div class="item-desc">中型储物仓适合存放较大设备物品。</div>
+      </div>
+    </section>
+
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/5.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「大型储物仓」</div>
+        <div class="item-desc">大型储物仓适合存放大型设备物品。</div>
+      </div>
+    </section>
+
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/6.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「24小时监控」</div>
+        <div class="item-desc">安装了了视像监控系统、西科姆监控系统，物品存放在安全大有保障。</div>
+      </div>
+    </section>
+    
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/7.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「二维码门禁」</div>
+        <div class="item-desc">使用智能门禁，只需要扫描手机上的二维码就可以开门。</div>
+      </div>
+    </section>
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/8.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「门店地址」</div>
+        <div class="item-desc">地球。</div>
+      </div>
+    </section>
+    <section class="list-item">
+      <div class="item-image">
+        <img src="img/9.JPG">
+      </div>
+      <div class="item-text">
+        <div class="item-title">「关于我们」</div>
+        <div class="item-desc">公司简历          公司历程          市场合作          企业新闻          行业新闻</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

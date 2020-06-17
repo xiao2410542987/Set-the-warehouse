@@ -1,159 +1,277 @@
-<!--Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html lang="zxx">
 
-<head>
-	<title>Triple Forms Responsive Widget Template :: w3layouts</title>
-	<!-- Meta tag Keywords -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="keywords" content="Triple Forms Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+	<head>
+		<title>Triple Forms Responsive Widget Template :: w3layouts</title>
+		<!-- Meta tag Keywords -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8" />
+		<meta name="keywords" content="Triple Forms Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+		<script>
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!-- Meta tag Keywords -->
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!-- Meta tag Keywords -->
 
-	<!-- css files -->
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/layui.css" />
-	<!-- Style-CSS -->
-	<link href="css/font-awesome.min.css" rel="stylesheet">
-	<!-- Font-Awesome-Icons-CSS -->
-	<!-- //css files -->
+		<!-- css files -->
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 
-	<!-- web-fonts -->
-	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext"
-	 rel="stylesheet">
-	<!-- //web-fonts -->
-</head>
+		<!-- Style-CSS -->
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="js/vue.js"></script>
+		<!-- Font-Awesome-Icons-CSS -->
+		<!-- //css files -->
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<!-- web-fonts -->
+		<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext" rel="stylesheet">
+		<!-- //web-fonts -->
+	</head>
 
-<body>
-	<div class="main-bg">
-		<!-- title -->
-		<h1>Triple Forms</h1>
-		<!-- //title -->
-		<div class="sub-main-w3">
-			
-			<!-- vertical tabs -->
-			<div class="vertical-tab">
-				<div id="section1" class="section-w3ls">
-					<input type="radio" name="sections" id="option1" checked>
-					<label for="option1" class="icon-left-w3pvt"><span class="fa fa-user-circle" aria-hidden="true"></span>登录</label>
-					<article>
-						<form action="#" method="post">
-							<h3 class="legend">登录</h3>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="name" placeholder="账号" name="name" required />
-							</div>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="password" placeholder="密码" name="password" required />
-							</div>
+	<body>
+
+		<div class="main-bg">
+			<!-- title -->
+			<h1>Triple Forms</h1>
+			<!-- //title -->
+			<div class="sub-main-w3">
+
+				<!-- vertical tabs -->
+				<div class="vertical-tab">
+					<div id="section1" class="section-w3ls">
+						<input type="radio" name="sections" id="option1" checked>
+						<label for="option1" class="icon-left-w3pvt"><span class="fa fa-user-circle" aria-hidden="true"></span>登录</label>	
+						<article>
 							
+							<div class="bigbox2">
+								<h3 class="legend">登录</h3>
+								<div id="app">
+									<div class="input">
+										<span aria-hidden="true"></span>
+										<input type="text" v-model="phone" placeholder="电话" name="phone" required />
+									</div>
+									<div class="input">
+										<span aria-hidden="true"></span>
+										<input type="password" placeholder="密码" v-model="pass" @keyup.enter="sear" name="pass" required />
+									</div>
+
+									<button value="登录" type="button" @click="sear" class="btn submit">登录</button>
+									<a href="#" class="bottom-text-w3ls">找回密码?</a>
+								</div>
+
+							</div>
+								
+						</article>
 						
-  							
-  						
-  						
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<!--<select type="password"  name="password" required />-->
-								<select>
-        							<option value="">您的工作单位？</option>
-        							<option value="西湖区">西湖区</option>
-        							<option value="余杭区">余杭区</option>
-        <option value="拱墅区">临安市</option>
-      </select>
-							</div>
-							
-							
-						
-   						
-							<button type="submit" class="btn submit">登录</button>
-							<a href="#" class="bottom-text-w3ls">找回密码?</a>
-						</form>
-					</article>
-				</div>
-				<div id="section2" class="section-w3ls">
-					<input type="radio" name="sections" id="option2">
-					<label for="option2" class="icon-left-w3pvt"><span class="fa fa-pencil-square" aria-hidden="true"></span>注册</label>
-					<article>
-						<form action="#" method="post">
-							<h3 class="legend">注册</h3>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="text" placeholder="电话" name="name" required />
-							</div>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="text" placeholder="所属公司" name="name" required />
-							</div>
-							
+					</div>
+					<div id="app2">
+						<div id="section2" class="section-w3ls">
+							<input type="radio" name="sections" id="option2">
+							<label for="option2" @click="btu" class="icon-left-w3pvt"><span class="fa fa-pencil-square" aria-hidden="true"></span>注册</label>
+							<article>
 
-							<div class="input">
-								<span  aria-hidden="true"></span>
-								<input type="text" placeholder="用户名" name="name" required />
-							</div>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="password" placeholder="密码" name="password" required />
-							</div>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="password" placeholder="再次输入密码" name="password" required />
-							</div>
-							 <div class="input1">
-   						 	<div class="lab">性别</div>
-   						 	<div class="asd">
-      							<input name="sex" title="男" type="radio" checked="" value="男">男
-      							<input name="sex" title="女" type="radio" value="女">女
-    						</div>
-    						</div>
-							<button type="submit" class="btn submit">注册</button>
-						</form>
-					</article>
+								<div class="bigbox2">
+									<h3 class="legend">注册</h3>
+
+									<div class="input">
+										<span aria-hidden="true"></span>
+										<input type="number" placeholder="电话" v-model="phone" name="phone" required />
+									</div>
+									<div class="input" >
+										<span style="width: 35px;" aria-hidden="true" v-if="flag">公司</span>
+										<select @click="btun" v-model="prov" @change="updatework">
+											<option    v-for="(item,i) in companys" :key='i' :value="item.id">{{item.name}}</option>
+
+										</select>
+									</div>
+									<div class="input">
+										<span aria-hidden="true"></span>
+										<select v-model="pro" >
+											
+											<option v-for="item in worktypes" :value="item.id">{{item.name}}</option>
+											<option >职务</option>
+										</select>
+									</div>
+
+									<div class="input">
+										<span aria-hidden="true"></span>
+										<input type="text" placeholder="姓名" v-model="name" name="name" required />
+									</div>
+									<div class="input">
+										<span aria-hidden="true"></span>
+										<input type="password" placeholder="密码" v-model="pass" name="password" required />
+									</div>
+									<!--<div class="input">
+									<span aria-hidden="true"></span>
+									<input type="password" placeholder="再次输入密码" v-model="password2" name="password" required />
+								</div>-->
+									<div class="input1">
+										<div class="lab">性别</div>
+										<div class="asd">
+											<input name="sex" title="男" v-model="sex" type="radio" checked="" value="男">男
+											<input name="sex" title="女" v-model="sex" type="radio" value="女">女
+										</div>
+									</div>
+									<button value="注册" type="submit" class="btn submit" @click="sign">注册</button>
+
+								</div>
+							
+							</article>
+						</div>
+					</div>
 				</div>
-				<div id="section3" class="section-w3ls">
-					<input type="radio" name="sections" id="option3">
-					<label for="option3" class="icon-left-w3pvt"><span class="fa fa-lock" aria-hidden="true"></span>找回密码?</label>
-					<article>
-						<form action="#" method="post">
-							<h3 class="legend last">Reset Password</h3>
-							<p class="para-style">请在下面输入您的电子邮件地址，我们会给您发送一封带有说明的电子邮件。
-需要帮忙吗?</p>
-							<p class="para-style-2"><strong>需要帮忙?</strong>  <a href="#">了解有关如何检索现有帐户的更多信息
-									</a></p>
-							<div class="input">
-								<span aria-hidden="true"></span>
-								<input type="email" placeholder="电话" name="email" required />
-							</div>
-							<button type="submit" class="btn submit last-btn">找回</button>
-						</form>
-					</article>
-				</div>
+				<!-- //vertical tabs -->
+				<div class="clear"></div>
 			</div>
-			<!-- //vertical tabs -->
-			<div class="clear"></div>
-		</div>
-		<!-- copyright -->
-		<div class="copyright">
-			<h2>&copy; 2019 Triple Forms. All rights reserved | Design by
+			<!-- copyright -->
+			<div class="copyright">
+				<h2>&copy; 2019 Triple Forms. All rights reserved | Design by
 				<a href="http://w3layouts.com" target="_blank">W3layouts</a>
 			</h2>
+			</div>
 		</div>
-		<!-- //copyright -->
-	</div>
+	</body>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				phone: "",
+				pass: "",
+				comid:""
+			},
 
-</body>
+			methods: {
+				sear: function() {
+					console.log(this.phone);
+					console.log(this.pass);
+					
+					var sid = $("[name=pass]").val();
+					
+				if($("[name=phone]").val() == "" || this.pass == ""){
+					alert("账号或密码为空");
+				}else{
+					var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/login",
+							data: {
+								phone: this.phone,
+								password: this.pass
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							async: false,
+							success: function(data) {
+								console.log(data);
+								console.log(data.extend.worker.companyid);
+								that.comid=data.extend.worker.companyid;
+								console.log(that.comid)
+								if(data.code == 200) {
+									alert("登录成功");
+								} else if(data.code == 500) {
+									alert("账号或者密码错误,请重试 ");
+								}
+							}
+							
+							
+						})
+						localStorage.setItem("comid",JSON.stringify(that.comid));
+				}
+					
+					
+				}
+			}
+		})
+
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				gs:"所属公司",
+				name: "",
+				pass: "",
+				phone: "",
+				sex: "男",
+				companys: [],
+				prov: "",
+				pro:"公司职务",
+				worktypes: [],
+				flag: true
+	
+			},
+			methods: {
+				btun:function(){
+					this.flag=!this.flag
+				},
+				sign:function(){
+					console.log("公司id"+this.prov),
+					console.log(this.name),
+					console.log(this.pass),
+					console.log(this.phone),
+					console.log(this.sex),
+					console.log("职务id"+this.pro),
+						
+							$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/register",
+							data: {
+								companyid:this.prov,
+								name: this.name,
+								password: this.pass,
+								phone: this.phone,
+								sex:this.sex,
+								worktypeid:this.pro,
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+					
+							success: function(data) {
+								console.log(data);
+						
+							}
+
+						})
+					
+				
+					
+				},
+				btu:function() {
+				
+					var that = this;
+					console.log("cg")
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/companys/selectAllWork",
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log('success!');
+							console.log(data);
+							that.companys = data.extend.companys
+						}
+					})
+				},
+				updatework: function() {
+					var that = this;
+					this.companys.forEach(function(item, index) {
+						if(item.id == that.prov) {
+							console.log(item);
+							that.worktypes = item.worktypes
+						}
+					})
+				}
+			}
+		})
+	</script>
 
 </html>

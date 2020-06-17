@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>公司信息管理-类型管理</title>
+	</head>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="css/easyhelper.min.css">
+
+	<body>
+		<style>
+			.btn3 {
+				background: none;
+				border: 2px solid #000;
+				font-family: "montserrat", sans-serif;
+				text-transform: uppercase;
+				padding: 7px 35px;
+				min-width: 95px;
+				margin: 10px;
+				cursor: pointer;
+				transition: color 0.4s linear;
+				position: relative;
+				right: 90px;
+			}
+			
+			.btn3:hover {
+				color: #fff;
+			}
+			
+			.btn3::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				z-index: -1;
+				transition: transform 0.5s;
+				transform-origin: 0 0;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+			}
+			
+			.btn {
+				background: none;
+				border: 2px solid #000;
+				font-family: "montserrat", sans-serif;
+				text-transform: uppercase;
+				padding: 7px 5px;
+				min-width: 80px;
+				margin: 10px;
+				cursor: pointer;
+				transition: color 0.4s linear;
+				position: relative;
+			}
+			
+			.btn:hover {
+				color: #fff;
+			}
+			
+			.btn::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				z-index: -1;
+				transition: transform 0.5s;
+				transform-origin: 0 0;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+			}
+			
+			.btn1::before {
+				transform: scaleX(0);
+			}
+			
+			.btn2::before {
+				transform: scaleY(0);
+			}
+			
+			.btn1:hover::before {
+				transform: scaleX(1);
+			}
+			
+			.btn2:hover::before {
+				transform: scaleY(1);
+			}
+			
+			#table_wrap>table {
+				font-size: 16px;
+				text-align: center;
+				margin: 0 auto;
+				border-collapse: separate;
+				border-spacing: 0;
+				border: 2px #000;
+			}
+			
+			table thead tr,
+			table tbody tr {
+				height: 50px;
+				width: 150px;
+				line-height: 50px;
+				/*background-color: pink;*/
+			}
+			
+			table tr th:first-child,
+			table tr td:first-child {
+				/*设置table左边边框*/
+				border-left: 2px solid #eaeaea;
+			}
+			
+			table tr th:last-child,
+			table tr td:last-child {
+				/*设置table右边边框*/
+				border-right: 2px solid #eaeaea;
+			}
+			
+			table tr td:first-child,
+			table tr td:nth-child(2),
+			table tr td:nth-child(3),
+			table tr td:last-child {
+				/*设置table表格每列底部边框*/
+				border-bottom: 2px solid #eaeaea;
+			}
+			/*table tr:last-child td:first-child,
+        table tr:last-child td:nth-child(2),
+        table tr:last-child td:nth-child(3),
+        table tr:last-child td:last-child{/!*设置table表格最后一列底部边框*!/
+            border-bottom: 2px solid #000;
+        }*/
+			
+			table tr th {
+				background: #22a9fb;
+				color: white;
+			}
+			
+			table tr:first-child th:first-child {
+				border-top-left-radius: 12px;
+			}
+			
+			table tr:first-child th:last-child {
+				border-top-right-radius: 12px;
+			}
+			
+			table tr:last-child td:first-child {
+				border-bottom-left-radius: 12px;
+			}
+			
+			table tr:last-child td:last-child {
+				border-bottom-right-radius: 12px;
+			}
+			
+			.button {
+				background-color: #4CAF50;
+				/* Green */
+				border: none;
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+			}
+			
+			.box {
+				float: left;
+				margin: 0px 38px;
+			}
+			
+			#select {
+				width: 195px;
+				height: 15px;
+				margin: 70px auto;
+			}
+			
+			#select select {
+				width: 195px;
+				height: 45px;
+				background-color: white;
+			}
+			
+			::-webkit-scrollbar {
+				display: none;
+			}
+			.bigbox{
+				width: 1910px;
+				height: 1000px;
+				
+				position: relative;
+				left: 228px;
+				top: 86px;
+			}
+			
+		</style>
+		</head>
+
+		<body>
+			<div class="bigbox">
+				<div id="app">
+				<!--计量单位-->
+				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+
+					<table class="table" width="350" cellspacing="0" cellpadding="0">
+						<thead class="table_head">
+							<tr>
+								<th style="width: 100px;">计量单位表</th>
+								<th style="width: 100px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 200px;">
+
+								</td>
+								<td style="width: 200px;">
+
+									<button class="btn3 btn2" @click="showModal=true">添加</button>
+								</td>
+							</tr>
+							<tr v-for="item in tips" :key="item.id">
+
+								<td style="width: 100px;background-color: white;">{{item.name}}</td>
+								<td style="width: 100px;">
+									<button class="btn btn1" @click="updw(item.id)">修改</button></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+
+				<div class="mask" v-if="showMo" @click="showMo=false"></div>
+				<div v-if="showMo">
+
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">修改</p>
+							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+							<input type="text" @keyup.enter="up" v-model="upname" placeholder="输入需要修改的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="up">修改</div>
+							<div class="helper-dialog-no" @click="showMo=false">取消</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="mask" v-if="showModal" @click="showModal=false"></div>
+				<div v-if="showModal">
+
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity:1;display: block;z-index: 1;">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">添加</p>
+							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+							<input type="text" @keyup.enter="addmetering " v-model="mete" placeholder="输入需要添加的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="addmetering">添加</div>
+							<div class="helper-dialog-no" @click="showModal=false">取消</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div id="app3">
+				<!--工作类型-->
+				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+					<table class="table" width="350" cellspacing="0" cellpadding="0">
+						<thead class="table_head">
+							<tr>
+								<th style="width: 100px;">工作类型表</th>
+								<th style="width: 100px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 200px;">
+
+								</td>
+								<td style="width: 200px;">
+
+									<button class="btn3 btn2" @click="showModal=true">添加</button>
+								</td>
+							</tr>
+							<tr v-for="item in work">
+								<td style="width: 100px;background-color: white;">{{item.name}}</td>
+								<td style="width: 100px;">
+									<button class="btn btn1" @click="upwork(item.id)">修改</button></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+				<div class="mask" v-if="showModal" @click="showModal=false"></div>
+				<div v-if="showModal">
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">添加</p>
+							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+							<input type="text" v-model="worktype" placeholder="输入需要添加的职位" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="addwork">添加</div>
+							<div class="helper-dialog-no" @click="showModal=false">取消</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="mask" v-if="showMo" @click="showMo=false"></div>
+				<div v-if="showMo">
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">修改</p>
+							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+							<input type="text" @keyup.enter="upworkname" v-model="upwoname" placeholder="输入需要修改的职位" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="upworkname">修改</div>
+							<div class="helper-dialog-no" @click="showMo=false">取消</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="app2">
+				<!--设备类型-->
+				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+					<table class="table" width="350" cellspacing="0" cellpadding="0">
+						<thead class="table_head">
+							<tr>
+								<th style="width: 100px;">设备类型表</th>
+								<th style="width: 100px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 200px;">
+
+								</td>
+								<td style="width: 200px;">
+
+									<button class="btn3 btn2" @click="addequip">添加</button>
+								</td>
+							</tr>
+							<tr v-for="item in tips">
+								<td style="width: 100px;background-color: white;">{{item.name}}</td>
+								<td style="width: 100px;">
+
+									<button class="btn btn1" @click="upsbid(item.id)">修改</button></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+				<div class="mask" v-if="showMo" @click="showMo=false"></div>
+				<div v-if="showMo">
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">修改</p>
+							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+							<input type="text" @keyup.enter="upsbname" v-model="upsname" placeholder="输入需要修改的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="upsbname">修改</div>
+							<div class="helper-dialog-no" @click="showMo=false">取消</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="mask" v-if="showModal" @click="showModal=false"></div>
+				<div v-if="showModal">
+
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">添加</p>
+							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+							<input type="text" v-model="equip" placeholder="输入需要添加的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+								<div id="select">
+									<select v-model="tipid">
+										<option v-for="item in tip" :value="item.id">{{item.name}}</option>
+									</select>
+								</div>
+
+							</div>
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="addeq">添加</div>
+							<div class="helper-dialog-no" @click="showModal=false">取消</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<div id="app4">
+				<!--仓库类型-->
+				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+					<table class="table" width="350" cellspacing="0" cellpadding="0">
+						<thead class="table_head">
+							<tr>
+								<th style="width: 100px;">仓库类型表</th>
+								<th style="width: 100px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 200px;">
+
+								</td>
+								<td style="width: 200px;">
+
+									<button class="btn3 btn2" @click="showModal=true">添加</button>
+								</td>
+							</tr>
+							<tr v-for="item in tip">
+								<td style="width: 100px;background-color: white;">{{item.name}}</td>
+								<td style="width: 100px;">
+
+									<button class="btn btn1" @click="upckid(item.id)">修改</button></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+				<div class="mask" v-if="showMo" @click="showMo=false"></div>
+				<div v-if="showMo">
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">修改</p>
+							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+							<input type="text" @keyup.enter="upckname" v-model="upck" placeholder="输入需要修改的仓库" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="upckname">修改</div>
+							<div class="helper-dialog-no" @click="showMo=false">取消</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="mask" v-if="showModal" @click="showModal=false"></div>
+				<div v-if="showModal">
+
+					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1;">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">添加</p>
+							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+							<input type="text" v-model="warehose" placeholder="输入需要添加的仓库" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+
+							<div>
+
+							</div>
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="addwarehose">添加</div>
+							<div class="helper-dialog-no" @click="showModal=false">取消</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			</div>
+			
+
+			<script>
+				var app2 = new Vue({
+					el: "#app2",
+					data: {
+						gsid: "",
+						tips: [],
+						tip: [],
+						flag: true,
+						equip: "",
+						tipid: "",
+						showModal: false,
+						showMo: false,
+						upsid: "",
+						upsname: ""
+					},
+
+					mounted: function() {
+
+						this.gsid = JSON.parse(localStorage.getItem("comid"));
+						console.log(this.gsid)
+						console.log("查询公司id")
+						console.log(this.gsid)
+						var that = this;
+						$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.tips);
+
+									that.tips = data.extend.tips;
+								}
+							}),
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/metering/selectMetering",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.tips);
+									that.tip = data.extend.tips;
+
+								}
+							})
+
+					},
+					methods: {
+
+						upsbid: function(id) {
+							this.showMo = !this.showMo;
+							console.log(id)
+							this.upsid = id;
+							console.log(this.upsbid)
+
+						},
+						upsbname: function() {
+							if(this.upsname==""){
+								
+								alert("请认真输入内容。")
+							}else{
+									console.log(this.upsid)
+							console.log(this.upsname)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/updEquipmenttype",
+								data: {
+									id: that.upsid,
+									name: that.upsname
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									this.showMo = this.showMo;
+									that.cha();
+								}
+							})
+							this.showMo =  false;
+							}
+						
+						},
+
+						cha: function() {
+							this.gsid = JSON.parse(localStorage.getItem("comid"));
+							console.log(this.gsid)
+							console.log("查询公司id")
+							console.log(this.gsid)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.tips);
+
+									that.tips = data.extend.tips;
+								}
+							})
+
+						},
+
+						addequip: function() {
+							this.showModal = !this.showModal;
+						},
+						addeq: function() {
+							if(this.equip==""){
+								
+								alert("请认真输入内容。")
+							}else{
+									console.log(this.tipid)
+							console.log(this.equip)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/addEquipmenttype",
+								data: {
+									companyid: that.gsid,
+									meteringid: that.tipid,
+									name: that.equip
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									alert("添加成功")
+									that.cha();
+								}
+							})
+							this.showModal=false;
+							}
+						
+						}
+					}
+				})
+
+				var app = new Vue({
+					el: "#app",
+					data: {
+						gsid: "",
+						tips: [],
+						mete: "",
+						upid: "",
+						showModal: false,
+						showMo: false,
+						upmete: "",
+						upname: "",
+					},
+
+					mounted: function() {
+						this.gsid = JSON.parse(localStorage.getItem("comid"));
+						console.log(this.gsid)
+						console.log("查询公司id")
+						console.log(this.gsid)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/metering/selectMetering",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('success!');
+								console.log(data);
+								console.log(data.extend.tips);
+								that.tips = data.extend.tips;
+							}
+						})
+					},
+					methods: {
+						updw: function(id) {
+							
+							this.showMo = !this.showMo;
+							console.log(id)
+							this.upid = id;
+							console.log(this.upid)
+
+						},
+						up: function() {
+							if(this.upname==""){
+								
+								alert("请认真输入内容。")
+							}else{
+								console.log("cg")
+							console.log(this.upid)
+							console.log(this.upname)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/metering/updMetering",
+								data: {
+									id: that.upid,
+									name: that.upname
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									this.showMo = this.showMo;
+									that.chax();
+								}
+							})
+							this.showMo =  false;
+							}
+							
+						},
+						chax: function() {
+
+							console.log(this.gsid)
+							console.log("查询公司id")
+							console.log(this.gsid)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/metering/selectMetering",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.tips);
+									that.tips = data.extend.tips;
+								}
+							})
+
+						},
+
+						addmetering: function() {
+							if(this.mete==""){
+								
+								alert("请认真输入内容。")
+							}else{
+									console.log(this.mete)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/metering/addMetering",
+								data: {
+									companyid: that.gsid,
+									name: that.mete
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									alert("添加成功")
+									that.chax();
+								}
+							})
+							this.showModal=false;
+							}
+						
+						}
+					}
+				})
+
+				var app3 = new Vue({
+					el: "#app3",
+					data: {
+						gsid: "",
+						work: [],
+						showModal: false,
+						showMo: false,
+						worktype: "",
+						upwoname: "",
+						workid: ""
+					},
+
+					mounted: function() {
+						this.gsid = JSON.parse(localStorage.getItem("comid"));
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/companys/selectAllWork",
+
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('success!');
+								console.log(data);
+								console.log(data.extend.companys);
+								$.each(data.extend.companys, function(index, e) {
+									console.log(e);
+									console.log(that.gsid)
+									if(e.id == that.gsid) {
+										console.log("查询成功");
+										console.log(e.worktypes);
+										that.work = e.worktypes;
+									}
+								});
+							}
+						})
+					},
+					methods: {
+						upwork: function(upworkid) {
+							this.workid = upworkid;
+							this.showMo = !this.showMo;
+						},
+						upworkname: function() {
+							if(this.upwoname==""){
+								
+								alert("请认真输入内容。")
+							}else{
+								var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/worktypes/updateType",
+								data: {
+									id: that.workid,
+									name: that.upwoname
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									this.showMo = this.showMo;
+									that.selectwork();
+								}
+							})
+							this.showMo =  false;
+							}
+							
+						},
+						selectwork: function() {
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/companys/selectAllWork",
+
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.companys);
+									$.each(data.extend.companys, function(index, e) {
+										console.log(e);
+										console.log(that.gsid)
+										if(e.id == that.gsid) {
+											console.log("查询成功");
+											console.log(e.worktypes);
+											that.work = e.worktypes;
+										}
+									});
+								}
+							})
+						},
+
+						addwork: function() {
+							if(this.worktype==""){
+								
+								alert("请认真输入内容。")
+							}else{
+								console.log(this.gsid)
+							console.log(this.worktype)
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/worktypes/addworktype",
+								data: {
+									id: that.gsid,
+									name: that.worktype
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									alert("添加成功")
+									that.selectwork();
+
+								}
+							})
+							this.showModal=false;
+							}
+							
+						}
+					}
+				})
+				var app4 = new Vue({
+					el: "#app4",
+					data: {
+						gsid: "",
+						tips: [],
+						tip: [],
+						flag: true,
+						warehose: "",
+						tipid: "",
+						showModal: false,
+						showMo: false,
+						upsid: "",
+						upck: "",
+
+					},
+
+					mounted: function() {
+						this.gsid = JSON.parse(localStorage.getItem("comid"));
+						console.log(this.gsid)
+						console.log("查询公司id")
+						console.log(this.gsid)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/warehousetypes/selectWarehouseType",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('success!');
+								console.log(data);
+								console.log(data.extend.tips);
+								that.tip = data.extend.tips;
+							}
+						})
+					},
+					methods: {
+						upckid: function(ckid) {
+							this.ckid = ckid;
+							this.showMo = !this.showMo;
+						},
+						upckname: function() {
+							if(this.upck==""){
+								
+								alert("请认真输入内容。")
+							}else{
+								var that = this;
+							$.ajax({
+								type: "post",
+								url: "http://120.79.46.8:8080/storage/storage/warehousetypes/updWarehouseType",
+								data: {
+									id: that.ckid,
+									name: that.upck
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									this.showMo = this.showMo;
+									that.cha();
+								}
+							})
+							this.showMo =  false;
+							}
+							
+						},
+						cha: function() {
+							var that = this;
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/warehousetypes/selectWarehouseType",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.tips);
+									that.tip = data.extend.tips;
+								}
+							})
+						},
+						addwarehose: function() {
+							if(this.warehose==""){
+								
+								alert("请认真输入内容。")
+							}else{
+									var that = this;
+							
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/warehousetypes/AddWarehouseType",
+								data: {
+									companyid: that.gsid,
+									name: that.warehose
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									alert("添加成功")
+									that.cha();
+								}
+							})
+							this.showModal=false;
+							}
+						
+						}
+					}
+				})
+			</script>
+		</body>
+</html>
