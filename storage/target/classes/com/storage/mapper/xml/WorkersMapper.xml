@@ -37,7 +37,7 @@
     </resultMap>
 
     <select id="QueryW" resultMap="WorkersType">
-        select id,name,sex,phone,companyid,worktypeid from workers where id=#{id}
+        select id,name,sex,phone,companyid,worktypeid,state,working from workers where id=#{id}
     </select>
     <select id="checked" parameterType="integer" resultMap="WorkersType">
         select id,name,sex,phone,companyid,worktypeid from workers WHERE state=1 and companyid=#{companyid}

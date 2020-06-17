@@ -38,14 +38,24 @@ public class Works implements Serializable {
     private String text;
 
     private Integer companyid;
+    @TableField(exist = false)
+    private Companys companys;//关联companys表
 
     private Integer workerid;
+    @TableField(exist = false)
+    private Workers workers;//关联workers表
 
     private Integer goodsid;
+    @TableField(exist = false)
+    private Goods goods;//关联goods表
 
     private Integer distributionid;
+    @TableField(exist = false)
+    private Distribution distribution;//关联distribution表
 
     private Integer warehouseid;
+    @TableField(exist = false)
+    private Warehouses warehouses;//关联warehouses表
 
     private Integer state;
 

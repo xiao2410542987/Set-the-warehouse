@@ -22,5 +22,5 @@ public interface WorksMapper extends BaseMapper<Works> {
     List<Workers> noWork(int companyid);
     List<Workers> haveWork(int companyid);
     List<Works> workData();
-    List<Works> workDataOne(String createtime);
+    List<Works> workDataOne(Integer state,String createtime);
 }

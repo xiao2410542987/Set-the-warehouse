@@ -46,6 +46,9 @@ public class Distribution implements Serializable {
 
     private Integer equipmentid;
 
+    @TableField(exist = false)
+    private Equipments equipments;
+
     private String name;
 
     @TableField(fill = FieldFill.INSERT,exist = false)

@@ -15,4 +15,17 @@
     <select id="selectEquipment" resultMap="resE">
         select * from equipments where Equipmenttypeid=#{Equipmenttypeid}
     </select>
+    <select id="selectE" resultMap="resultE">
+        select id,equipmenttypeid,number,unuse,meteringid from equipments where id=#{id}
+    </select>
+    <resultMap id="resultE" type="com.storage.pojo.Equipments">
+        <id column="id" property="id"></id>
+        <result column="equipmenttypeid" property="equipmenttypeid"></result>
+        <result column="number" property="number"></result>
+        <result column="unuse" property="unuse"></result>
+        <result column="companyid" property="companyid"></result>
+        <result column="meteringid" property="meteringid"></result>
+        <association property="equipmenttypes" column="equipmenttypeid" select="com.storage.mapper.EquipmenttypesMapper.selectET"></association>
+        <association property="metering"  column="meteringid" select="com.storage.mapper.MeteringMapper.selectMetering"></association>
+    </resultMap>
 </mapper>

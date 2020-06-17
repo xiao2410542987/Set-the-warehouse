@@ -9,7 +9,9 @@
 </resultMap>
 
     <select id="selectEquipmenttype" resultMap="resEt">
-
         select id,name,companyid from equipmenttypes where companyid=#{companyid}
+    </select>
+    <select id="selectET" resultType="com.storage.pojo.Equipmenttypes">
+        select id,name,companyid from equipmenttypes where id=#{id}
     </select>
 </mapper>

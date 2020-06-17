@@ -11,10 +11,24 @@
     <select id="workData" resultType="com.storage.pojo.Works">
         SELECT createtime FROM works GROUP BY DATE_FORMAT(createtime,'%Y%m%d')
     </select>
-    <select id="workDataOne" resultType="com.storage.pojo.Works">
-        SELECT * FROM works where state=0 and DATE_FORMAT(createtime,'%Y%m%d') =#{createtime}
+    <select id="workDataOne" resultMap="cwgdw">
+        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime
+        FROM works where state=#{state} and DATE_FORMAT(createtime,'%Y%m%d') =#{createtime}
     </select>
-
+    <resultMap id="cwgdw" type="com.storage.pojo.Works">
+        <id column="id" property="id"></id>
+        <result column="text" property="text"></result>
+        <result column="companyid" property="companyid"></result>
+        <result column="workerid" property="workerid"></result>
+        <result column="goodsid" property="goodsid"></result>
+        <result column="distributionid" property="distributionid"></result>
+        <result column="warehouseid" property="warehouseid"></result>
+        <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
+        <association property="workers" column="workerid" select="com.storage.mapper.WorkersMapper.QueryW"></association>
+        <association property="goods" column="goodsid" select="com.storage.mapper.GoodsMapper.selectG"></association>
+        <association property="distribution" column="distributionid" select="com.storage.mapper.DistributionMapper.selectD"></association>
+        <association property="warehouses" column="warehouseid" select="com.storage.mapper.WarehousesMapper.selectWarehouses"></association>
+    </resultMap>
     <resultMap id="work" type="com.storage.pojo.Workers">
         <id column="id" property="id"></id>
         <result column="name" property="name"></result>

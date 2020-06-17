@@ -15,8 +15,8 @@
     <result column="createtime" property="createtime"></result>
     <association column="metering" property="meteringid" select="com.storage.mapper.MeteringMapper.selectMetering"></association>
 </resultMap>
-    <select id="selectWarehouses" resultMap="resW">
-        select * from warehouses where id=#{id}
+    <select id="selectWarehouses" resultMap="QueryMWCW">
+        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,createtime from warehouses where id=#{id}
     </select>
 
     <select id="QueryWarehouse" resultMap="QueryMWCW">

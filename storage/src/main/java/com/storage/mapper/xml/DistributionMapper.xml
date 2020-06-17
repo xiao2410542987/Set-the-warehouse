@@ -3,18 +3,22 @@
 <mapper namespace="com.storage.mapper.DistributionMapper">
 <resultMap id="resD" type="com.storage.pojo.Distribution">
     <id column="id" property="id"></id>
-
     <result column="state" property="state"></result>
     <result column="companyid" property="companyid"></result>
+    <result column="warehouseid" property="warehouseid"></result>
     <result column="equipmentid" property="equipmentid"></result>
     <result column="name" property="name"></result>
     <result column="createtime" property="createtime"></result>
     <result column="updatetime" property="updatetime"></result>
     <association property="warehouses"  column="warehouseid" select="com.storage.mapper.WarehousesMapper.selectWarehouses"></association>
+    <association property="equipments" column="equipmentid" select="com.storage.mapper.EquipmentsMapper.selectE"></association>
 </resultMap>
 
     <select id="selectDistribution" resultMap="resD">
         select * from distribution where equipmentid=#{id}
+    </select>
 
+    <select id="selectD" resultMap="resD">
+        select id,warehouseid,equipmentid,name,createtime,updatetime from distribution where id=#{id}
     </select>
 </mapper>

@@ -36,6 +36,8 @@ public class Equipments implements Serializable {
     private Integer id;
 
     private Integer equipmenttypeid;
+    @TableField(exist = false)
+    private Equipmenttypes equipmenttypes;
 
     private Integer number;
 

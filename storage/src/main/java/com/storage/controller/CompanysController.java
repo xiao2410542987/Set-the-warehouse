@@ -30,8 +30,6 @@ public class CompanysController {
 
     @Autowired
     private CompanysMapper companysMapper;
-    @Autowired
-    private CompanysService companysService;
 
     @ApiOperation("查询所有公司与所有职位")
     @RequestMapping(value = "/selectAllWork",method = RequestMethod.GET)

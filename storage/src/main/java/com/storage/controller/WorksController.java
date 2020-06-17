@@ -31,6 +31,7 @@ public class WorksController {
     @Autowired
     private WorksMapper worksMapper;
 
+
     @ApiOperation("查询没有分配工作的员工")
     @RequestMapping(value = "/noWork",method = RequestMethod.GET)
     public Msg noWork(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
@@ -54,10 +55,15 @@ public class WorksController {
     @ApiOperation("根据日期查询工作任务(未完成)")
     @RequestMapping(value = "/workDataOne",method = RequestMethod.GET)
     public Msg workDataOne(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime){
-        return Msg.success().add("data",worksMapper.workDataOne(createtime));
+        return Msg.success().add("data",worksMapper.workDataOne(0,createtime));
     }
-    @Autowired
-    private WorksMapper worksMapper;
+
+    @ApiOperation("根据日期查询工作任务(已完成)")
+    @RequestMapping(value = "/workDataOneFinish",method = RequestMethod.GET)
+    public Msg workDataOneFinish(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime){
+        return Msg.success().add("data",worksMapper.workDataOne(1,createtime));
+    }
+
     @ApiOperation("添加任务")
     @RequestMapping(value = "/addWork",method = RequestMethod.POST)
     public Msg addWork(@RequestParam @ApiParam(name = "text" ,value = "工作内容") String text
