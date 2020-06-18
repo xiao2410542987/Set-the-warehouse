@@ -55,7 +55,9 @@
 				transition: color 0.4s linear;
 				position: relative;
 			}
-			
+			::-webkit-scrollbar {
+				display: none;
+			}
 			.btn:hover {
 				color: #fff;
 			}
@@ -182,9 +184,7 @@
 				background-color: white;
 			}
 			
-			::-webkit-scrollbar {
-				display: none;
-			}
+		
 			.bigbox{
 				width: 1910px;
 				height: 1000px;
@@ -201,7 +201,7 @@
 			<div class="bigbox">
 				<div id="app">
 				<!--计量单位-->
-				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+				<div id="table_wrap" class="box" name="xx1" style="height:730px;overflow-y:auto;">
 
 					<table class="table" width="350" cellspacing="0" cellpadding="0">
 						<thead class="table_head">
@@ -281,7 +281,7 @@
 
 			<div id="app3">
 				<!--工作类型-->
-				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+				<div id="table_wrap" class="box" name="xx2" style="height:730px;overflow:auto;">
 					<table class="table" width="350" cellspacing="0" cellpadding="0">
 						<thead class="table_head">
 							<tr>
@@ -356,8 +356,8 @@
 
 			<div id="app2">
 				<!--设备类型-->
-				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
-					<table class="table" width="350" cellspacing="0" cellpadding="0">
+				<div id="table_wrap" class="box" name="xx3"  style="height:730px;overflow:auto;">
+					<table class="table" width="350" cellspacing="0" cellpadding="0" >
 						<thead class="table_head">
 							<tr>
 								<th style="width: 100px;">设备类型表</th>
@@ -380,11 +380,12 @@
 
 									<button class="btn btn1" @click="upsbid(item.id)">修改</button></td>
 							</tr>
-
+							
 						</tbody>
 					</table>
 				</div>
-
+				
+				
 				<div class="mask" v-if="showMo" @click="showMo=false"></div>
 				<div v-if="showMo">
 					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
@@ -440,7 +441,7 @@
 			</div>
 			<div id="app4">
 				<!--仓库类型-->
-				<div id="table_wrap" class="box" style="height:700px;overflow:auto;">
+				<div id="table_wrap" class="box" name="xx4" style="height:730px;overflow:auto;">
 					<table class="table" width="350" cellspacing="0" cellpadding="0">
 						<thead class="table_head">
 							<tr>
@@ -519,6 +520,9 @@
 			
 
 			<script>
+				
+				
+				
 				var app2 = new Vue({
 					el: "#app2",
 					data: {
@@ -535,11 +539,12 @@
 					},
 
 					mounted: function() {
+						
+                    
+                    	
+                    	
 
 						this.gsid = JSON.parse(localStorage.getItem("comid"));
-						console.log(this.gsid)
-						console.log("查询公司id")
-						console.log(this.gsid)
 						var that = this;
 						$.ajax({
 								type: "get",
@@ -552,11 +557,8 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
-									console.log(data);
-									console.log(data.extend.tips);
-
 									that.tips = data.extend.tips;
+									
 								}
 							}),
 							$.ajax({
@@ -570,23 +572,21 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
-									console.log(data);
-									console.log(data.extend.tips);
 									that.tip = data.extend.tips;
-
+								
 								}
 							})
-
+					
 					},
 					methods: {
+						
+						
+						
+
 
 						upsbid: function(id) {
 							this.showMo = !this.showMo;
-							console.log(id)
 							this.upsid = id;
-							console.log(this.upsbid)
-
 						},
 						upsbname: function() {
 							if(this.upsname==""){
@@ -608,7 +608,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
 									this.showMo = this.showMo;
 									that.cha();
 								}
@@ -620,9 +619,6 @@
 
 						cha: function() {
 							this.gsid = JSON.parse(localStorage.getItem("comid"));
-							console.log(this.gsid)
-							console.log("查询公司id")
-							console.log(this.gsid)
 							var that = this;
 							$.ajax({
 								type: "get",
@@ -635,9 +631,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
-									console.log(data);
-									console.log(data.extend.tips);
 
 									that.tips = data.extend.tips;
 								}
@@ -671,6 +664,10 @@
 								success: function(data) {
 									alert("添加成功")
 									that.cha();
+									setTimeout(function () { 
+                    		console.log($('[name=xx3]')[0].scrollHeight);
+							$('[name=xx3]').scrollTop( $('[name=xx3]')[0].scrollHeight );
+							}, 500)
 								}
 							})
 							this.showModal=false;
@@ -695,9 +692,6 @@
 
 					mounted: function() {
 						this.gsid = JSON.parse(localStorage.getItem("comid"));
-						console.log(this.gsid)
-						console.log("查询公司id")
-						console.log(this.gsid)
 						var that = this;
 						$.ajax({
 							type: "get",
@@ -710,9 +704,6 @@
 							},
 							crossDomain: true,
 							success: function(data) {
-								console.log('success!');
-								console.log(data);
-								console.log(data.extend.tips);
 								that.tips = data.extend.tips;
 							}
 						})
@@ -721,19 +712,14 @@
 						updw: function(id) {
 							
 							this.showMo = !this.showMo;
-							console.log(id)
 							this.upid = id;
-							console.log(this.upid)
-
 						},
 						up: function() {
 							if(this.upname==""){
 								
 								alert("请认真输入内容。")
 							}else{
-								console.log("cg")
-							console.log(this.upid)
-							console.log(this.upname)
+
 							var that = this;
 							$.ajax({
 								type: "get",
@@ -747,7 +733,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
 									this.showMo = this.showMo;
 									that.chax();
 								}
@@ -758,9 +743,6 @@
 						},
 						chax: function() {
 
-							console.log(this.gsid)
-							console.log("查询公司id")
-							console.log(this.gsid)
 							var that = this;
 							$.ajax({
 								type: "get",
@@ -773,9 +755,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
-									console.log(data);
-									console.log(data.extend.tips);
 									that.tips = data.extend.tips;
 								}
 							})
@@ -803,6 +782,10 @@
 								success: function(data) {
 									alert("添加成功")
 									that.chax();
+									setTimeout(function () { 
+                    		console.log($('[name=xx1]')[0].scrollHeight);
+							$('[name=xx1]').scrollTop( $('[name=xx1]')[0].scrollHeight );
+							}, 500)
 								}
 							})
 							this.showModal=false;
@@ -836,15 +819,10 @@
 							},
 							crossDomain: true,
 							success: function(data) {
-								console.log('success!');
-								console.log(data);
-								console.log(data.extend.companys);
 								$.each(data.extend.companys, function(index, e) {
 									console.log(e);
 									console.log(that.gsid)
 									if(e.id == that.gsid) {
-										console.log("查询成功");
-										console.log(e.worktypes);
 										that.work = e.worktypes;
 									}
 								});
@@ -874,7 +852,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
 									this.showMo = this.showMo;
 									that.selectwork();
 								}
@@ -894,15 +871,11 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
-									console.log(data);
-									console.log(data.extend.companys);
+
 									$.each(data.extend.companys, function(index, e) {
-										console.log(e);
-										console.log(that.gsid)
+
 										if(e.id == that.gsid) {
-											console.log("查询成功");
-											console.log(e.worktypes);
+
 											that.work = e.worktypes;
 										}
 									});
@@ -915,8 +888,6 @@
 								
 								alert("请认真输入内容。")
 							}else{
-								console.log(this.gsid)
-							console.log(this.worktype)
 							var that = this;
 							$.ajax({
 								type: "get",
@@ -932,6 +903,10 @@
 								success: function(data) {
 									alert("添加成功")
 									that.selectwork();
+									setTimeout(function () { 
+                    		console.log($('[name=xx2]')[0].scrollHeight);
+							$('[name=xx2]').scrollTop( $('[name=xx2]')[0].scrollHeight );
+							}, 500)
 
 								}
 							})
@@ -959,9 +934,6 @@
 
 					mounted: function() {
 						this.gsid = JSON.parse(localStorage.getItem("comid"));
-						console.log(this.gsid)
-						console.log("查询公司id")
-						console.log(this.gsid)
 						var that = this;
 						$.ajax({
 							type: "get",
@@ -974,9 +946,6 @@
 							},
 							crossDomain: true,
 							success: function(data) {
-								console.log('success!');
-								console.log(data);
-								console.log(data.extend.tips);
 								that.tip = data.extend.tips;
 							}
 						})
@@ -1004,7 +973,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
 									this.showMo = this.showMo;
 									that.cha();
 								}
@@ -1026,9 +994,6 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									console.log('success!');
-									console.log(data);
-									console.log(data.extend.tips);
 									that.tip = data.extend.tips;
 								}
 							})
@@ -1054,6 +1019,10 @@
 								success: function(data) {
 									alert("添加成功")
 									that.cha();
+									setTimeout(function () { 
+                    		console.log($('[name=xx4]')[0].scrollHeight);
+							$('[name=xx4]').scrollTop( $('[name=xx4]')[0].scrollHeight );
+							}, 500)
 								}
 							})
 							this.showModal=false;
@@ -1062,6 +1031,7 @@
 						}
 					}
 				})
+				
 			</script>
 		</body>
 </html>

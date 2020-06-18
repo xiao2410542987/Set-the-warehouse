@@ -147,9 +147,6 @@
 
 			methods: {
 				sear: function() {
-					console.log(this.phone);
-					console.log(this.pass);
-					
 					var sid = $("[name=pass]").val();
 					
 				if($("[name=phone]").val() == "" || this.pass == ""){
@@ -169,10 +166,7 @@
 							crossDomain: true,
 							async: false,
 							success: function(data) {
-								console.log(data);
-								console.log(data.extend.worker.companyid);
 								that.comid=data.extend.worker.companyid;
-								console.log(that.comid)
 								if(data.code == 200) {
 									alert("登录成功");
 								} else if(data.code == 500) {
@@ -209,14 +203,7 @@
 				btun:function(){
 					this.flag=!this.flag
 				},
-				sign:function(){
-					console.log("公司id"+this.prov),
-					console.log(this.name),
-					console.log(this.pass),
-					console.log(this.phone),
-					console.log(this.sex),
-					console.log("职务id"+this.pro),
-						
+				sign:function(){					
 							$.ajax({
 							type: "get",
 							url: "http://120.79.46.8:8080/storage/storage/workers/register",
@@ -255,8 +242,6 @@
 						},
 						crossDomain: true,
 						success: function(data) {
-							console.log('success!');
-							console.log(data);
 							that.companys = data.extend.companys
 						}
 					})
@@ -265,7 +250,6 @@
 					var that = this;
 					this.companys.forEach(function(item, index) {
 						if(item.id == that.prov) {
-							console.log(item);
 							that.worktypes = item.worktypes
 						}
 					})
