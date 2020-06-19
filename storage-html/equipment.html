@@ -90,8 +90,8 @@
 			background: #3e96a5;
 			color: #fff;
 			position: relative;
-			left: 610px;
-			top: -85px;
+			left: 725px;
+			top: -82px;
 		}
 		
 		.sel_wrap {
@@ -103,8 +103,8 @@
 			cursor: pointer;
 			position: relative;
 			width: 150px;
-			left: 410px;
-			top: -45px;
+			left: 520px;
+			top: -42px;
 			border-radius: 5px;
 			border: 1px solid rgb(0, 0, 0);
 		}
@@ -133,7 +133,7 @@
 				display: none;
 			}
 			.bigbox{
-				width: 1810px;
+				width: 1610px;
 				height: 1000px;
 				
 				position: relative;
@@ -233,7 +233,7 @@
 							<div class="sel_wrap">
 								<select class="select" v-model="meid">
 									<option :value="meid">{{danw}}</option>
-									<option v-for="(item,i) in tip" :key='i' :value="item.id">{{item.name}}</option>
+									<option v-for="(item,i) in tip" :value="item.id">{{item.name}}</option>
 
 								</select>
 
