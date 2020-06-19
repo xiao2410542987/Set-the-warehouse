@@ -24,5 +24,5 @@ import java.util.List;
 public interface WarehousesMapper extends BaseMapper<Warehouses> {
     Warehouses selectWarehouses(int id);
 
-    IPage<Warehouses> QueryWarehouse(IPage<Warehouses> page, @Param(Constants.WRAPPER) Wrapper<Warehouses> QueryWrapper);
+    IPage<Warehouses> QueryWarehouse(IPage<Warehouses> page, @Param(Constants.WRAPPER) Wrapper<Warehouses> QueryWrapper,int companyid);
 }
