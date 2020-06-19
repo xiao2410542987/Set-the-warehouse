@@ -20,7 +20,7 @@
     </select>
 
     <select id="QueryWarehouse" resultMap="QueryMWCW">
-        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,createtime from warehouses where state = 0
+        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,createtime from warehouses where state = 0 and companyid=#{companyid}
     </select>
 
     <resultMap id="QueryMWCW" type="com.storage.pojo.Warehouses">

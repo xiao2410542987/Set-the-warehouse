@@ -80,9 +80,9 @@ public class WarehousesController {
 
     @ApiOperation("查询仓库")
     @RequestMapping(value = "/QueryWarehouse", method = RequestMethod.GET)
-    public IPage<Warehouses> QueryWarehouse(int start,int state){
+    public IPage<Warehouses> QueryWarehouse(int start,int state,int companyid){
         Page<Warehouses> page = new Page<>(start, state);
-        return warehousesMapper.QueryWarehouse(page,new QueryWrapper<Warehouses>());
+        return warehousesMapper.QueryWarehouse(page,new QueryWrapper<Warehouses>(),companyid);
     }
 
 
