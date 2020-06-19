@@ -18,8 +18,8 @@
         select id,name from companys;
     </select>
 
-    <!--<select id="auditcps" resultType="com.storage.pojo.Companys" parameterType="integer">
+    <select id="auditcps" resultType="com.storage.pojo.Companys" parameterType="integer">
         select id,name,founder,createtime,place,state,phone from companys where id=#{id}
-    </select>-->
+    </select>
     
 </mapper>
