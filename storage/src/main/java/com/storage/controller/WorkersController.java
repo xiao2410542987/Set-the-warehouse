@@ -112,7 +112,7 @@ public class WorkersController {
             //session.setAttribute("login",workers1.getWorktypes().getName());
             HttpSession session = request.getSession();
             session.setAttribute("login",workers1.getWorktypes().getName());
-            session.setMaxInactiveInterval(((60*60)*24)*7);
+            session.setMaxInactiveInterval(630000);
             /*request.getSession().setAttribute("login",workers1.getWorktypes().getName());
             request.getSession().setMaxInactiveInterval(((60*60)*24)*7);*/
             return Msg.success().add("worker",workers1);

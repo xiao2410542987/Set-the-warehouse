@@ -1,0 +1,499 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>设备管理</title>
+
+			
+
+		<link rel="stylesheet" type="text/css" href="css/proindex.css" />
+
+		<script src="js/vue.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<link rel="stylesheet" href="css/loading.css" />
+		<link rel="stylesheet" href="css/easyhelper.min.css" />
+	</head>
+	<style>
+		.btu4 {
+			position: relative;
+			display: block;
+			font-size: 14px;
+			font-family: "montserrat";
+			text-decoration: none;
+			margin: 10px 0;
+			border: 2px solid black;
+			padding: 14px 55px;
+			text-transform: uppercase;
+			overflow: hidden;
+			transition: 1s all ease;
+			z-index: 1;
+		}
+		
+		.btu4::before {
+			background: black;
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: -1;
+			transition: all 0.6s ease;
+		}
+		
+		.btu4:hover {
+			color: white;
+		}
+		
+		.btu7 {
+			float: left;
+		}
+		
+		.btu8 {
+			float: right;
+		}
+		
+		.btu7::before {
+			width: 100%;
+			height: 0;
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+		
+		.btu7:hover::before {
+			height: 380%;
+		}
+		
+		.btu8::before {
+			width: 100%;
+			height: 0;
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+		
+		.btu8:hover::before {
+			height: 380%;
+		}
+		
+		.xg {
+			width: 1100px;
+			/* float: left; */
+			position: relative;
+			left: 642px;
+			margin: -44px -28px;
+		}
+		
+		.b {
+			width: 98px;
+			height: 39px;
+			border-radius: 19px;
+			border: none;
+			font-size: 16px;
+			background: #3e96a5;
+			color: #fff;
+			position: relative;
+			left: 610px;
+			top: -85px;
+		}
+		
+		.sel_wrap {
+			height: 40px;
+			background: #fff;
+			color: #a1a1a1;
+			font-size: 16px;
+			border: 1px solid #E4E4E4;
+			cursor: pointer;
+			position: relative;
+			width: 150px;
+			left: 410px;
+			top: -45px;
+			border-radius: 5px;
+			border: 1px solid rgb(0, 0, 0);
+		}
+		
+		.sel_wrap label {
+			padding-left: 10px;
+			font-size: 16px;
+			z-index: 2;
+			color: #a1a1a1;
+			line-height: 40px;
+			height: 40px;
+		}
+		
+		.sel_wrap .select {
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			position: absolute;
+			border-radius: 5px;
+			border: 1px solid rgb(0, 0, 0);
+			margin: 0;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		::-webkit-scrollbar {
+				display: none;
+			}
+			.bigbox{
+				width: 1810px;
+				height: 1000px;
+				
+				position: relative;
+				left: 250px;
+				top: 86px;
+			}
+	</style>
+
+	<body>
+		<div class="bigbox">
+		<div style="margin-top: 45px;margin-left: 16px;">
+
+			<div id="app2">
+				
+				
+				<div class="mask"></div>
+				
+
+					<div v-if="ntk" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1420px;margin-left: -740px; margin-top: -396.5px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">更多信息</p>
+							<i class="helper-dialog-close helper-noselect" @click="ntk=false">✕</i>
+						</div>
+						<div class="helper-dialog-content"   style="overflow:auto;font-size: 15px; height:400px;">
+
+							<table border="0" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center;margin-top: 40px;">
+					<thead>
+					
+						<tr>
+							<th>设备名称</th>
+							<th>设备位置</th>
+							<th>仓库信息</th>
+							<th>使用情况</th>
+							
+						</tr>
+					</thead>
+					<tbody id="table_proindex">
+						<tr v-for="item in ware" style="background: #292d34!important;" class="second_tr">
+							<td style="height: 50px;">
+							{{sbname}}
+							</td>
+							<td style="background: #292d34!important;">
+								{{item.name}}号位
+							</td>
+							
+							<td style="background: #292d34!important;">
+								{{item.warehouses.name}}
+							</td>
+						
+							<td style="background: #292d34!important;" v-if="item.state===0">
+							  正常使用
+							</td>
+							<td style="background: #292d34!important;" v-if="item.state===1">
+							 维护或者关闭
+							</td>
+							<td style="background: #292d34!important;" v-if="item.state===2">
+							已回收
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+										
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+							<div class="helper-dialog-yes" @click="ntk=false">关闭</div>
+							
+						</div>
+					</div>
+
+				
+				
+				
+				
+
+				<!--加载动画-->
+				<div class="loader" v-if="loading">
+					<div class="domino">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+
+				<table v-if="all" border="0" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center;margin-top: 40px;">
+					<thead>
+						<div class="button_line">
+							关键字搜索：<input type="text" id="filtertxt1">
+							<button class="btn1" id="Search">搜索</button>
+						</div>
+
+						<div class="xg" v-if="showModal">
+							<input placeholder="设备名称" v-model="upsname" @keydown.enter="upeq" style="text-align: center;font-size:14px; border-radius: 12px;border:1.5px solid #000000;width: 150px;margin: 0px 20px; height: 40px;" type="text">
+							<input placeholder="设备总数" v-model="num" @keydown.enter="upnum" style="text-align: center;font-size:14px;border-radius: 12px;border:1.5px solid #000000;width: 150px;margin: 0px 20px; height: 40px;" type="text">
+
+							<div class="sel_wrap">
+								<select class="select" v-model="meid">
+									<option :value="meid">{{danw}}</option>
+									<option v-for="(item,i) in tip" :key='i' :value="item.id">{{item.name}}</option>
+
+								</select>
+
+							</div>
+
+							<button class="b" @click="upAl">修改</button>
+						</div>
+						<tr>
+							<th style="width: 400px;">设备名称</th>
+							<th>设备总数</th>
+							<th>设备未使用数</th>
+							<th>设备已使用数</th>
+							<th style="width: 300px;">操作</th>
+						</tr>
+					</thead>
+					<tbody id="table_proindex">
+						<tr v-for="(item , i) in tips" class="second_tr">
+							<td style="width: 400px;">
+								{{item.name}}
+							</td>
+							<td>
+								{{item.equipments.number}}{{item.equipments.metering.name}}
+							</td>
+							<td>
+								{{item.equipments.unuse}}{{item.equipments.metering.name}}
+							</td>
+							<td>{{item.equipments.number-item.equipments.unuse}}{{item.equipments.metering.name}}</td>
+							<td style="width: 300px; float: left;">
+
+								<a class="btu4 btu8" @click="an(i)">更多</a>
+								<a class="btu4 btu7" @click="upAll(item.name,item.equipments.equipmenttypeid,item.equipments.id,item.equipments.metering.id,item.equipments.number,item.equipments.unuse,item.equipments.metering.name)">修改</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+		<script type="text/javascript">
+			
+		
+			$(function() {
+				$('#Search').click(function() {
+					var txt = $('#filtertxt1').val();
+					$("table tbody tr")
+						.hide()
+						.filter(":contains('" + txt + "')")
+						.show();
+				})
+			});
+			var app2 = new Vue({
+				el: "#app2",
+				data: {
+					gsid: "",
+					tips: [],
+					tip: [],
+					upeqname: "",
+					showModal: false,
+					eqid: "",
+					sbid: "",
+					meid: "",
+					upsname: "",
+					summ: "",
+					num: "",
+					unu: "",
+					danw: "",
+					loading: false,
+					all: false,
+					ware: [],
+					id:"",
+					sbname:"",
+					sbid:"",
+					ntk:false
+				},
+
+				mounted: function() {
+
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+
+					console.log(this.gsid)
+					console.log("查询公司id")
+					console.log(this.gsid)
+					var that = this;
+
+					setTimeout(function() {
+
+							$.ajax({
+
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									console.log('success!');
+									console.log(data);
+									console.log(data.extend.tips);
+									console.log(data.extend.tips)
+									that.tips = data.extend.tips;
+									that.loading = false
+								}
+							})
+						}, 1500),
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/metering/selectMetering",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+
+								console.log('这个!');
+								console.log(data);
+								console.log(data.extend.tips);
+								that.tip = data.extend.tips;
+
+							}
+						});
+					this.all = !this.all;
+					this.loading = true
+				},
+				methods: {
+								an:function(id){
+						this.ntk=true
+						console.log("这个"+id);
+						this.id=id
+						var that = this;
+							$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('success!');
+								console.log(data);
+								console.log(data.extend.tips);
+								console.log(data.extend.tips[that.id].equipments.distribution)
+								that.ware = data.extend.tips[that.id].equipments.distribution;
+								that.sbid=data.extend.tips[that.id].id;
+								that.sbname=data.extend.tips[that.id].name;
+//								that.sbname=that.ware.name;
+							}
+						})
+						
+					},
+					selec: function() {
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('success!');
+								console.log(data);
+								console.log(data.extend.tips);
+								console.log(data.extend.tips)
+
+								that.tips = data.extend.tips;
+							}
+						})
+					},
+					upnum: function() {
+						this.unu = this.num - this.summ
+						console.log(this.unu)
+						var that = this;
+						$.ajax({
+							type: "post",
+							url: "http://120.79.46.8:8080/storage/storage/equipments/updEquipment",
+							data: {
+								companyid: that.gsid,
+								equipmenttypeid: that.eqid,
+								id: that.sbid,
+								meteringid: that.meid,
+								number: that.num,
+								unuse: that.unu
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('成功了!');
+							}
+						})
+						this.selec();
+					},
+					//					eqid设备类型id,sbid设备id,meid单位id,num设备总数,unu未使用	
+					upAll: function(eqname, eqid, sbid, meid, num, unu, danw) {
+						console.log(eqname)
+						console.log(eqid)
+						console.log(sbid)
+						console.log(meid)
+						console.log(num)
+						console.log(unu)
+						sum = num - unu;
+						this.summ = sum
+						console.log("差值" + this.summ)
+						this.num = num;
+						console.log("总数" + this.num)
+						this.unu = unu;
+						console.log("总数" + this.unu)
+						this.upsname = eqname;
+						this.eqid = eqid;
+						this.sbid = sbid;
+						this.meid = meid;
+						this.num = num;
+						this.unu = unu;
+						this.danw = danw;
+
+						this.showModal = !this.showModal;
+					},
+					upAl: function() {
+
+						this.upeq();
+					},
+					upeq: function() {
+						console.log(this.eqid)
+						console.log(this.upsname)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/updEquipmenttype",
+							data: {
+								id: that.eqid,
+								name: that.upsname
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('成功了!');
+							}
+						})
+						that.selec();
+						that.upnum();
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
