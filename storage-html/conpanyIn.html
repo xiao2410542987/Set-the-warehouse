@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>公司信息</title>					
+		
+		<script src="js/vue.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<!--<link rel="stylesheet" href="css/loading.css" />
+		<link rel="stylesheet" href="css/easyhelper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/proindex.css" />-->
+		
+	</head>
+	<body>
+		
+		<div id="app">
+			<input type="hidden" :value="gsid" />
+			公司名称:{{tips.name}}
+			
+			
+		</div>
+		<script>
+			
+			var app = new Vue({
+				el: "#app",
+				data: {
+					gsid: "",
+					tips: "",
+					sad:"asjdygS"
+				},
+			mounted: function() {
+				this.gsid = JSON.parse(localStorage.getItem("comid"));
+				console.log(this.gsid);
+				var that = this;
+				$.ajax({
+					type:"get",
+					url:"http://120.79.46.8:8080/storage/storage/companys/selectOne",
+					data:{id:that.gsid},
+					xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log('成功了!');
+								console.log(data);
+								that.tips=data.extend.message;
+								console.log(that.tips);
+							}
+				});
+			}
+			})
+		</script>
+		
+	</body>
+	
+</html>

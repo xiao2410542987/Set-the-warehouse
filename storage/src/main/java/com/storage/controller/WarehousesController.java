@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -31,7 +34,19 @@ public class WarehousesController {
 
     @Autowired
     private WarehousesMapper warehousesMapper;
+    @ApiOperation("根据仓库类型查询仓库")
+    @RequestMapping(value = "/selectWarehouse", method = RequestMethod.GET)
+    public Msg selectWarehouse(
+                            @RequestParam @ApiParam(name = "companyid", value = "所属公司\t外键(关联companys   公司表)") int companyid,
+                            @RequestParam @ApiParam(name = "warehousetypeid", value = "仓库类型\t外键") int warehousetypeid) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("companyid",companyid);
+        map.put("warehousetypeid",warehousetypeid);
+        List<Warehouses> warehouses = warehousesMapper.selectByMap(map);
 
+        return Msg.success().add("tips",warehouses);
+
+    }
     @ApiOperation("添加仓库")
     @RequestMapping(value = "/AddWarehouse", method = RequestMethod.GET)
     public Msg AddWarehouse(@RequestParam @ApiParam(name = "name", value = "仓库名字") String name,
