@@ -34,7 +34,7 @@ public class DistributionController {
     {
         Distribution distribution = new Distribution();
         distribution.setState(state);
-        distribution.setState(warehouseid);
+        distribution.setWarehouseid(warehouseid);
         distribution.setEquipmentid(equipmentid);
         distribution.setCompanyid(companyid);
         distribution.setName(name);
