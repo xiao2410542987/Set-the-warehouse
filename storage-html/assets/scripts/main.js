@@ -125,24 +125,42 @@
 			$(".js__logout").on("click",function(event){
 				event.preventDefault();
 				swal({   
-					title: "Logout?",   
-					text: "Are you sure you want to logout?",   
+					title: "退出登录?",   
+					text: "你确定要退出登录吗?",   
 					type: "warning",   
 					showCancelButton: true,   
 					confirmButtonColor: "#DD6B55",   
-					confirmButtonText: "Yes, I'm out!", 
-					cancelButtonText: "No, stay plx!", 
+					confirmButtonText: "是的，我要退出!", 
+					cancelButtonText: "不小心按错了!", 
 					closeOnConfirm: false,
 					closeOnCancel: true,
 					confirmButtonColor: '#f60e0e',
 				}, function(isConfirm){   
-					if (isConfirm) {     
+					if (isConfirm) { 
+						$.ajax({
+							type: "GET",  //默认get
+							url: "http://120.79.46.8:8080/storage/storage/workers/exit",  //默认当前页
+							success: function (response) {  //请求成功回调
+								console.log(response);
+								localStorage.setItem("comid",null);
+							},
+							error: function (e) {  //请求超时回调
+								if(e.statusText == "timeout"){
+									alert("请求超时")
+								}
+							},
+							complete: function () {}, //无论请求是成功还是失败都会执行的回调，常用全局成员的释放，或者页面状态的重置
+						})
 						swal({
 							title : "Logout success", 
 							text: "See you later!", 
 							type: "success",
 							confirmButtonColor: '#304ffe',
-						});   
+						},function(isConfirm){
+							window.location.href="http://120.79.46.8/login.html"
+						}
+						);   
+						//window.location.href="http://120.79.46.8/login.html"
 					} else {    
 					} 
 				});
