@@ -90,13 +90,13 @@
 							<i class="fa fa-caret-down js__drop_down_button"></i>
 							<div class="control-list">
 								<div class="control-item">
-									<a href="profile.html"><i class="fa fa-user"></i> Profile</a>
+									<a href="profile.html"><i class="fa fa-user"></i>个人信息</a>
 								</div>
 								<div class="control-item">
-									<a href="#"><i class="fa fa-gear"></i> Settings</a>
+									<a href="#"><i class="fa fa-gear"></i>设置</a>
 								</div>
 								<div class="control-item">
-									<a href="#"><i class="fa fa-sign-out"></i> Log out</a>
+									<a href="#"><i class="fa fa-sign-out"></i> 退出</a>
 								</div>
 							</div>
 							<!-- /.control-list -->
@@ -140,7 +140,7 @@
 										<a href="javascript:;" @click="btu3">设备管理</a>
 									</li>
 									<li>
-										<a href="profile.html">设备分配</a>
+										<a href="javascript:;" @click="btu4">设备分配</a>
 									</li>
 									<!--<li><a href="ui-range-slider.html">Range Slider</a></li>
 						<li><a href="ui-sweetalert.html">Sweet Alert</a></li>
@@ -441,6 +441,9 @@
 					},
 					btu3:function(){
 						this.html="equipment.html";
+					},
+					btu4:function(){
+						this.html="allocation.html";
 					}
 				}
 			})

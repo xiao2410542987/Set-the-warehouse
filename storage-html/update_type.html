@@ -55,9 +55,11 @@
 				transition: color 0.4s linear;
 				position: relative;
 			}
+			
 			::-webkit-scrollbar {
 				display: none;
 			}
+			
 			.btn:hover {
 				color: #fff;
 			}
@@ -184,8 +186,7 @@
 				background-color: white;
 			}
 			
-		
-			.bigbox{
+			.bigbox {
 				width: 1910px;
 				height: 1000px;
 				
@@ -193,336 +194,330 @@
 				left: 228px;
 				top: 86px;
 			}
-			
 		</style>
 		</head>
 
 		<body>
 			<div class="bigbox">
 				<div id="app">
-				<!--计量单位-->
-				<div id="table_wrap" class="box" name="xx1" style="height:730px;overflow-y:auto;">
+					<!--计量单位-->
+					<div id="table_wrap" class="box" name="xx1" style="height:730px;overflow-y:auto;">
 
-					<table class="table" width="350" cellspacing="0" cellpadding="0">
-						<thead class="table_head">
-							<tr>
-								<th style="width: 100px;">计量单位表</th>
-								<th style="width: 100px;">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 200px;">
+						<table class="table" width="350" cellspacing="0" cellpadding="0">
+							<thead class="table_head">
+								<tr>
+									<th style="width: 100px;">计量单位表</th>
+									<th style="width: 100px;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="width: 200px;">
 
-								</td>
-								<td style="width: 200px;">
+									</td>
+									<td style="width: 200px;">
 
-									<button class="btn3 btn2" @click="showModal=true">添加</button>
-								</td>
-							</tr>
-							<tr v-for="item in tips" :key="item.id">
+										<button class="btn3 btn2" @click="showModal=true">添加</button>
+									</td>
+								</tr>
+								<tr v-for="item in tips" :key="item.id">
 
-								<td style="width: 100px;background-color: white;">{{item.name}}</td>
-								<td style="width: 100px;">
-									<button class="btn btn1" @click="updw(item.id)">修改</button></td>
-							</tr>
+									<td style="width: 100px;background-color: white;">{{item.name}}</td>
+									<td style="width: 100px;">
+										<button class="btn btn1" @click="updw(item.id)">修改</button></td>
+								</tr>
 
-						</tbody>
-					</table>
+							</tbody>
+						</table>
 
-				</div>
-
-				<div class="mask" v-if="showMo" @click="showMo=false"></div>
-				<div v-if="showMo">
-
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">修改</p>
-							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
-
-							<input type="text" @keyup.enter="up" v-model="upname" placeholder="输入需要修改的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-
-							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="up">修改</div>
-							<div class="helper-dialog-no" @click="showMo=false">取消</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="mask" v-if="showModal" @click="showModal=false"></div>
-				<div v-if="showModal">
-
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity:1;display: block;z-index: 1;">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">添加</p>
-							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
-
-							<input type="text" @keyup.enter="addmetering " v-model="mete" placeholder="输入需要添加的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-
-							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="addmetering">添加</div>
-							<div class="helper-dialog-no" @click="showModal=false">取消</div>
-						</div>
 					</div>
 
-				</div>
+					<div class="mask" v-if="showMo" @click="showMo=false"></div>
+					<div v-if="showMo">
 
-			</div>
-
-			<div id="app3">
-				<!--工作类型-->
-				<div id="table_wrap" class="box" name="xx2" style="height:730px;overflow:auto;">
-					<table class="table" width="350" cellspacing="0" cellpadding="0">
-						<thead class="table_head">
-							<tr>
-								<th style="width: 100px;">工作类型表</th>
-								<th style="width: 100px;">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 200px;">
-
-								</td>
-								<td style="width: 200px;">
-
-									<button class="btn3 btn2" @click="showModal=true">添加</button>
-								</td>
-							</tr>
-							<tr v-for="item in work">
-								<td style="width: 100px;background-color: white;">{{item.name}}</td>
-								<td style="width: 100px;">
-									<button class="btn btn1" @click="upwork(item.id)">修改</button></td>
-							</tr>
-
-						</tbody>
-					</table>
-				</div>
-
-				<div class="mask" v-if="showModal" @click="showModal=false"></div>
-				<div v-if="showModal">
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">添加</p>
-							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
-
-							<input type="text" v-model="worktype" placeholder="输入需要添加的职位" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">修改</p>
+								<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
 							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="addwork">添加</div>
-							<div class="helper-dialog-no" @click="showModal=false">取消</div>
-						</div>
-					</div>
+							<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
 
-				</div>
+								<input type="text" @keyup.enter="up" v-model="upname" placeholder="输入需要修改的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
 
-				<div class="mask" v-if="showMo" @click="showMo=false"></div>
-				<div v-if="showMo">
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">修改</p>
-							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
-
-							<input type="text" @keyup.enter="upworkname" v-model="upwoname" placeholder="输入需要修改的职位" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-
-							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="upworkname">修改</div>
-							<div class="helper-dialog-no" @click="showMo=false">取消</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div id="app2">
-				<!--设备类型-->
-				<div id="table_wrap" class="box" name="xx3"  style="height:730px;overflow:auto;">
-					<table class="table" width="350" cellspacing="0" cellpadding="0" >
-						<thead class="table_head">
-							<tr>
-								<th style="width: 100px;">设备类型表</th>
-								<th style="width: 100px;">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 200px;">
-
-								</td>
-								<td style="width: 200px;">
-
-									<button class="btn3 btn2" @click="addequip">添加</button>
-								</td>
-							</tr>
-							<tr v-for="item in tips">
-								<td style="width: 100px;background-color: white;">{{item.name}}</td>
-								<td style="width: 100px;">
-
-									<button class="btn btn1" @click="upsbid(item.id)">修改</button></td>
-							</tr>
-							
-						</tbody>
-					</table>
-				</div>
-				
-				
-				<div class="mask" v-if="showMo" @click="showMo=false"></div>
-				<div v-if="showMo">
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">修改</p>
-							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
-
-							<input type="text" @keyup.enter="upsbname" v-model="upsname" placeholder="输入需要修改的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-
-							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="upsbname">修改</div>
-							<div class="helper-dialog-no" @click="showMo=false">取消</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="mask" v-if="showModal" @click="showModal=false"></div>
-				<div v-if="showModal">
-
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">添加</p>
-							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
-
-							<input type="text" v-model="equip" placeholder="输入需要添加的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-								<div id="select">
-									<select v-model="tipid">
-										<option v-for="item in tip" :value="item.id">{{item.name}}</option>
-									</select>
 								</div>
-
 							</div>
-							<div>
-
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="up">修改</div>
+								<div class="helper-dialog-no" @click="showMo=false">取消</div>
 							</div>
 						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="addeq">添加</div>
-							<div class="helper-dialog-no" @click="showModal=false">取消</div>
+					</div>
+
+					<div class="mask" v-if="showModal" @click="showModal=false"></div>
+					<div v-if="showModal">
+
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity:1;display: block;z-index: 1;">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">添加</p>
+								<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+							</div>
+							<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+								<input type="text" @keyup.enter="addmetering " v-model="mete" placeholder="输入需要添加的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="addmetering">添加</div>
+								<div class="helper-dialog-no" @click="showModal=false">取消</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div id="app3">
+					<!--工作类型-->
+					<div id="table_wrap" class="box" name="xx2" style="height:730px;overflow:auto;">
+						<table class="table" width="350" cellspacing="0" cellpadding="0">
+							<thead class="table_head">
+								<tr>
+									<th style="width: 100px;">工作类型表</th>
+									<th style="width: 100px;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="width: 200px;">
+
+									</td>
+									<td style="width: 200px;">
+
+										<button class="btn3 btn2" @click="showModal=true">添加</button>
+									</td>
+								</tr>
+								<tr v-for="item in work">
+									<td style="width: 100px;background-color: white;">{{item.name}}</td>
+									<td style="width: 100px;">
+										<button class="btn btn1" @click="upwork(item.id)">修改</button></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+					<div class="mask" v-if="showModal" @click="showModal=false"></div>
+					<div v-if="showModal">
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">添加</p>
+								<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+							</div>
+							<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+								<input type="text" v-model="worktype" placeholder="输入需要添加的职位" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="addwork">添加</div>
+								<div class="helper-dialog-no" @click="showModal=false">取消</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="mask" v-if="showMo" @click="showMo=false"></div>
+					<div v-if="showMo">
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">修改</p>
+								<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
+							</div>
+							<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+								<input type="text" @keyup.enter="upworkname" v-model="upwoname" placeholder="输入需要修改的职位" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="upworkname">修改</div>
+								<div class="helper-dialog-no" @click="showMo=false">取消</div>
+							</div>
 						</div>
 					</div>
 
 				</div>
 
-			</div>
-			<div id="app4">
-				<!--仓库类型-->
-				<div id="table_wrap" class="box" name="xx4" style="height:730px;overflow:auto;">
-					<table class="table" width="350" cellspacing="0" cellpadding="0">
-						<thead class="table_head">
-							<tr>
-								<th style="width: 100px;">仓库类型表</th>
-								<th style="width: 100px;">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="width: 200px;">
+				<div id="app2">
+					<!--设备类型-->
+					<div id="table_wrap" class="box" name="xx3" style="height:730px;overflow:auto;">
+						<table class="table" width="350" cellspacing="0" cellpadding="0">
+							<thead class="table_head">
+								<tr>
+									<th style="width: 100px;">设备类型表</th>
+									<th style="width: 100px;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="width: 200px;">
 
-								</td>
-								<td style="width: 200px;">
+									</td>
+									<td style="width: 200px;">
 
-									<button class="btn3 btn2" @click="showModal=true">添加</button>
-								</td>
-							</tr>
-							<tr v-for="item in tip">
-								<td style="width: 100px;background-color: white;">{{item.name}}</td>
-								<td style="width: 100px;">
+										<button class="btn3 btn2" @click="addequip">添加</button>
+									</td>
+								</tr>
+								<tr v-for="item in tips">
+									<td style="width: 100px;background-color: white;">{{item.name}}</td>
+									<td style="width: 100px;">
 
-									<button class="btn btn1" @click="upckid(item.id)">修改</button></td>
-							</tr>
+										<button class="btn btn1" @click="upsbid(item.id)">修改</button></td>
+								</tr>
 
-						</tbody>
-					</table>
-				</div>
-
-				<div class="mask" v-if="showMo" @click="showMo=false"></div>
-				<div v-if="showMo">
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">修改</p>
-							<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
-
-							<input type="text" @keyup.enter="upckname" v-model="upck" placeholder="输入需要修改的仓库" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-							<div>
-
-							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="upckname">修改</div>
-							<div class="helper-dialog-no" @click="showMo=false">取消</div>
-						</div>
+							</tbody>
+						</table>
 					</div>
-				</div>
 
-				<div class="mask" v-if="showModal" @click="showModal=false"></div>
-				<div v-if="showModal">
-
-					<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1;">
-						<div class="helper-dialog-header">
-							<p class="helper-dialog-title">添加</p>
-							<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
-						</div>
-						<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
-
-							<input type="text" v-model="warehose" placeholder="输入需要添加的仓库" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
-
-							<div>
-
+					<div class="mask" v-if="showMo" @click="showMo=false"></div>
+					<div v-if="showMo">
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">修改</p>
+								<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
 							</div>
-						</div>
-						<div class="helper-dialog-footer helper-noselect">
-							<div class="helper-dialog-yes" @click="addwarehose">添加</div>
-							<div class="helper-dialog-no" @click="showModal=false">取消</div>
+							<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+								<input type="text" @keyup.enter="upsbname" v-model="upsname" placeholder="输入需要修改的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="upsbname">修改</div>
+								<div class="helper-dialog-no" @click="showMo=false">取消</div>
+							</div>
 						</div>
 					</div>
 
-				</div>
+					<div class="mask" v-if="showModal" @click="showModal=false"></div>
+					<div v-if="showModal">
 
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">添加</p>
+								<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+							</div>
+							<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+								<input type="text" v-model="equip" placeholder="输入需要添加的设备" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
+									<div id="select">
+										<select v-model="tipid">
+											<option v-for="item in tip" :value="item.id">{{item.name}}</option>
+										</select>
+									</div>
+
+								</div>
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="addeq">添加</div>
+								<div class="helper-dialog-no" @click="showModal=false">取消</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<div id="app4">
+					<!--仓库类型-->
+					<div id="table_wrap" class="box" name="xx4" style="height:730px;overflow:auto;">
+						<table class="table" width="350" cellspacing="0" cellpadding="0">
+							<thead class="table_head">
+								<tr>
+									<th style="width: 100px;">仓库类型表</th>
+									<th style="width: 100px;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="width: 200px;">
+
+									</td>
+									<td style="width: 200px;">
+
+										<button class="btn3 btn2" @click="showModal=true">添加</button>
+									</td>
+								</tr>
+								<tr v-for="item in tip">
+									<td style="width: 100px;background-color: white;">{{item.name}}</td>
+									<td style="width: 100px;">
+
+										<button class="btn btn1" @click="upckid(item.id)">修改</button></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+					<div class="mask" v-if="showMo" @click="showMo=false"></div>
+					<div v-if="showMo">
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">修改</p>
+								<i class="helper-dialog-close helper-noselect" @click="showMo=false">✕</i>
+							</div>
+							<div class="helper-dialog-content" @click="showMo=true" style=" height: auto;">
+
+								<input type="text" @keyup.enter="upckname" v-model="upck" placeholder="输入需要修改的仓库" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="upckname">修改</div>
+								<div class="helper-dialog-no" @click="showMo=false">取消</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="mask" v-if="showModal" @click="showModal=false"></div>
+					<div v-if="showModal">
+
+						<div class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 500px; border-radius: 6px; margin-left: -250px; margin-top: -122.5px; transform: scale(1, 1); opacity: 1;z-index: 1;">
+							<div class="helper-dialog-header">
+								<p class="helper-dialog-title">添加</p>
+								<i class="helper-dialog-close helper-noselect" @click="showModal=false">✕</i>
+							</div>
+							<div class="helper-dialog-content" @click="showModal=true" style=" height: auto;">
+
+								<input type="text" v-model="warehose" placeholder="输入需要添加的仓库" style="width: 150px;height: 40px;margin: auto;border: none;top: 45px;border: none;position: absolute;left: 150px;text-align: center; font-size: 16px;" />
+
+								<div>
+
+								</div>
+							</div>
+							<div class="helper-dialog-footer helper-noselect">
+								<div class="helper-dialog-yes" @click="addwarehose">添加</div>
+								<div class="helper-dialog-no" @click="showModal=false">取消</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
 			</div>
-			</div>
-			
 
 			<script>
-				
-				
-				
 				var app2 = new Vue({
 					el: "#app2",
 					data: {
@@ -539,10 +534,6 @@
 					},
 
 					mounted: function() {
-						
-                    
-                    	
-                    	
 
 						this.gsid = JSON.parse(localStorage.getItem("comid"));
 						var that = this;
@@ -558,7 +549,7 @@
 								crossDomain: true,
 								success: function(data) {
 									that.tips = data.extend.tips;
-									
+
 								}
 							}),
 							$.ajax({
@@ -573,48 +564,44 @@
 								crossDomain: true,
 								success: function(data) {
 									that.tip = data.extend.tips;
-								
+
 								}
 							})
-					
+
 					},
 					methods: {
-						
-						
-						
-
 
 						upsbid: function(id) {
 							this.showMo = !this.showMo;
 							this.upsid = id;
 						},
 						upsbname: function() {
-							if(this.upsname==""){
-								
+							if(this.upsname == "") {
+
 								alert("请认真输入内容。")
-							}else{
-									console.log(this.upsid)
-							console.log(this.upsname)
-							var that = this;
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/updEquipmenttype",
-								data: {
-									id: that.upsid,
-									name: that.upsname
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									this.showMo = this.showMo;
-									that.cha();
-								}
-							})
-							this.showMo =  false;
+							} else {
+								console.log(this.upsid)
+								console.log(this.upsname)
+								var that = this;
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/updEquipmenttype",
+									data: {
+										id: that.upsid,
+										name: that.upsname
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										this.showMo = this.showMo;
+										that.cha();
+									}
+								})
+								this.showMo = false;
 							}
-						
+
 						},
 
 						cha: function() {
@@ -642,37 +629,37 @@
 							this.showModal = !this.showModal;
 						},
 						addeq: function() {
-							if(this.equip==""){
-								
+							if(this.equip == "") {
+
 								alert("请认真输入内容。")
-							}else{
-									console.log(this.tipid)
-							console.log(this.equip)
-							var that = this;
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/addEquipmenttype",
-								data: {
-									companyid: that.gsid,
-									meteringid: that.tipid,
-									name: that.equip
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									alert("添加成功")
-									that.cha();
-									setTimeout(function () { 
-                    		console.log($('[name=xx3]')[0].scrollHeight);
-							$('[name=xx3]').scrollTop( $('[name=xx3]')[0].scrollHeight );
-							}, 500)
-								}
-							})
-							this.showModal=false;
+							} else {
+								console.log(this.tipid)
+								console.log(this.equip)
+								var that = this;
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/addEquipmenttype",
+									data: {
+										companyid: that.gsid,
+										meteringid: that.tipid,
+										name: that.equip
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										alert("添加成功")
+										that.cha();
+										setTimeout(function() {
+											console.log($('[name=xx3]')[0].scrollHeight);
+											$('[name=xx3]').scrollTop($('[name=xx3]')[0].scrollHeight);
+										}, 500)
+									}
+								})
+								this.showModal = false;
 							}
-						
+
 						}
 					}
 				})
@@ -710,36 +697,36 @@
 					},
 					methods: {
 						updw: function(id) {
-							
+
 							this.showMo = !this.showMo;
 							this.upid = id;
 						},
 						up: function() {
-							if(this.upname==""){
-								
-								alert("请认真输入内容。")
-							}else{
+							if(this.upname == "") {
 
-							var that = this;
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/metering/updMetering",
-								data: {
-									id: that.upid,
-									name: that.upname
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									this.showMo = this.showMo;
-									that.chax();
-								}
-							})
-							this.showMo =  false;
+								alert("请认真输入内容。")
+							} else {
+
+								var that = this;
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/metering/updMetering",
+									data: {
+										id: that.upid,
+										name: that.upname
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										this.showMo = this.showMo;
+										that.chax();
+									}
+								})
+								this.showMo = false;
 							}
-							
+
 						},
 						chax: function() {
 
@@ -762,35 +749,35 @@
 						},
 
 						addmetering: function() {
-							if(this.mete==""){
-								
+							if(this.mete == "") {
+
 								alert("请认真输入内容。")
-							}else{
-									console.log(this.mete)
-							var that = this;
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/metering/addMetering",
-								data: {
-									companyid: that.gsid,
-									name: that.mete
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									alert("添加成功")
-									that.chax();
-									setTimeout(function () { 
-                    		console.log($('[name=xx1]')[0].scrollHeight);
-							$('[name=xx1]').scrollTop( $('[name=xx1]')[0].scrollHeight );
-							}, 500)
-								}
-							})
-							this.showModal=false;
+							} else {
+								console.log(this.mete)
+								var that = this;
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/metering/addMetering",
+									data: {
+										companyid: that.gsid,
+										name: that.mete
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										alert("添加成功")
+										that.chax();
+										setTimeout(function() {
+											console.log($('[name=xx1]')[0].scrollHeight);
+											$('[name=xx1]').scrollTop($('[name=xx1]')[0].scrollHeight);
+										}, 500)
+									}
+								})
+								this.showModal = false;
 							}
-						
+
 						}
 					}
 				})
@@ -835,30 +822,30 @@
 							this.showMo = !this.showMo;
 						},
 						upworkname: function() {
-							if(this.upwoname==""){
-								
+							if(this.upwoname == "") {
+
 								alert("请认真输入内容。")
-							}else{
+							} else {
 								var that = this;
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/worktypes/updateType",
-								data: {
-									id: that.workid,
-									name: that.upwoname
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									this.showMo = this.showMo;
-									that.selectwork();
-								}
-							})
-							this.showMo =  false;
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/worktypes/updateType",
+									data: {
+										id: that.workid,
+										name: that.upwoname
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										this.showMo = this.showMo;
+										that.selectwork();
+									}
+								})
+								this.showMo = false;
 							}
-							
+
 						},
 						selectwork: function() {
 							var that = this;
@@ -884,35 +871,35 @@
 						},
 
 						addwork: function() {
-							if(this.worktype==""){
-								
-								alert("请认真输入内容。")
-							}else{
-							var that = this;
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/worktypes/addworktype",
-								data: {
-									id: that.gsid,
-									name: that.worktype
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									alert("添加成功")
-									that.selectwork();
-									setTimeout(function () { 
-                    		console.log($('[name=xx2]')[0].scrollHeight);
-							$('[name=xx2]').scrollTop( $('[name=xx2]')[0].scrollHeight );
-							}, 500)
+							if(this.worktype == "") {
 
-								}
-							})
-							this.showModal=false;
+								alert("请认真输入内容。")
+							} else {
+								var that = this;
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/worktypes/addworktype",
+									data: {
+										id: that.gsid,
+										name: that.worktype
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										alert("添加成功")
+										that.selectwork();
+										setTimeout(function() {
+											console.log($('[name=xx2]')[0].scrollHeight);
+											$('[name=xx2]').scrollTop($('[name=xx2]')[0].scrollHeight);
+										}, 500)
+
+									}
+								})
+								this.showModal = false;
 							}
-							
+
 						}
 					}
 				})
@@ -956,30 +943,30 @@
 							this.showMo = !this.showMo;
 						},
 						upckname: function() {
-							if(this.upck==""){
-								
+							if(this.upck == "") {
+
 								alert("请认真输入内容。")
-							}else{
+							} else {
 								var that = this;
-							$.ajax({
-								type: "post",
-								url: "http://120.79.46.8:8080/storage/storage/warehousetypes/updWarehouseType",
-								data: {
-									id: that.ckid,
-									name: that.upck
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									this.showMo = this.showMo;
-									that.cha();
-								}
-							})
-							this.showMo =  false;
+								$.ajax({
+									type: "post",
+									url: "http://120.79.46.8:8080/storage/storage/warehousetypes/updWarehouseType",
+									data: {
+										id: that.ckid,
+										name: that.upck
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										this.showMo = this.showMo;
+										that.cha();
+									}
+								})
+								this.showMo = false;
 							}
-							
+
 						},
 						cha: function() {
 							var that = this;
@@ -999,39 +986,39 @@
 							})
 						},
 						addwarehose: function() {
-							if(this.warehose==""){
-								
+							if(this.warehose == "") {
+
 								alert("请认真输入内容。")
-							}else{
-									var that = this;
-							
-							$.ajax({
-								type: "get",
-								url: "http://120.79.46.8:8080/storage/storage/warehousetypes/AddWarehouseType",
-								data: {
-									companyid: that.gsid,
-									name: that.warehose
-								},
-								xhrFields: {
-									withCredentials: true
-								},
-								crossDomain: true,
-								success: function(data) {
-									alert("添加成功")
-									that.cha();
-									setTimeout(function () { 
-                    		console.log($('[name=xx4]')[0].scrollHeight);
-							$('[name=xx4]').scrollTop( $('[name=xx4]')[0].scrollHeight );
-							}, 500)
-								}
-							})
-							this.showModal=false;
+							} else {
+								var that = this;
+
+								$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/warehousetypes/AddWarehouseType",
+									data: {
+										companyid: that.gsid,
+										name: that.warehose
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										alert("添加成功")
+										that.cha();
+										setTimeout(function() {
+											console.log($('[name=xx4]')[0].scrollHeight);
+											$('[name=xx4]').scrollTop($('[name=xx4]')[0].scrollHeight);
+										}, 500)
+									}
+								})
+								this.showModal = false;
 							}
-						
+
 						}
 					}
 				})
-				
 			</script>
 		</body>
+
 </html>
