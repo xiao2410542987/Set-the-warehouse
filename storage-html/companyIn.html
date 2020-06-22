@@ -54,6 +54,18 @@
 				color: #ffffff;
 				border: none;
 			}
+			.sbox1 {
+				width: 24px;
+				height: 24px;
+				position: relative;
+				top: 6px;
+				left: 98%;
+				background-color: rgb(13, 16, 21);
+				background-image:url(img/chahao.png) ;
+				background-size:cover ;
+				color: #ffffff;
+				border: none;
+			}
 			.btu4{
 				position: relative;
 				display: block;
@@ -105,27 +117,29 @@
 			
 			
 			
-<button class="sbox" @click="xgmtk=true"></button>
+<button class="sbox" v-if="xgmtk==false" @click="xg(tips.name,tips.founder,tips.phone,tips.place)"></button>
+
+<button class="sbox1" v-if="xgmtk==true"  @click="xgmtk=false"></button>
 			<div class="box">
-				公司名称：{{tips.name}}
-				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
+				公司名称：<a v-if="xgmtk==false">{{tips.name}}</a>
+				<input v-model="name" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.name" />
 			</div>
 			<div class="box" style="left: -8px;position: relative;">
-				主要负责人：{{tips.founder}}
-				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
+				主要负责人：<a v-if="xgmtk==false">{{tips.founder}}</a>
+				<input v-model="founder" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.founder" />
 			</div>
 			<div class="box">
-				联系电话：{{tips.phone}}
-				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
+				联系电话：<a v-if="xgmtk==false">{{tips.phone}}</a>
+				<input v-model="phone" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.phone" />
 			</div>
 			<div class="box">
-				所在地点：{{tips.place}}
-				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
+				所在地点：<a v-if="xgmtk==false">{{tips.place}}</a>
+				<input v-model="place" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.place" />
 			</div>
 			<div class="box">
 				公司创建时间：{{tips.createtime | formatDate}}
 			</div>
-			<a class="btu4 btu5">修改公司信息</a>
+			<a @click="upname" v-if="xgmtk"style="text-align: center;vertical-align: middle;line-height: 40px;" class="btu4 btu5">修改公司信息</a>
 			
 			
 			
@@ -137,32 +151,89 @@
 				data: {
 					gsid: "",
 					tips: "",
+					founder:"",
+					name:"",
+					phone:"",
+					place:"",
 					xgmtk:false
 				},
 				mounted: function() {
-//					this.gsid = JSON.parse(localStorage.getItem("comid"));
-//					console.log(this.gsid);
-//					var that = this;
-//					$.ajax({
-//						type: "get",
-//						url: "http://120.79.46.8:8080/storage/storage/companys/selectOne",
-//						data: {
-//							id: that.gsid
-//						},
-//						xhrFields: {
-//							withCredentials: true
-//						},
-//						crossDomain: true,
-//						success: function(data) {
-//							console.log('成功了!');
-//							console.log(data);
-//							that.tips = data.extend.message;
-//							console.log(that.tips);
-//						}
-//					});
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					console.log(this.gsid);
+					var that = this;
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/companys/selectOne",
+						data: {
+							id: that.gsid
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log('成功了!');
+							console.log(data);
+							that.tips = data.extend.message;
+							console.log(that.tips);
+						}
+					});
 
 				},
 				methods: {
+					xg:function(name,founder,phone,place){
+						this.name=name;
+						this.founder=founder;
+						this.phone=phone;
+						this.place=place;
+						this.xgmtk=true;
+					},
+					selec:function(){
+						var that = this;
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/companys/selectOne",
+						data: {
+							id: that.gsid
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log('成功了!');
+							console.log(data);
+							that.tips = data.extend.message;
+							console.log(that.tips);
+							that.xgmtk=false;
+							
+						}
+					})
+					},
+					upname:function(){
+							var that = this;
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/companys/alterCompany",
+						data: {
+							founder: that.founder,
+							id: that.gsid,
+							name:that.name,
+							phone:that.phone,
+							place:that.place
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log('修改成功了!');
+							that.selec();
+
+							
+						}
+					});
+					}
 
 				},
 				filters: {
