@@ -1,66 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
-		<title>公司信息</title>					
-		
+		<title>公司信息</title>
+
 		<script src="js/vue.js"></script>
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<!--<link rel="stylesheet" href="css/loading.css" />
 		<link rel="stylesheet" href="css/easyhelper.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/proindex.css" />-->
 		<style>
-			#app
-			{
-				position: absolute;
-				top: 10%;
-				left: 20%;
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background-image: url(img/8.jpg);
+				overflow: hidden;
+			}
+			
+			.bigbox {
+				width: 600px;
+				height: 350px;
+				background-color: rgb(13, 16, 21);
+				overflow: hidden;
+				box-sizing: border-box;
+				color: white;
+				border-radius: 6px;
+				margin: auto auto;
+				position: relative;
+				top: 100px;
+				opacity: 0.9;
+				box-shadow: 0 0 50px rgb(255, 255, 255);
+			}
+			
+			.box {
+				width: 500px;
+				height: 50px;
+				text-align: center;
+				margin: 15px auto;
+				line-height: 50px
 			}
 		</style>
 	</head>
+
 	<body>
-		
-		<div id="app">
-			<input type="hidden" :value="gsid" />
-			公司名称:{{tips.name}}<P>
-			主要负责人：{{tips.founder}}<P>
-			联系电话:{{tips.phone}}<P>
-			所在地点:{{tips.place}}<P>
-			公司创建时间：{{tips.createtime}}<P>
-			
+
+		<div id="app" class="bigbox">
+			<div class="box">
+				公司名称：{{tips.name}}
+			</div>
+			<div class="box">
+				主要负责人：{{tips.founder}}
+			</div>
+			<div class="box">
+				联系电话：{{tips.phone}}
+			</div>
+			<div class="box">
+				所在地点：{{tips.place}}
+			</div>
+			<div class="box">
+				公司创建时间：{{tips.createtime | formatDate}}
+			</div>
+
 		</div>
 		<script>
-			
 			var app = new Vue({
 				el: "#app",
 				data: {
 					gsid: "",
 					tips: "",
-			
+
 				},
-			mounted: function() {
-				this.gsid = JSON.parse(localStorage.getItem("comid"));
-				console.log(this.gsid);
-				var that = this;
-				$.ajax({
-					type:"get",
-					url:"http://120.79.46.8:8080/storage/storage/companys/selectOne",
-					data:{id:that.gsid},
-					xhrFields: {
-								withCredentials: true
-							},
-							crossDomain: true,
-							success: function(data) {
-								console.log('成功了!');
-								console.log(data);
-								that.tips=data.extend.message;
-								console.log(that.tips);
-							}
-				});
-			}
+				mounted: function() {
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					console.log(this.gsid);
+					var that = this;
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/companys/selectOne",
+						data: {
+							id: that.gsid
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log('成功了!');
+							console.log(data);
+							that.tips = data.extend.message;
+							console.log(that.tips);
+						}
+					});
+
+				},
+				methods: {
+
+				},
+				filters: {
+					formatDate: function(value) {
+						let date = new Date(value);
+						let y = date.getFullYear();
+						let MM = date.getMonth() + 1;
+						MM = MM < 10 ? ('0' + MM) : MM;
+						let d = date.getDate();
+						d = d < 10 ? ('0' + d) : d;
+						let h = date.getHours();
+						h = h < 10 ? ('0' + h) : h;
+						let m = date.getMinutes();
+						m = m < 10 ? ('0' + m) : m;
+						let s = date.getSeconds();
+						s = s < 10 ? ('0' + s) : s;
+						return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
+					}
+				}
+
 			})
 		</script>
-		
+
 	</body>
-	
+
 </html>
