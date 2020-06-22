@@ -40,6 +40,7 @@
 		<script src="js/vue.js"></script>
 	</head>
 	<style>
+		
 		@media (max-width: 768px) {
 			/*超小屏幕设备 手机*/
 			.fot {
@@ -73,9 +74,13 @@
 				height: 1000px;
 			}
 		}
+		.app
+		{
+			height: 1000px;
+		}
 	</style>
 
-	<body>
+	<body class="app">
 		<div id="app">
 			<div class="main-menu">
 				<header class="header">
@@ -435,7 +440,7 @@
 					console.log(this.gsid);
 					if(this.gsid==null)
 					{
-						alert(this.gsid+"当前未登录!正在跳转登录");
+						alert("当前未登录!正在跳转登录");
 						window.location.href="http://120.79.46.8/storage/login.html";
 					}
 				},
