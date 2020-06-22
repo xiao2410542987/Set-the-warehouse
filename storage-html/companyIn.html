@@ -7,9 +7,7 @@
 
 		<script src="js/vue.js"></script>
 		<script src="js/jquery-3.3.1.min.js"></script>
-		<!--<link rel="stylesheet" href="css/loading.css" />
-		<link rel="stylesheet" href="css/easyhelper.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/proindex.css" />-->
+		<link href="css/input.css" />
 		<style>
 			* {
 				margin: 0;
@@ -19,11 +17,12 @@
 			body {
 				background-image: url(img/8.jpg);
 				overflow: hidden;
+				
 			}
 			
 			.bigbox {
-				width: 600px;
-				height: 350px;
+				width: 100%;
+				height: 1350px;
 				background-color: rgb(13, 16, 21);
 				overflow: hidden;
 				box-sizing: border-box;
@@ -31,7 +30,6 @@
 				border-radius: 6px;
 				margin: auto auto;
 				position: relative;
-				top: 100px;
 				opacity: 0.9;
 				box-shadow: 0 0 50px rgb(255, 255, 255);
 			}
@@ -43,27 +41,94 @@
 				margin: 15px auto;
 				line-height: 50px
 			}
+			
+			.sbox {
+				width: 24px;
+				height: 24px;
+				position: relative;
+				top: 6px;
+				left: 98%;
+				background-color: rgb(13, 16, 21);
+				background-image:url(img/xiugai1.png) ;
+				background-size:cover ;
+				color: #ffffff;
+				border: none;
+			}
+			.btu4{
+				position: relative;
+				display: block;
+				border-radius: 5px;
+				font-size:14px;
+				font-family: "montserrat";
+				text-decoration: none;
+				margin: auto;
+				border: 2px solid white;
+				width: 100px;
+				height: 40px;
+				text-transform: uppercase;
+				overflow: hidden;
+				transition: 1s all ease;
+			}
+			.btu4::before{
+				background: white;
+					
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				z-index: -1;
+				transition: all 0.6s ease;
+				
+			}
+			.btu4:hover{
+				color: black;
+			}
+			.btu5::before{
+				width: 0;
+				height: 100%;
+				color: white;
+			}
+			.btu5:hover::before{
+				width: 100%;
+				color: white;
+			}
 		</style>
 	</head>
 
 	<body>
 
 		<div id="app" class="bigbox">
+			
+			
+			
+			
+			
+			
+<button class="sbox" @click="xgmtk=true"></button>
 			<div class="box">
 				公司名称：{{tips.name}}
+				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
 			</div>
-			<div class="box">
+			<div class="box" style="left: -8px;position: relative;">
 				主要负责人：{{tips.founder}}
+				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
 			</div>
 			<div class="box">
 				联系电话：{{tips.phone}}
+				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
 			</div>
 			<div class="box">
 				所在地点：{{tips.place}}
+				<input v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="asd" />
 			</div>
 			<div class="box">
 				公司创建时间：{{tips.createtime | formatDate}}
 			</div>
+			<a class="btu4 btu5">修改公司信息</a>
+			
+			
+			
 
 		</div>
 		<script>
@@ -72,29 +137,29 @@
 				data: {
 					gsid: "",
 					tips: "",
-
+					xgmtk:false
 				},
 				mounted: function() {
-					this.gsid = JSON.parse(localStorage.getItem("comid"));
-					console.log(this.gsid);
-					var that = this;
-					$.ajax({
-						type: "get",
-						url: "http://120.79.46.8:8080/storage/storage/companys/selectOne",
-						data: {
-							id: that.gsid
-						},
-						xhrFields: {
-							withCredentials: true
-						},
-						crossDomain: true,
-						success: function(data) {
-							console.log('成功了!');
-							console.log(data);
-							that.tips = data.extend.message;
-							console.log(that.tips);
-						}
-					});
+//					this.gsid = JSON.parse(localStorage.getItem("comid"));
+//					console.log(this.gsid);
+//					var that = this;
+//					$.ajax({
+//						type: "get",
+//						url: "http://120.79.46.8:8080/storage/storage/companys/selectOne",
+//						data: {
+//							id: that.gsid
+//						},
+//						xhrFields: {
+//							withCredentials: true
+//						},
+//						crossDomain: true,
+//						success: function(data) {
+//							console.log('成功了!');
+//							console.log(data);
+//							that.tips = data.extend.message;
+//							console.log(that.tips);
+//						}
+//					});
 
 				},
 				methods: {

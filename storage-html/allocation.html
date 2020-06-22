@@ -12,7 +12,7 @@
 
 		<link rel="stylesheet" href="css/loading.css" />
 		<link rel="stylesheet" href="css/easyhelper.min.css" />
-		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/input.css" />
 	</head>
 	<style>
 		.btu4 {
@@ -283,21 +283,22 @@
 					</thead>
 					<tbody id="table_proindex">
 						<tr v-for="(item , i) in tips" class="second_tr">
-							<td style="width: 400px;">
+							<td style="width: 400px;vertical-align: middle;display: table-cell;">
 								{{item.name}}
 							</td>
-							<td>
+							<td style="vertical-align: middle;display: table-cell;">
 								{{item.equipments.number}}{{item.equipments.metering.name}}
 							</td>
-							<td>
+							<td style="vertical-align: middle;display: table-cell;">
 								{{item.equipments.unuse}}{{item.equipments.metering.name}}
 							</td>
-							<td>{{item.equipments.number-item.equipments.unuse}}{{item.equipments.metering.name}}</td>
-							<td style="width: 300px; float: left;">
+							<td style="vertical-align: middle;display: table-cell;">{{item.equipments.number-item.equipments.unuse}}{{item.equipments.metering.name}}</td>
+							<td style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
 
 								<a class="btu4 btu8" v-if="item.equipments.unuse>0" @click="an(i,item.id,item.name,item.equipments.equipmenttypeid,item.equipments.id,item.equipments.metering.id,item.equipments.number,item.equipments.unuse,item.equipments.metering.name)">分配</a>
 								<a class="btu4 btu8"  v-if="item.equipments.unuse<=0" >不足</a>
-								<a class="btu4 btu7" @click="hs(i,item.id,item.name,item.equipments.equipmenttypeid,item.equipments.id,item.equipments.metering.id,item.equipments.number,item.equipments.unuse,item.equipments.metering.name)">回收</a>
+								<a class="btu4 btu7" v-if="item.equipments.number-item.equipments.unuse===0">不足</a>
+								<a class="btu4 btu7" v-if="item.equipments.number-item.equipments.unuse>0" @click="hs(i,item.id,item.name,item.equipments.equipmenttypeid,item.equipments.id,item.equipments.metering.id,item.equipments.number,item.equipments.unuse,item.equipments.metering.name)">回收</a>
 							</td>
 						</tr>
 					</tbody>

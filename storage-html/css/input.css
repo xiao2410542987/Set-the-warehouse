@@ -1,0 +1,135 @@
+
+
+a{
+	text-decoration: none;
+}
+
+body{
+	
+	padding: 4rem;
+	font-family: tahoma;
+}
+
+.main{
+	width: 100%;
+	height: 800px;
+	background-color: #e9eaef;
+	box-shadow: 0 0 20px #143477;
+}
+
+.top{
+	background-color: #3c5b9a;
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo{
+	padding-left: 20px;
+	padding-top: 20px;
+}
+
+.login{
+	padding-right: 40px;
+	padding-top: 20px;
+}
+
+.login input{
+	width: 150px;
+	height: 30px;
+	padding: 5px;
+	border: none;
+	float: left;
+	outline: none;
+}
+
+.login button{
+	outline: none;
+	float: left;
+	background-color: #4277b2;
+	border: 1px solid #29487d;
+	color: white;
+	height: 30px;
+	width: 100px;
+	cursor: pointer;
+}
+
+h2{
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	padding: 70px 0 25px;
+
+}
+
+h3{
+	color: white;
+	text-align: center;
+	font-size: 1rem;
+	padding-bottom: 140px;
+
+}
+
+.signup{
+	width: 270px;
+	height: 340px;
+	margin: auto;
+	
+}
+
+.signup h4{
+	color: gray;
+	font-size: 1.4rem;
+}
+
+.signup .field{
+	margin-top: 30px;
+	position: relative;
+}
+
+.signup input{
+	display: block;
+
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #999;
+	color: gray;
+	font-size: 1rem;
+	width: 246px;
+    height: 35px;
+}
+
+.signup button{
+	display: block;
+	width: 100%;
+	outline: none;
+	background-color: #4277b2;
+	border: 1px solid #29487d;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.signup .label{
+	position: absolute;
+	pointer-events: none;
+	left: 0;
+	top: 7px;
+	transition: 0.5s ease all;
+	color: #757575;
+	font-size: 15px;
+}
+
+.sign{
+	color: white;
+}
+
+.signup input:focus ~ .label,
+.signup input:not(:focus):valid ~ .label{
+	top: -17px;
+	font-size: .8rem;
+	opacity: 1;
+}
