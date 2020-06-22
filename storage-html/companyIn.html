@@ -14,15 +14,22 @@
 				padding: 0;
 			}
 			
-			body {
+			.bigbox1 {
+				width: 1710px;
+				height: 910px;
+				position: relative;
+				left: 260px;
+    			top: 75px;
 				background-image: url(img/8.jpg);
-				overflow: hidden;
+				
 				
 			}
-			
+			::-webkit-scrollbar {
+				display: none;
+			}
 			.bigbox {
-				width: 100%;
-				height: 1350px;
+				width: 1710px;
+				height: 910px;
 				background-color: rgb(13, 16, 21);
 				overflow: hidden;
 				box-sizing: border-box;
@@ -46,8 +53,8 @@
 				width: 24px;
 				height: 24px;
 				position: relative;
-				top: 6px;
-				left: 98%;
+				top: 15px;
+				left: 93%;
 				background-color: rgb(13, 16, 21);
 				background-image:url(img/xiugai1.png) ;
 				background-size:cover ;
@@ -58,8 +65,8 @@
 				width: 24px;
 				height: 24px;
 				position: relative;
-				top: 6px;
-				left: 98%;
+				top: 16px;
+				left: 90%;
 				background-color: rgb(13, 16, 21);
 				background-image:url(img/chahao.png) ;
 				background-size:cover ;
@@ -109,6 +116,7 @@
 	</head>
 
 	<body>
+		<div class="bigbox1">
 
 		<div id="app" class="bigbox">
 			
@@ -144,6 +152,7 @@
 			
 			
 
+		</div>
 		</div>
 		<script>
 			var app = new Vue({
