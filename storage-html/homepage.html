@@ -88,8 +88,8 @@
 					<button type="button" class="button-close fa fa-times js__menu_close"></button>
 					<div class="user">
 						<a href="#" class="avatar"><img src="img/B68FD6F0471881CCD13B79C34D63C140.jpg" alt=""><span class="status online"></span></a>
-						<h5 class="name"><a href="profile.html">派大星</a></h5>
-						<h5 class="position">管理员</h5>
+						<h5 class="name"><a href="profile.html">{{name}}</a></h5>
+						<h5 class="position">{{worktypesName}}</h5>
 						<!-- /.name -->
 						<div class="control-wrap js__drop_down">
 							<i class="fa fa-caret-down js__drop_down_button"></i>
@@ -432,11 +432,15 @@
 			var app2 = new Vue({
 				el: "#app",
 				data: {
+					gsid:"",
+					name:"",
+					worktypesName:"",
 					html:"index.html"
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
-
+					this.name = JSON.parse(localStorage.getItem("name"));
+					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
 					console.log(this.gsid);
 					if(this.gsid==null)
 					{
