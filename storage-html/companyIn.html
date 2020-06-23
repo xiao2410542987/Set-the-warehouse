@@ -28,8 +28,8 @@
 				display: none;
 			}
 			.bigbox {
-				width: 710px;
-    height: 450px;
+				width: 1710px;
+				height: 910px;
 				background-color: rgb(13, 16, 21);
 				overflow: hidden;
 				box-sizing: border-box;
@@ -39,7 +39,6 @@
 				position: relative;
 				opacity: 0.9;
 				box-shadow: 0 0 50px rgb(255, 255, 255);
-				    top: 100px
 			}
 			
 			.box {
@@ -131,19 +130,19 @@
 <button class="sbox1" v-if="xgmtk==true"  @click="xgmtk=false"></button>
 			<div class="box">
 				公司名称：<a v-if="xgmtk==false">{{tips.name}}</a>
-				<input v-model="name" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.name" />
+				<input v-model="name" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.name" />
 			</div>
 			<div class="box" style="left: -8px;position: relative;">
 				主要负责人：<a v-if="xgmtk==false">{{tips.founder}}</a>
-				<input v-model="founder" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.founder" />
+				<input v-model="founder" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.founder" />
 			</div>
 			<div class="box">
 				联系电话：<a v-if="xgmtk==false">{{tips.phone}}</a>
-				<input v-model="phone" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.phone" />
+				<input v-model="phone" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.phone" />
 			</div>
 			<div class="box">
 				所在地点：<a v-if="xgmtk==false">{{tips.place}}</a>
-				<input v-model="place" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.place" />
+				<input v-model="place" v-if="xgmtk" style="width: 200px;height: 20px;" type="text" value="tips.place" />
 			</div>
 			<div class="box">
 				公司创建时间：{{tips.createtime | formatDate}}
