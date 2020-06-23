@@ -181,12 +181,11 @@
 										swal("登录失败！","当前信息正在审核中，请耐心等候，如有疑问，请联系申请公司");
 										window.location.href="http://120.79.46.8/login.html";
 									}else{
-										swal("登录成功！","欢迎使用集仓库","success")
-										
-											setTimeout(function() {
-										//console.logdata.extend.worker.state()
+										swal("登录成功！","欢迎使用集仓库","success");
 										that.name=data.extend.worker.name;
 										that.worktypesName=data.extend.worker.worktypes.name;
+										setTimeout(function() {
+										//console.logdata.extend.worker.state()
 										window.location.href="http://120.79.46.8";
 										},1400)
 
