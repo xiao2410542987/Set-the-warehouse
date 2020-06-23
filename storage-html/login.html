@@ -24,9 +24,7 @@
 
 		<!-- css files -->
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-		<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
-<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
-
+		
 		<!-- Style-CSS -->
 		<link href="css/font-awesome.min.css" rel="stylesheet">
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -158,8 +156,7 @@
 					var sid = $("[name=pass]").val();
 					
 				if($("[name=phone]").val() == "" || this.pass == ""){
-					swal("登录失败！","账号或密码为空","error");
-				
+					alert("账号或密码为空");
 				}else{
 					var that = this;
 						$.ajax({
@@ -176,30 +173,24 @@
 							async: false,
 							success: function(data) {
 								if(data.code == 200) {
-										
 									that.comid=data.extend.worker.companyid;
 									console.log(data);
-								
 									if(data.extend.worker.state==0){
-										swal("登录失败！","当前信息正在审核中，请耐心等候，如有疑问，请联系申请公司");
+										alert("当前信息正在审核中，请耐心等候，如有疑问，请联系申请公司");
 										window.location.href="http://120.79.46.8/login.html";
-										
 									}else{
-										
-										 swal("登录成功！","欢迎使用集仓库","success")
-											setTimeout(function() {
+										alert("登录成功");
 										//console.logdata.extend.worker.state()
 										that.name=data.extend.worker.name;
 										that.worktypesName=data.extend.worker.worktypes.name;
 										window.location.href="http://120.79.46.8";
+<<<<<<< HEAD
 										},1400)
+=======
+>>>>>>> 8b4fc77ca3f043c14dd664e7416fdcab57f78393
 									}
-										
-									
-									
 								} else if(data.code == 500) {
-
-									swal("登录失败！","账号或者密码错误,请重试","error");
+									alert("账号或者密码错误,请重试 ");
 									that.pass="";
 								}
 							}
