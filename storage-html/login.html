@@ -24,6 +24,8 @@
 
 		<!-- css files -->
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+		<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 
 		<!-- Style-CSS -->
 		<link href="css/font-awesome.min.css" rel="stylesheet">
@@ -156,7 +158,8 @@
 					var sid = $("[name=pass]").val();
 					
 				if($("[name=phone]").val() == "" || this.pass == ""){
-					alert("账号或密码为空");
+					swal("登录失败！","账号或密码为空","error");
+				
 				}else{
 					var that = this;
 						$.ajax({
@@ -173,20 +176,30 @@
 							async: false,
 							success: function(data) {
 								if(data.code == 200) {
+										
 									that.comid=data.extend.worker.companyid;
 									console.log(data);
+								
 									if(data.extend.worker.state==0){
-										alert("当前信息正在审核中，请耐心等候，如有疑问，请联系申请公司");
+										swal("登录失败！","当前信息正在审核中，请耐心等候，如有疑问，请联系申请公司");
 										window.location.href="http://120.79.46.8/login.html";
+										
 									}else{
-										alert("登录成功");
+										
+										 swal("登录成功！","欢迎使用集仓库","success")
+											setTimeout(function() {
 										//console.logdata.extend.worker.state()
 										that.name=data.extend.worker.name;
 										that.worktypesName=data.extend.worker.worktypes.name;
 										window.location.href="http://120.79.46.8";
+										},1500)
 									}
+										
+									
+									
 								} else if(data.code == 500) {
-									alert("账号或者密码错误,请重试 ");
+
+									swal("登录失败！","账号或者密码错误,请重试","error");
 									that.pass="";
 								}
 							}
