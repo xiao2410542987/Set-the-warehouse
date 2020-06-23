@@ -37,8 +37,6 @@
 
 		<!-- Dark Themes -->
 		<link rel="stylesheet" href="assets/styles/style-black.min.css">
-			<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
-<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 		<script src="js/vue.js"></script>
 	</head>
 	<style>
@@ -449,8 +447,7 @@
 					console.log(this.gsid);
 					if(this.gsid==null)
 					{
-							swal("登录失败！","当前未登录!正在跳转登录","error");
-						
+						alert("当前未登录!正在跳转登录");
 						window.location.href="http://120.79.46.8/storage/login.html";
 					}
 				},
