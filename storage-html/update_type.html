@@ -8,7 +8,8 @@
 	<script src="js/vue.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" href="css/easyhelper.min.css">
-
+		<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 	<body>
 		<style>
 			.btn3 {
@@ -577,8 +578,8 @@
 						},
 						upsbname: function() {
 							if(this.upsname == "") {
-
-								alert("请认真输入内容。")
+swal("请认真输入内容");
+							
 							} else {
 								console.log(this.upsid)
 								console.log(this.upsname)
@@ -631,7 +632,7 @@
 						addeq: function() {
 							if(this.equip == "") {
 
-								alert("请认真输入内容。")
+								swal("请认真输入内容");
 							} else {
 								console.log(this.tipid)
 								console.log(this.equip)
@@ -649,7 +650,8 @@
 									},
 									crossDomain: true,
 									success: function(data) {
-										alert("添加成功")
+										swal("添加成功");
+										
 										that.cha();
 										setTimeout(function() {
 											console.log($('[name=xx3]')[0].scrollHeight);
@@ -704,7 +706,7 @@
 						up: function() {
 							if(this.upname == "") {
 
-								alert("请认真输入内容。")
+								swal("请认真输入内容");
 							} else {
 
 								var that = this;
@@ -751,7 +753,7 @@
 						addmetering: function() {
 							if(this.mete == "") {
 
-								alert("请认真输入内容。")
+								swal("请认真输入内容");
 							} else {
 								console.log(this.mete)
 								var that = this;
@@ -767,7 +769,8 @@
 									},
 									crossDomain: true,
 									success: function(data) {
-										alert("添加成功")
+										swal("添加成功");
+									
 										that.chax();
 										setTimeout(function() {
 											console.log($('[name=xx1]')[0].scrollHeight);
@@ -823,8 +826,8 @@
 						},
 						upworkname: function() {
 							if(this.upwoname == "") {
-
-								alert("请认真输入内容。")
+swal("请认真输入内容");
+								
 							} else {
 								var that = this;
 								$.ajax({
@@ -872,8 +875,8 @@
 
 						addwork: function() {
 							if(this.worktype == "") {
-
-								alert("请认真输入内容。")
+swal("请认真输入内容");
+								
 							} else {
 								var that = this;
 								$.ajax({
@@ -888,7 +891,8 @@
 									},
 									crossDomain: true,
 									success: function(data) {
-										alert("添加成功")
+										swal("添加成功");
+										
 										that.selectwork();
 										setTimeout(function() {
 											console.log($('[name=xx2]')[0].scrollHeight);
@@ -944,8 +948,8 @@
 						},
 						upckname: function() {
 							if(this.upck == "") {
-
-								alert("请认真输入内容。")
+swal("请认真输入内容");
+								
 							} else {
 								var that = this;
 								$.ajax({
@@ -987,8 +991,8 @@
 						},
 						addwarehose: function() {
 							if(this.warehose == "") {
-
-								alert("请认真输入内容。")
+swal("请认真输入内容");
+								
 							} else {
 								var that = this;
 
@@ -1004,7 +1008,8 @@
 									},
 									crossDomain: true,
 									success: function(data) {
-										alert("添加成功")
+										swal("添加成功");
+										
 										that.cha();
 										setTimeout(function() {
 											console.log($('[name=xx4]')[0].scrollHeight);
