@@ -87,6 +87,7 @@ h3{
 .signup .field{
 	margin-top: 30px;
 	position: relative;
+	left: 115px;
 }
 
 .signup input{
@@ -97,7 +98,7 @@ h3{
 	border-bottom: 1px solid #999;
 	color: gray;
 	font-size: 1rem;
-	width: 246px;
+	width: 250px;
     height: 35px;
 }
 
