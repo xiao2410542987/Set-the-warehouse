@@ -152,7 +152,7 @@
 				<div class="mask"></div>
 				
 
-					<div v-if="ntk" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1300px;margin-left: -520px; margin-top: -283.5px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+					<div v-show="ntk" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1300px;margin-left: -520px; margin-top: -283.5px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
 						<div class="helper-dialog-header">
 							<p class="helper-dialog-title">更多信息</p>
 							<i class="helper-dialog-close helper-noselect" @click="ntk=false">✕</i>
@@ -183,13 +183,13 @@
 								{{item.warehouses.name}}
 							</td>
 						
-							<td style="background: #292d34!important;" v-if="item.state===0">
+							<td style="background: #292d34!important;" v-show="item.state===0">
 							  正常使用
 							</td>
-							<td style="background: #292d34!important;" v-if="item.state===1">
+							<td style="background: #292d34!important;" v-show="item.state===1">
 							 维护或者关闭
 							</td>
-							<td style="background: #292d34!important;" v-if="item.state===2">
+							<td style="background: #292d34!important;" v-show="item.state===2">
 							已回收
 							</td>
 							
@@ -210,7 +210,7 @@
 				
 
 				<!--加载动画-->
-				<div class="loader" v-if="loading">
+				<div class="loader" v-show="loading">
 					<div class="domino">
 						<div></div>
 						<div></div>
@@ -219,14 +219,14 @@
 					</div>
 				</div>
 
-				<table v-if="all" border="0" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center;margin-top: 40px;">
+				<table v-show="all" border="0" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center;margin-top: 40px;">
 					<thead>
 						<div class="button_line">
 							关键字搜索：<input type="text" id="filtertxt1">
 							<button class="btn1" id="Search">搜索</button>
 						</div>
 
-						<div class="xg" v-if="showModal">
+						<div class="xg" v-show="showModal">
 							<input placeholder="设备名称" v-model="upsname" @keydown.enter="upeq" style="text-align: center;font-size:14px; border-radius: 12px;border:1.5px solid #000000;width: 150px;margin: 0px 20px; height: 40px;" type="text">
 							<input placeholder="设备总数" v-model="num" @keydown.enter="upnum" style="text-align: center;font-size:14px;border-radius: 12px;border:1.5px solid #000000;width: 150px;margin: 0px 20px; height: 40px;" type="text">
 
