@@ -447,10 +447,14 @@
 					this.name = JSON.parse(localStorage.getItem("name"));
 					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
 					console.log(this.gsid);
-					if(this.gsid==null)
+					if(this.gsid==""||this.gsid==null)
 					{
+						console.log("未登录")
 						swal("登录失败！","当前未登录!正在跳转登录","error");
-						window.location.href="http://120.79.46.8/storage/login.html";
+						setTimeout(function(){
+							window.location.href="http://120.79.46.8/storage/login.html";
+						},1400);
+						
 					}
 				},
 				methods: {
