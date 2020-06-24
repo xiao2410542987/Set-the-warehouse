@@ -132,7 +132,7 @@ public class WorkersController {
     public Msg dismiss(@RequestParam @ApiParam(name = "id" ,value = "员工id") int id)
     {
         Workers workers = new Workers();
-        workers.setId(5);
+        workers.setId(id);
         workers.setState(2);
         int updateById = workersMapper.updateById(workers);
         QueryWrapper<Workers> workersQueryWrapper = new QueryWrapper<Workers>();
@@ -168,6 +168,43 @@ public class WorkersController {
     public IPage<Workers> checked(@RequestParam @ApiParam(name = "companyid" ,value = "外键companys公司id") int companyid,Integer start,Integer state) {
         Page<Workers> workersPage = new Page<>(start,state);
         return workersMapper.checked(workersPage,new QueryWrapper<Workers>(),companyid);
+    }
+
+    @ApiOperation("修改员工状态")
+    @RequestMapping(value = "/change",method = RequestMethod.GET)
+    public Msg change(@RequestParam @ApiParam(name = "id" ,value = "id") int id,
+                      @RequestParam @ApiParam(name = "state" ,value = "状态（0表示未审核，1表示已审核）")int state){
+        Workers workers = new Workers();
+        workers.setState(id);
+        workers.setState(state);
+        int updateById = workersMapper.updateById(workers);
+        if(updateById == 1){
+            return Msg.success();
+        }
+        return Msg.fail();
+    }
+
+    @ApiOperation("修改员工信息")
+    @RequestMapping(value = "/changeMessage",method = RequestMethod.GET)
+    public Msg changeMessage(@RequestParam @ApiParam(name = "id" ,value = "id") int id,
+                             @RequestParam @ApiParam(name = "name" ,value = "工作人员姓名") String name,
+                             @RequestParam @ApiParam(name = "sex" ,value = "性别") String sex,
+                             @RequestParam @ApiParam(name = "phone" ,value = "电话") String phone,
+                             @RequestParam @ApiParam(name = "worktypeid" ,value = "工作单位类型 外键") int worktypeid,
+                             @RequestParam @ApiParam(name = "state" ,value = "状态（0表示未审核，1表示已审核）")int state,
+                             @RequestParam @ApiParam(name = "working" ,value = "工作状态 默认0 0未分配工作 1已被分配工作")int working){
+        Workers workers = new Workers();
+        workers.setState(id);
+        workers.setState(state);
+        workers.setName(name);
+        workers.setSex(sex);
+        workers.setPhone(phone);
+        workers.setWorking(working);
+        int updateById = workersMapper.updateById(workers);
+        if(updateById == 1){
+            return Msg.success();
+        }
+        return Msg.fail();
     }
 }
 
