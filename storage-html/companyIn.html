@@ -23,7 +23,6 @@
 				background-image: url(img/8.jpg);
 				background-size:cover ;
 				
-				
 			}
 			::-webkit-scrollbar {
 				display: none;
@@ -127,29 +126,29 @@
 			
 			
 			
-<button class="sbox" v-if="xgmtk==false" @click="xg(tips.name,tips.founder,tips.phone,tips.place)"></button>
+<button class="sbox" v-show="xgmtk==false" @click="xg(tips.name,tips.founder,tips.phone,tips.place)"></button>
 
-<button class="sbox1" v-if="xgmtk==true"  @click="xgmtk=false"></button>
+<button class="sbox1" v-show="xgmtk==true"  @click="xgmtk=false"></button>
 			<div class="box">
-				公司名称：<a v-if="xgmtk==false">{{tips.name}}</a>
-				<input v-model="name" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.name" />
+				公司名称：<a v-show="xgmtk==false">{{tips.name}}</a>
+				<input v-model="name" v-show="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.name" />
 			</div>
 			<div class="box" style="left: -8px;position: relative;">
-				主要负责人：<a v-if="xgmtk==false">{{tips.founder}}</a>
-				<input v-model="founder" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.founder" />
+				主要负责人：<a v-show="xgmtk==false">{{tips.founder}}</a>
+				<input v-model="founder" v-show="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.founder" />
 			</div>
 			<div class="box">
-				联系电话：<a v-if="xgmtk==false">{{tips.phone}}</a>
-				<input v-model="phone" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.phone" />
+				联系电话：<a v-show="xgmtk==false">{{tips.phone}}</a>
+				<input v-model="phone" v-show="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.phone" />
 			</div>
 			<div class="box">
-				所在地点：<a v-if="xgmtk==false">{{tips.place}}</a>
-				<input v-model="place" v-if="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.place" />
+				所在地点：<a v-show="xgmtk==false">{{tips.place}}</a>
+				<input v-model="place" v-show="xgmtk" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="tips.place" />
 			</div>
 			<div class="box">
 				公司创建时间：{{tips.createtime | formatDate}}
 			</div>
-			<a @click="upname" v-if="xgmtk"style="text-align: center;vertical-align: middle;line-height: 40px;" class="btu4 btu5">修改公司信息</a>
+			<a @click="upname" v-show="xgmtk"style="text-align: center;vertical-align: middle;line-height: 40px;" class="btu4 btu5">修改公司信息</a>
 			
 			
 			

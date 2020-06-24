@@ -163,11 +163,9 @@
 							<li>
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-table"></i><span>员工信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
+									
 									<li>
-										<a href="tables-basic.html">员工信息</a>
-									</li>
-									<li>
-										<a href="page-404.html" target="demoAdmin">审核注册信息</a>
+										<a href="javascript:;" @click="btu5">审核注册信息</a>
 									</li>
 									<!--<li><a href="tables-responsive.html">Responsive Tables</a></li>
 						<li><a href="tables-editable.html">Editable Tables</a></li>-->
@@ -447,14 +445,10 @@
 					this.name = JSON.parse(localStorage.getItem("name"));
 					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
 					console.log(this.gsid);
-					if(this.gsid==""||this.gsid==null)
+					if(this.gsid==null)
 					{
-						console.log("未登录")
 						swal("登录失败！","当前未登录!正在跳转登录","error");
-						setTimeout(function(){
-							window.location.href="http://120.79.46.8/storage/login.html";
-						},1400);
-						
+						window.location.href="http://120.79.46.8/storage/login.html";
 					}
 				},
 				methods: {
@@ -473,6 +467,9 @@
 					},
 					btu4:function(){
 						this.html="allocation.html";
+					},
+					btu5:function(){
+						this.html="employee.html";
 					}
 				}
 			})
