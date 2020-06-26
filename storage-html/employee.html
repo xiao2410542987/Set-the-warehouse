@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+
+	<link rel="stylesheet" href="css/proindex.css" />
+	<link rel="stylesheet" href="css/feny.css" />
+
+	<body>
+		<style>
+			.demo-carousel {
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+			}
+			
+			.btna {
+				display: block;
+				top: 86px;
+				position: relative;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #e15f41;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+				float: left;
+			}
+			
+			.btna1 {
+				top: 86px;
+				display: block;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #009688;
+				color: #fff;
+				position: relative;
+				left: 10px;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+			}
+			
+			.btn1:hover {
+				transform: rotateX(15deg);
+				box-shadow: 0 15px 15px #e15f4190;
+			}
+			
+			.btn2:hover {
+				transform: rotateX(-15deg);
+				box-shadow: 0 -15px 15px #e15f4190;
+			}
+			
+			.btnb:hover {
+				transform: rotateY(15deg);
+				box-shadow: -15px 0px 15px #e15f4190;
+			}
+			
+			.btnc:hover {
+				transform: rotateY(-15deg);
+				box-shadow: 15px 0 15px #009688;
+			}
+			
+			.bigbox {
+				width: 1610px;
+				height: 840px;
+				position: relative;
+				left: 280px;
+				top: 50px;
+			}
+			
+			.btu4 {
+				position: relative;
+				display: block;
+				font-size: 14px;
+				font-family: "montserrat";
+				text-decoration: none;
+				margin: 10px 0;
+				border: 2px solid #009688;
+				padding: 14px 55px;
+				text-transform: uppercase;
+				overflow: hidden;
+				transition: 1s all ease;
+				z-index: 1;
+				left: 75px;
+			}
+			
+			.btu4::before {
+				background: #009688;
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+				transition: all 0.6s ease;
+			}
+			
+			.btu4:hover {
+				color: white;
+			}
+			
+			.btu7 {
+				float: left;
+			}
+			
+			.btu8 {
+				float: right;
+			}
+			
+			.btu7::before {
+				width: 100%;
+				height: 0;
+				transform: translate(-50%, -50%) rotate(45deg);
+			}
+			
+			.btu7:hover::before {
+				height: 380%;
+			}
+			
+			.btu8::before {
+				width: 100%;
+				height: 0;
+				transform: translate(-50%, -50%) rotate(-45deg);
+			}
+			
+			.btu8:hover::before {
+				height: 380%;
+			}
+			
+		</style>
+		<div class="bigbox" style="display: block;">
+			<div id="app">
+				<table cellspacing="0" cellpadding="10" style="z-index:12;width: 100%; text-align: center;margin-top: 40px;">
+					<thead>
+						<!--<div class="button_line">
+							关键字搜索：<input type="text" id="filtertxt1">
+							<button class="btn1" id="Search">搜索</button>
+						</div>-->
+
+						<tr>
+
+							<button class="btna btnb" @click="wshhe">未审核</button>
+							<button class="btna1 btnc" @click="shhe">已审核</button>
+						</tr>
+						<tr>
+							<p v-show="gb" style="text-align: center;font-size: 40px;font-weight: bold;">未审核员工</p>
+							<p v-show="kc" style="text-align: center;font-size: 40px;font-weight: bold;">已审核员工</p>
+
+						</tr>
+
+						<tr>
+							<th style="width: 200px;">序号</th>
+							<th>用户名</th>
+							<th>性别</th>
+							<th>用户电话</th>
+							<th>用户职位</th>
+							<th style="width: 300px;">操作</th>
+
+						</tr>
+					</thead>
+					<tbody id="table_proindex">
+						<tr class="second_tr" v-for="(item,i) in tips">
+							<td style="width: 200px;vertical-align: middle;display: table-cell;">
+								{{(pageNO-1)*rows+i+1}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.sex}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.phone}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.worktypes.name}}
+							</td>
+							<td v-show="gb" style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
+								<a class="btu4 btu7" v-show="gb" @click="tg(item.id)">通过</a>
+							</td>
+							<td v-show="kc" style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
+								<a class="btu4 btu7" v-show="kc" @click="kcyg(item.id)">开除</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			<ul >
+			<li @click="prePage()"><a href="#"><</a></li>
+			<li  v-for="(item,i) in pages"  @click="page(i+1)"><a :class="pageNO==item? 'active':''" href="#">{{i+1}}</a></li>
+		
+			<li @click="nextPage()"><a href="#">></a></li>
+		</ul>
+			</div>
+				
+		</div>
+		<script>
+			new Vue({
+				el: "#app",
+				data: {
+					gsid: "",
+					pageNO: 1,
+					rows: 5,
+					tips: [],
+					gb: true,
+					kc: false,
+					pages:"",
+					index:1
+				},
+				mounted: function() {
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					var that = this;
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/workers/audit",
+						data: {
+							companyid: that.gsid,
+							start: that.pageNO,
+							state: that.rows
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log(data)
+							that.pages = data.pages;
+							that.tips = data.records;
+							
+						}
+						//
+					})
+				},
+
+				methods: {
+					prePage:function(){
+						if(this.pageNO>1){
+						
+							this.page(--this.pageNO)
+						}
+					},
+					nextPage:function(){
+						if(this.pageNO<this.pages){
+							
+							this.page(++this.pageNO)
+						
+						}
+					},
+					page:function(id){
+						
+						this.index=id
+						this.shhe();
+					},
+					tg: function(id) {
+						console.log(id)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/assessor",
+							data: {
+								id: id
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log("成功")
+								that.shhe()
+							}
+							//
+						})
+					},
+					kcyg: function(id) {
+						console.log(id)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/dismiss",
+							data: {
+								id: id
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log("成功")
+								that.shhe()
+							}
+
+						})
+					},
+					wshhe: function() {
+						var that = this;
+						this.gb = true;
+						this.kc = false;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/audit",
+							data: {
+								companyid: that.gsid,
+								start: that.pageNO,
+								state: that.rows
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								that.tips = data.records;
+							}
+							//
+						})
+					},
+					shhe: function() {
+						console.log("这个index是什么"+this.index+"这个那pageNO"+this.pageNO)
+						this.pageNO = this.index;
+						var that = this;
+						this.gb = false;
+						this.kc = true;
+						console.log("这个"+that.pageNO)
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/checked",
+							data: {
+								companyid: that.gsid,
+								start: that.pageNO,
+								state: that.rows
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								that.pages = data.pages;
+							console.log("这是你要的"+that.pages)
+								that.tips = data.records;
+							}
+
+							//
+						})
+
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
