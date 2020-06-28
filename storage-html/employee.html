@@ -10,7 +10,10 @@
 
 	<link rel="stylesheet" href="css/proindex.css" />
 	<link rel="stylesheet" href="css/feny.css" />
-
+	<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<body>
 		<style>
 			.demo-carousel {
@@ -189,10 +192,10 @@
 								{{item.worktypes.name}}
 							</td>
 							<td v-show="gb" style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
-								<a class="btu4 btu7" v-show="gb" @click="tg(item.id)">通过</a>
+								<a class="btu4 btu7" v-show="gb" @click="tg(item.id,item.name)">通过</a>
 							</td>
 							<td v-show="kc" style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
-								<a class="btu4 btu7" v-show="kc" @click="kcyg(item.id)">开除</a>
+								<a class="btu4 btu7" v-show="kc" @click="kcyg(item.id,item.name)">开除</a>
 							</td>
 						</tr>
 					</tbody>
@@ -264,10 +267,25 @@
 						this.index=id
 						this.shhe();
 					},
-					tg: function(id) {
+					tg: function(id,name) {
 						console.log(id)
 						var that = this;
-						$.ajax({
+						
+						swal({
+							title: "审核员工?："+name,   
+							text: "你确定要同意该员工入职?",   
+							type: "warning",   
+							showCancelButton: true,   
+							confirmButtonColor: "#DD6B55",   
+							confirmButtonText: "是的，同意!", 
+							cancelButtonText: "再考虑一下!", 
+							closeOnConfirm: false,
+							closeOnCancel: true,
+							confirmButtonColor: '#f60e0e',
+						},
+						function(isConfirm) {
+							if(isConfirm) {
+							$.ajax({
 							type: "get",
 							url: "http://120.79.46.8:8080/storage/storage/workers/assessor",
 							data: {
@@ -280,15 +298,51 @@
 							success: function(data) {
 								console.log("成功")
 								that.shhe()
+								swal({
+							title : "Logout success", 
+							text: "See you later!", 
+							type: "success",
+							confirmButtonColor: '#304ffe',
+						},function(isConfirm){
+							console.log("xxx");
+						}
+						); 
 							}
 							//
-						})
-					},
-					kcyg: function(id) {
+									})
+									} else {
+										swal({
+							title : "Logout success", 
+							text: "See you later!", 
+							type: "success",
+							confirmButtonColor: '#304ffe',
+						},function(isConfirm){
+							console.log("xxx");
+						}
+						); 
+									}
+									})
+				
+								},
+				kcyg: function(id,name) {
 						console.log(id)
 						var that = this;
-						$.ajax({
-							type: "get",
+						
+						swal({
+							title: "开除员工?："+name,   
+							text: "你确定要开除该员工?",   
+							type: "warning",   
+							showCancelButton: true,   
+							confirmButtonColor: "#DD6B55",   
+							confirmButtonText: "是的，同意!", 
+							cancelButtonText: "再考虑一下!", 
+							closeOnConfirm: false,
+							closeOnCancel: true,
+							confirmButtonColor: '#f60e0e',
+						},function(isConfirm){
+							if (isConfirm) {
+								$.ajax({
+							type:"get",
 							url: "http://120.79.46.8:8080/storage/storage/workers/dismiss",
 							data: {
 								id: id
@@ -299,10 +353,24 @@
 							crossDomain: true,
 							success: function(data) {
 								console.log("成功")
+								swal({
+							title : "Logout success", 
+							text: "See you later!", 
+							type: "success",
+							confirmButtonColor: '#304ffe',
+						},function(isConfirm){
+							console.log("xxx");
+						}
+						); 
 								that.shhe()
 							}
 
 						})
+							} else{
+								
+							}
+						});
+						
 					},
 					wshhe: function() {
 						var that = this;

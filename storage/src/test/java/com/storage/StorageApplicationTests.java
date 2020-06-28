@@ -2,6 +2,8 @@ package com.storage;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.storage.mapper.*;
 import com.storage.pojo.*;
 import com.storage.service.impl.EquipmentsServiceImpl;
@@ -84,10 +86,10 @@ class StorageApplicationTests {
     @Test
     public void Test5()
     {
-        Map<String, Object> map = new HashMap<>();
-        map.put("companyid",1);
-        map.put("warehousetypeid",2);
-        List<Warehouses> warehouses = warehousesMapper.selectByMap(map);
-        System.out.println(warehouses);
+        Page<Warehouses> page = new Page<>(1, 99);
+
+        IPage<Warehouses> warehousesIPage = warehousesMapper.QueryWarehouse(page, new QueryWrapper<Warehouses>(), 1);
+        System.out.println(warehousesIPage);
+
     }
 }
