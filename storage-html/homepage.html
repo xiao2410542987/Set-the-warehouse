@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
+		<script src="js/vue.js"></script>
 		<link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
 		<link rel="icon" href="img/logo.ico" type="image/x-icon">
 		<title>集仓库</title>
@@ -37,7 +38,7 @@
 
 		<!-- Dark Themes -->
 		<link rel="stylesheet" href="assets/styles/style-black.min.css">
-		<script src="js/vue.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
 		<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 	</head>
@@ -425,14 +426,15 @@
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
-					this.name = JSON.parse(localStorage.getItem("name"));
-					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
-					console.log(this.gsid);
 					if(this.gsid==null)
 					{
 						swal("登录失败！","当前未登录!正在跳转登录","error");
 						window.location.href="http://120.79.46.8/storage/login.html";
 					}
+					this.name = JSON.parse(localStorage.getItem("name"));
+					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
+					console.log(this.gsid);
+					
 				},
 				methods: {
 					
