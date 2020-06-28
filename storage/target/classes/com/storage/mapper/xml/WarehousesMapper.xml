@@ -16,11 +16,11 @@
     <association column="metering" property="meteringid" select="com.storage.mapper.MeteringMapper.selectMetering"></association>
 </resultMap>
     <select id="selectWarehouses" resultMap="QueryMWCW">
-        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,createtime from warehouses where id=#{id}
+        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,state,createtime from warehouses where id=#{id}
     </select>
 
     <select id="QueryWarehouse" resultMap="QueryMWCW">
-        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,createtime from warehouses where state = 0 and companyid=#{companyid}
+        select id,name,waresize,meteringid,unusesize,warehousetypeid,companyid,workerid,state,createtime from warehouses where state = 0 and companyid=#{companyid}
     </select>
 
     <resultMap id="QueryMWCW" type="com.storage.pojo.Warehouses">

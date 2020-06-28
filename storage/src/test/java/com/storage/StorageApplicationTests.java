@@ -29,7 +29,7 @@ class StorageApplicationTests {
     @Autowired
     private EquipmenttypesMapper equipmenttypesMapper;*/
     @Autowired
-    private WarehousesMapper warehousesMapper;
+    private WorkersMapper workersMapper;
 
     /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
@@ -83,7 +83,7 @@ class StorageApplicationTests {
         equipmentsMapper.updateById(equipments);
 
     }*/
-    @Test
+    /*@Test
     public void Test5()
     {
         Page<Warehouses> page = new Page<>(1, 99);
@@ -91,5 +91,14 @@ class StorageApplicationTests {
         IPage<Warehouses> warehousesIPage = warehousesMapper.QueryWarehouse(page, new QueryWrapper<Warehouses>(), 1);
         System.out.println(warehousesIPage);
 
+    }*/
+    @Test
+    public void  Test6()
+    {
+        Workers workers = new Workers();
+        workers.setPhone("123");
+        workers.setPassword("123");
+        Workers workers1 = workersMapper.queryWorkersList(workers);
+        System.out.println(workers1);
     }
 }
