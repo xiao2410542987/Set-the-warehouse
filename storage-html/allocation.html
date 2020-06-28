@@ -181,8 +181,8 @@
 
 							<div class="sel_wrap" style="width: 270px ;top: 0;left: 112px;">
 								<select class="select" v-model="waid">
-
-									<option v-for="(item,i) in dis"  :value="item.warehouses.id">{{item.warehouses.name}}</option>
+									
+									<option v-for="(item,i) in dis"  :value="item.id">{{item.name}}</option>
 
 								</select>
 
@@ -567,11 +567,14 @@
 						this.id=id
 						this.sid=sid
 						var that = this;
+						console.log(that.gsid)
 							$.ajax({
 							type: "get",
-							url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+							url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
 							data: {
-								companyid: that.gsid
+								companyid: that.gsid,
+								start: 1,
+								state: 99999999
 							},
 							xhrFields: {
 								withCredentials: true
@@ -580,10 +583,10 @@
 							success: function(data) {
 								console.log('success!');
 								console.log(data);
-								console.log(data.extend.tips);
-								console.log(data.extend.tips[that.id].equipments.distribution)
-								that.dis = data.extend.tips[that.id].equipments.distribution;
-				
+								
+								console.log(data.records)
+								that.dis = data.records;
+							
 							}
 						})
 						
