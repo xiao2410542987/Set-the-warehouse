@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<link href="css/easyhelper.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/proindex.css" />
+	<link rel="stylesheet" href="css/feny.css" />
+
+	<body>
+		<style>
+			.btn3 {
+				background: none;
+				border: 2px solid #009688;
+				font-family: "montserrat", sans-serif;
+				text-transform: uppercase;
+				padding: 10px 10px;
+				min-width: 95px;
+				z-index: 10;
+				cursor: pointer;
+				transition: color 0.4s linear;
+				position: relative;
+			}
+			
+			.btn3:hover {
+				color: #fff;
+			}
+			
+			.btn3::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #009688;
+				z-index: -1;
+				transition: transform 0.5s;
+				transform-origin: 0 0;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+			}
+			
+			.btn2::before {
+				transform: scaleY(0);
+			}
+			
+			.bigbox {
+				width: 1610px;
+				height: 720px;
+				position: relative;
+				left: 280px;
+				top: 120px;
+			}
+			
+			.btn2:hover::before {
+				transform: scaleY(1);
+			}
+			
+			.btn {
+				background: none;
+				border: 2px solid #e15f41;
+				font-family: "montserrat", sans-serif;
+				text-transform: uppercase;
+				padding: 10px 15px;
+				min-width: 80px;
+				margin: 10px;
+				cursor: pointer;
+				transition: color 0.4s linear;
+				position: relative;
+				z-index: 10;
+			}
+			
+			::-webkit-scrollbar {
+				display: none;
+			}
+			
+			.btn:hover {
+				color: #fff;
+			}
+			
+			.btn::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #e15f41;
+				z-index: -1;
+				transition: transform 0.5s;
+				transform-origin: 0 0;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+			}
+			
+			.btn1::before {
+				transform: scaleX(0);
+			}
+			
+			.box {
+				width: 466px;
+				height: 80px;
+				float: left;
+				font-size: 15px;
+				text-align: center;
+				line-height: 80px;
+			}
+			
+			.btn1:hover::before {
+				transform: scaleX(1);
+			}
+			
+			.sel_wrap {
+				height: 40px;
+				background: #fff;
+				color: #a1a1a1;
+				font-size: 16px;
+				border: 1px solid #E4E4E4;
+				cursor: pointer;
+				position: relative;
+				width: 150px;
+				left: 520px;
+				top: -42px;
+				border-radius: 5px;
+				border: 1px solid rgb(0, 0, 0);
+			}
+			
+			.box label {
+				padding-left: 10px;
+				font-size: 16px;
+				z-index: 2;
+				color: #a1a1a1;
+				line-height: 40px;
+				height: 40px;
+			}
+			
+			.box .select {
+				width: 223px;
+				height: 30px;
+				line-height: 40px;
+				position: absolute;
+				border-radius: 5px;
+				border: 1px solid rgb(0, 0, 0);
+				margin: 0;
+				cursor: pointer;
+				font-size: 16px;
+				/* position: relative; */
+				left: 664px;
+				top: 138px;
+				background-color: white;
+			}
+		</style>
+		<div class="bigbox" style="display: block;">
+			<div id="app">
+				<table cellspacing="0" cellpadding="10" style="z-index:12;width: 100%; text-align: center;margin-top: 40px;">
+					<thead>
+						
+						<tr>
+							<th style="width: 200px;">序号</th>
+							<th>仓库名</th>
+							<th>存放物品</th>
+							<th>总容量</th>
+							<th>空闲容量</th>
+							<th>已用容量</th>
+							<p>{{fzr}}</p>
+
+							<th style="width: 300px;">操作</th>
+
+						</tr>
+					</thead>
+					<tbody id="table_proindex">
+						<tr v-for="(item,i) in records" class="second_tr">
+							<td style="width: 200px; vertical-align: middle;display: table-cell;">
+								{{(pageNO-1)*rows+i+1}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.warehousetypes.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.waresize}}{{item.metering.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.unusesize}}{{item.metering.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.waresize-item.unusesize}}{{item.metering.name}}
+							</td>
+
+							<td style="vertical-align: middle;display: table-cell;">
+								<button class="btn3 btn2" @click="mos(i,item.name,item.warehousetypes.name,item.waresize,item.unusesize,item.waresize-item.unusesize,item.metering.name)">更多</button>
+								<button class="btn btn1" @click="upall(i,item.name,item.id,item.metering.companyid,item.waresize,item.meteringid,item.unusesize,item.workerid,item.metering.name,item.workers,item,item.waresize-item.unusesize)">修改</button></td>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+				<ul>
+					<li @click="prePage()">
+						<a href="#">
+							<</a>
+					</li>
+					<li v-for="(item,i) in pages" @click="page(i+1)">
+						<a :class="pageNO==item? 'active':''" href="#">{{i+1}}</a>
+					</li>
+					<li @click="nextPage()">
+						<a href="#">></a>
+					</li>
+				</ul>
+
+				<div v-show="most" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1000px;margin-left: -500px; margin-top: -300px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+					<div class="helper-dialog-header">
+						<p class="helper-dialog-title">更多信息</p>
+						<i class="helper-dialog-close helper-noselect" @click="most=false">✕</i>
+					</div>
+					<div class="helper-dialog-content" style="overflow:auto;font-size: 15px; height:400px;">
+
+						<div v-show="selec" class="box">
+							公司名称：
+							<a>{{gsname}}</a>
+						</div>
+
+						<div class="box">
+							仓库名：
+							<a v-show="selec">{{ckname}}</a>
+							<input v-model="ckname" v-show="up" style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="ckname" />
+						</div>
+
+						<div v-show="selec" class="box">
+							存放物品：
+							<a>{{ckwp}}</a>
+
+						</div>
+
+						<div class="box">
+							总容量：
+							<a v-show="selec">{{zo}}{{dw}}</a>
+							<input v-model="zo" v-show="up" style="width: 200px;height: 25px;border-radius:5px ;text-align: center;" type="text" value="zo" />
+						</div>
+						<div v-show="selec" class="box">
+							空闲容量：
+							<a>{{kx}}{{dw}}</a>
+						</div>
+
+						<div v-show="selec" class="box">
+							已用容量：
+							<a>{{yi}}{{dw}}</a>
+						</div>
+
+						<div v-if="selec" v-show="state===0" class="box">
+							仓库状态：
+							<a>正常使用</a>
+						</div>
+						<div v-if="selec" v-show="state===1" class="box">
+							仓库状态：
+							<a>维护或关闭</a>
+						</div>
+
+						<div v-show="selec" class="box">
+							仓库负责人：
+							<a>{{workname}}</a>
+						</div>
+
+						<div v-show="up" class="box">
+							<label style="color:white;width: 90px;position: absolute;left: 566px;top: 135px;">计量单位：</label>
+
+							<select class="select" v-model="dwid">
+								<option :value="dwid">{{dw}}</option>
+								<option v-for="(item,i) in tips" :value="item.id">{{item.name}}</option>
+
+							</select>
+						</div>
+
+						<div v-show="up" class="box">
+							<label style="color:white;width: 90px;position: absolute;left: 75px;top: 140px;">员工姓名：</label>
+
+							<select class="select" v-model="fzr" style="position: absolute;left: 175px;top: 140px;">
+								<!--<option :value="fzr">{{workname}}</option>-->
+								<option v-for="item in ygxm" :value="item.id">{{item.name}}</option>
+							</select>
+						</div>
+
+						<div v-show="selec" class="box">
+							负责人电话：
+							<a>{{workphone}}</a>
+
+						</div>
+						<div v-show="selec" class="box">
+							仓库地址：
+							<a>{{complace}}</a>
+						</div>
+
+					</div>
+					<div class="helper-dialog-footer helper-noselect">
+						<div class="helper-dialog-yes" @click="upxx">修改</div>
+						<div class="helper-dialog-yes" @click="most=false">关闭</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<script>
+			new Vue({
+				el: "#app",
+				data: {
+					gsid: "",
+					pageNO: 1,
+					rows: 5,
+					records: [],
+					most: false,
+					up: false,
+					selec: true,
+					record: "",
+					gsname: "",
+					state: "",
+					workname: "",
+					complace: "",
+					workphone: "",
+					ckname: "",
+					ckwp: "",
+					zo: "",
+					kx: "",
+					yi: "",
+					dw: "",
+					name: "",
+					re: [],
+					fzr: "",
+					tips: "",
+					dwid: "",
+					ygxm: "",
+					sy: "",
+					ygxx: "",
+					pages: "",
+					index: 1
+				},
+				mounted: function() {
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					var that = this;
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+						data: {
+							companyid: that.gsid,
+							start: that.pageNO,
+							state: that.rows
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log(data);
+							that.pages = data.pages;
+							that.records = data.records;
+
+						}
+						//
+					})
+
+				},
+
+				methods: {
+					prePage: function() {
+						if(this.pageNO > 1) {
+
+							this.page(--this.pageNO)
+						}
+					},
+					nextPage: function() {
+						if(this.pageNO < this.pages) {
+
+							this.page(++this.pageNO)
+
+						}
+					},
+					page: function(id) {
+
+						this.index = id
+						this.selectall();
+					},
+					selectall: function() {
+						this.pageNO = this.index;
+						var that = this;
+
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							data: {
+								companyid: that.gsid,
+								start: that.pageNO,
+								state: that.rows
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								that.most = false
+								console.log(data);
+								/*$.each(data.records, function(index,el) {
+									if (el.) {
+										
+									} else{
+										
+									}
+								});*/
+								that.records = data.records;
+
+							}
+							//
+						})
+					},
+					upxx: function() {
+						console.log(this.gsid, this.ckid, this.ckname, this.zo, this.warehousetypeid, this.kx, this.fzr)
+						var that = this;
+						that.kx = that.zo - that.sy;
+						console.log(that.zo)
+						console.log(that.sy)
+						console.log(that.kx)
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/warehouses/repairWarehouse",
+							data: {
+								companyid: that.gsid,
+								id: that.ckid,
+								meteringid: that.dwid,
+								name: that.ckname,
+								unusesize: that.kx,
+								warehousetypeid: that.warehousetypeid,
+								waresize: that.zo,
+								workerid: that.fzr
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+
+								that.selectall()
+							}
+						})
+
+					},
+					upall: function(i, ckname, ckid, dwid, zo, cklx, kx, fzr, dw, yg, item, sy) {
+
+						console.log("i")
+						console.log(i, ckname, ckid, dwid, zo, cklx, kx, fzr, dw, yg, item)
+						this.ckid = ckid;
+						this.most = true;
+						this.selec = false;
+						this.up = true
+						this.ckname = ckname;
+						this.zo = zo
+						this.kx = kx
+						this.sy = sy
+						console.log(sy)
+						console.log(yg)
+						this.warehousetypeid = item.warehousetypeid
+						this.dw = dw
+						this.dwid = dwid
+
+						if(fzr == null || yg == null) {
+							console.log("id为空");
+							this.fzr = "";
+							this.workname = ""
+						} else {
+							console.log("id正常")
+							this.fzr = fzr;
+							this.workname = yg.name
+						}
+
+						var that = this;
+						$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/metering/selectMetering",
+								data: {
+									companyid: that.gsid
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									that.tips = data.extend.tips;
+								}
+							}),
+
+							$.ajax({
+								type: "get",
+								url: "http://120.79.46.8:8080/storage/storage/workers/checked",
+								data: {
+									companyid: that.gsid,
+									start: 1,
+									state: 9999,
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									that.ygxm = data.records;
+									console.log("这个")
+									console.log(that.ygxm)
+								}
+							})
+					},
+
+					//					ckname 仓库名
+					//					ckwp 仓库物品
+					//					zo 总数
+					//					kx 空闲
+					//					yi 已用
+					//					dw 单位
+					mos: function(id, ckname, ckwp, zo, kx, yi, dw) {
+						console.log("数组" + id)
+						this.most = true
+						this.up = false
+						this.selec = true;
+						var that = this;
+						that.ckname = ckname
+						that.ckwp = ckwp
+						that.zo = zo
+						that.kx = kx
+						that.yi = yi
+						that.dw = dw
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							data: {
+								companyid: that.gsid,
+								start: that.pageNO,
+								state: that.rows
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+
+								console.log(data)
+								that.re = that.record;
+								that.record = data.records[id];
+								that.gsname = that.record.companys.name;
+								that.complace = that.record.companys.place;
+								if(that.record.workerid == null) {
+
+									that.workname = "";
+									that.workphone = "";
+									that.state = "";
+								} else {
+									that.state = that.record.state;
+									that.workname = that.record.workers.name;
+									that.workphone = that.record.workers.phone;
+								}
+							}
+							//
+						})
+
+					}
+
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
