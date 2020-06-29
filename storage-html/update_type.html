@@ -694,7 +694,15 @@
 							},
 							crossDomain: true,
 							success: function(data) {
-								that.tips = data.extend.tips;
+								if(data.code==200)
+								{
+									that.tips = data.extend.tips;
+								}
+								else
+								{
+									that.tips = "";
+								}
+								
 							}
 						})
 					},
@@ -746,7 +754,14 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									that.tips = data.extend.tips;
+									if(data.code==200)
+									{
+										that.tips = data.extend.tips;
+									}
+									else
+									{
+										that.tips = "";
+									}
 								}
 							})
 
@@ -938,7 +953,14 @@
 							},
 							crossDomain: true,
 							success: function(data) {
-								that.tip = data.extend.tips;
+								if(data.code==200)
+								{
+									that.tips = data.extend.tips;
+								}
+								else
+								{
+									that.tips = "";
+								}
 							}
 						})
 					},
@@ -987,7 +1009,14 @@
 								},
 								crossDomain: true,
 								success: function(data) {
-									that.tip = data.extend.tips;
+									if(data.code==200)
+									{
+										that.tips = data.extend.tips;
+									}
+									else
+									{
+										that.tips = "";
+									}
 								}
 							})
 						},
