@@ -13,6 +13,9 @@
 		
 		<link rel="stylesheet" href="css/loading.css" />
 		<link rel="stylesheet" href="css/easyhelper.min.css" />
+		<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<style>
 		.btu4 {
@@ -472,23 +475,50 @@
 						console.log(this.eqid)
 						console.log(this.upsname)
 						var that = this;
-						$.ajax({
-							type: "get",
-							url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/updEquipmenttype",
-							data: {
-								id: that.eqid,
-								name: that.upsname
-							},
-							xhrFields: {
-								withCredentials: true
-							},
-							crossDomain: true,
-							success: function(data) {
-								console.log('成功了!');
+						swal({
+							title: "修改公司信息?",   
+							text: "你确定要修改该公司信息?",   
+							type: "warning",   
+							showCancelButton: true,   
+							confirmButtonColor: "#DD6B55",   
+							confirmButtonText: "是的，同意!", 
+							cancelButtonText: "再考虑一下!", 
+							closeOnConfirm: false,
+							closeOnCancel: true,
+							confirmButtonColor: '#f60e0e',
+						},function(flag){
+							if (flag) {
+									$.ajax({
+									type: "get",
+									url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/updEquipmenttype",
+									data: {
+										id: that.eqid,
+										name: that.upsname
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										console.log('成功了!');
+										swal({
+										title : "Logout success", 
+										text: "See you later!", 
+										type: "success",
+										confirmButtonColor: '#304ffe',
+										},function(isConfirm){
+											console.log("xxx");
+										}
+										); 
+										}
+									})
+									that.selec();
+									that.upnum();
+							} else{
+								
 							}
 						})
-						that.selec();
-						that.upnum();
+						
 					}
 				}
 			})
