@@ -13,6 +13,9 @@
 		<link rel="stylesheet" href="css/loading.css" />
 		<link rel="stylesheet" href="css/easyhelper.min.css" />
 		<link rel="stylesheet" href="css/input.css" />
+		<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<style>
 		.btu4 {
@@ -242,7 +245,7 @@
 							<td style="background: #292d34!important;" v-if="item.state===2">
 							已回收
 							</td>
-							<td><a class="btu4 btu6" style="width: 100px;left: 58px;" @click="hssb(item.id,item.state)" >回收设备</a></td>
+							<td><a class="btu4 btu6" style="width: 100px;left: 58px;" @click="hssb(item.id)" >回收设备</a></td>
 							
 						</tr>
 					</tbody>
@@ -394,27 +397,56 @@
 					this.loading = true
 				},
 				methods: {
-					hssb:function(id,state){
+					hssb:function(id){
 						console.log("设备id"+id)
 						console.log("设备状态"+state)
 						var that = this;
+						
+						swal({
+							title: "修改设备类型?",   
+							text: "你确定要修改该设备类型?",   
+							type: "warning",   
+							showCancelButton: true,   
+							confirmButtonColor: "#DD6B55",   
+							confirmButtonText: "是的，同意!", 
+							cancelButtonText: "再考虑一下!", 
+							closeOnConfirm: false,
+							closeOnCancel: true,
+							confirmButtonColor: '#f60e0e',
+						},function(flag){
+							if (flag) {
 								$.ajax({
-							type: "post",
-							url: "http://120.79.46.8:8080/storage/storage/distribution/delDis",
-							data: {
-								id:id,
-								state:state
-							},
-							xhrFields: {
-								withCredentials: true
-							},
-							crossDomain: true,
-							success: function(data) {
-								console.log('回收成功!');
-								that.addnum();
-							
+								type: "post",
+								url: "http://120.79.46.8:8080/storage/storage/distribution/delDis",
+								data: {
+									id:id,
+									state:2
+								},
+								xhrFields: {
+									withCredentials: true
+								},
+								crossDomain: true,
+								success: function(data) {
+									
+									console.log('回收成功!');
+									that.addnum();
+										swal({
+											title : "Logout success", 
+											text: "See you later!", 
+											type: "success",
+											confirmButtonColor: '#304ffe',
+											},function(isConfirm){
+												window.location.reload();
+											}
+											); 
+										}
+								})
+							} else{
+								
 							}
 						})
+						
+						
 						
 					},
 					hs:function(id,sid,eqname, eqid, sbid, meid, num, unu, danw){
@@ -521,26 +553,56 @@
 						console.log(this.state)
 						console.log("仓库id"+this.waid)
 							var that = this;
-							$.ajax({
-							type: "post",
-							url: "http://120.79.46.8:8080/storage/storage/distribution/addDis",
-							data: {
-								companyid: that.gsid,
-								equipmentid:that.sid,
-								name:that.meteid,
-								state:that.state,
-								warehouseid:that.waid
-							},
-							xhrFields: {
-								withCredentials: true
-							},
-							crossDomain: true,
-							success: function(data) {
-								console.log('分配成功!');
-								that.upnum();
-				
-							}
-						})
+							swal({
+								title: "分配新设备",   
+								text: "你确定要分配一个新设备?",   
+								type: "warning",   
+								showCancelButton: true,   
+								confirmButtonColor: "#DD6B55",   
+								confirmButtonText: "是的，同意!", 
+								cancelButtonText: "再考虑一下!", 
+								closeOnConfirm: false,
+								closeOnCancel: true,
+								confirmButtonColor: '#f60e0e',
+							},function(flag){
+								if (flag) {
+									$.ajax({
+									type: "post",
+									url: "http://120.79.46.8:8080/storage/storage/distribution/addDis",
+									data: {
+										companyid: that.gsid,
+										equipmentid:that.sid,
+										name:that.meteid,
+										state:that.state,
+										warehouseid:that.waid
+									},
+									xhrFields: {
+										withCredentials: true
+									},
+									crossDomain: true,
+									success: function(data) {
+										
+										
+										console.log('分配成功!');
+										that.upnum();
+											swal({
+											title : "Logout success", 
+											text: "See you later!", 
+											type: "success",
+											confirmButtonColor: '#304ffe',
+											},function(isConfirm){
+												window.location.reload();
+												
+											}
+											); 
+									}
+							})
+								} else{
+									
+								}
+							})
+							
+							
 						
 					},
 					an:function(id,sid,eqname, eqid, sbid, meid, num, unu, danw){
