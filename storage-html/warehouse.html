@@ -165,7 +165,7 @@
 							<th>总容量</th>
 							<th>空闲容量</th>
 							<th>已用容量</th>
-							<p>{{fzr}}</p>
+							
 
 							<th style="width: 300px;">操作</th>
 
@@ -298,7 +298,7 @@
 
 					</div>
 					<div class="helper-dialog-footer helper-noselect">
-						<div class="helper-dialog-yes" @click="upxx">修改</div>
+						<div class="helper-dialog-yes" v-show="up" @click="upxx">修改</div>
 						<div class="helper-dialog-yes" @click="most=false">关闭</div>
 
 					</div>
