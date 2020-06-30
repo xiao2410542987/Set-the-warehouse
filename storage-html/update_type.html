@@ -157,7 +157,7 @@
 			
 			.bigbox {
 				width: 1910px;
-				height: 920px;
+				height: 980px;
 				background-color: rgb(13, 16, 21);
 				opacity: 0.9;
 				box-shadow: 0 0 50px rgb(255, 255, 255);
@@ -431,11 +431,10 @@
 										<button class="btna1 btnc" @click="showModal=true">添加</button>
 									</td>
 								</tr>
-								<tr v-for="item in tip">
+								<tr v-for="item in tips">
 									<td style="width: 100px;height: 70px;background-color: rgb(13, 16, 21);color: white;">{{item.name}}</td>
 									<td style="width: 100px;">
-
-										<button class="btna btnb" @click="upckid(item.id)">修改</button></td>
+									<button class="btna btnb" @click="upckid(item.id)">修改</button></td>
 								</tr>
 
 							</tbody>
@@ -520,6 +519,7 @@
 									withCredentials: true
 								},
 								crossDomain: true,
+								async: false,
 								success: function(data) {
 									that.tips = data.extend.tips;
 
@@ -535,6 +535,7 @@
 									withCredentials: true
 								},
 								crossDomain: true,
+								async: false,
 								success: function(data) {
 									that.tip = data.extend.tips;
 
@@ -567,6 +568,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										this.showMo = this.showMo;
 										that.cha();
@@ -591,6 +593,7 @@
 									withCredentials: true
 								},
 								crossDomain: true,
+								async: false,
 								success: function(data) {
 
 									that.tips = data.extend.tips;
@@ -622,6 +625,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										
 										swal("添加成功");
@@ -665,6 +669,7 @@
 								withCredentials: true
 							},
 							crossDomain: true,
+							async: false,
 							success: function(data) {
 								if(data.code==200)
 								{
@@ -702,6 +707,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										this.showMo = this.showMo;
 										that.chax();
@@ -725,6 +731,7 @@
 									withCredentials: true
 								},
 								crossDomain: true,
+								async: false,
 								success: function(data) {
 									if(data.code==200)
 									{
@@ -757,6 +764,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										alert("添加成功")
 										that.chax();
@@ -796,6 +804,7 @@
 								withCredentials: true
 							},
 							crossDomain: true,
+							async: false,
 							success: function(data) {
 								$.each(data.extend.companys, function(index, e) {
 									console.log(e);
@@ -829,6 +838,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										this.showMo = this.showMo;
 										that.selectwork();
@@ -849,6 +859,7 @@
 									withCredentials: true
 								},
 								crossDomain: true,
+								async: false,
 								success: function(data) {
 
 									$.each(data.extend.companys, function(index, e) {
@@ -879,6 +890,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										swal("添加成功");
 										that.selectwork();
@@ -924,7 +936,10 @@
 								withCredentials: true
 							},
 							crossDomain: true,
+							async: false,
 							success: function(data) {
+										console.log("仓库类型");
+										console.log(data);
 								if(data.code==200)
 								{
 									that.tips = data.extend.tips;
@@ -958,6 +973,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										this.showMo = this.showMo;
 										that.cha();
@@ -980,9 +996,12 @@
 									withCredentials: true
 								},
 								crossDomain: true,
+								async: false,
 								success: function(data) {
 									if(data.code==200)
 									{
+										console.log("仓库类型");
+										console.log(data);
 										that.tips = data.extend.tips;
 									}
 									else
@@ -1010,6 +1029,7 @@
 										withCredentials: true
 									},
 									crossDomain: true,
+									async: false,
 									success: function(data) {
 										swal("添加成功");
 										that.cha();
