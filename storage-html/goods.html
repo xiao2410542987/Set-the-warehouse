@@ -30,7 +30,7 @@
 			.box {
 				width: 466px;
 				height: 80px;
-				float: left;
+				float: left;*
 				font-size: 15px;
 				text-align: center;
 				line-height: 80px;
@@ -229,16 +229,24 @@
 							<input v-model="phone" style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="phone" />
 						</div>
 						<div class="box">
-							<label style="color:white;width: 90px;position: absolute;left: 77px;top: 215px;">计量单位：</label>
+							<label style="color:white;width: 90px;position: absolute;left: 77px;top: 215px;">存储情况：</label>
 
-							<select class="select" v-model="state">
+							<select  class="select" v-model="state">
 								
 								<option :value="0">未存放或者交接状态</option>
 								<option :value="1">已存放</option>
 								<option :value="2">已取</option>
 							</select>
 						</div>
-						
+						<div class="box">
+							<label style="color:white;width: 90px;position: absolute;left: 577px;top: 215px;">计量单位：</label>
+
+							<select style="position: absolute;left: 680px;" class="select" v-model="state">
+								
+								<option v-for="(item,i) in meterings" :value="item.id">{{item.name}}</option>
+								
+							</select>
+						</div>
 							<div class="box">
 							设备数量：
 						
@@ -327,7 +335,8 @@
 					most:false,
 					meteid:"",
 					worktypesName:"",
-					asd:false
+					asd:false,
+					meterings:""
 
 				},
 				mounted: function() {
@@ -347,12 +356,31 @@
 						},
 						crossDomain: true,
 						success: function(data) {
-							console.log(data)
+							
 							that.tips = data.extend.tips
 
 						}
 						//
 					})
+					$.ajax({
+						type: "get",
+						url: "http://120.79.46.8:8080/storage/storage/metering/selectMetering",
+						data: {
+							companyid: that.gsid
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							
+							that.meterings = data.extend.tips
+							
+							console.log(that.meterings);
+
+						}
+						})
 				},
 
 				methods: {
@@ -383,8 +411,8 @@
 						
 					})
 					},
-					tianj:function(item){
-							this.meteid=item.metering.id
+					tianj:function(){
+							
 						this.asd=true
 					},
 					selectAll:function(){
@@ -408,6 +436,8 @@
 						}
 						
 					})
+				
+						
 					},
 					btu:function(item){
 						 console.log(item)
