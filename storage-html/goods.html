@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="css/easyhelper.min.css" />
+	<link rel="stylesheet" href="css/proindex.css" />
+	<link rel="stylesheet" href="css/feny.css" />
+
+	<body>
+		<style>
+			.demo-carousel {
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+			}
+	
+			.box label {
+				padding-left: 10px;
+				font-size: 16px;
+				z-index: 2;
+				color: #a1a1a1;
+				line-height: 40px;
+				height: 40px;
+			}
+			.box {
+				width: 466px;
+				height: 80px;
+				float: left;
+				font-size: 15px;
+				text-align: center;
+				line-height: 80px;
+			}
+			.box .select {
+				width: 223px;
+				height: 30px;
+				line-height: 40px;
+				position: absolute;
+				border-radius: 5px;
+				border: 1px solid rgb(0, 0, 0);
+				margin: 0;
+				cursor: pointer;
+				font-size: 16px;
+				/* position: relative; */
+				left: 183px;
+				top: 217px;
+				background-color: white;
+			}
+			.bigbox {
+				width: 1610px;
+				height: 840px;
+				position: relative;
+				left: 250px;
+				top: 86px;
+			}
+	.btn3 {
+				background: none;
+				border: 2px solid #000;
+				font-family: "montserrat", sans-serif;
+				text-transform: uppercase;
+				padding: 7px 35px;
+				min-width: 95px;
+				margin: 10px;
+				cursor: pointer;
+				transition: color 0.4s linear;
+				position: relative;
+				right: 90px;
+			}
+			
+			.btn3:hover {
+				color: #fff;
+			}
+			
+			.btn3::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				z-index: -1;
+				transition: transform 0.5s;
+				transform-origin: 0 0;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+			}
+			
+			.btn {
+				background: none;
+				border: 2px solid #009688;
+				font-family: "montserrat", sans-serif;
+				text-transform: uppercase;
+				padding: 10px 5px;
+				min-width: 100px;
+				margin: 10px;
+				cursor: pointer;
+				transition: color 0.4s linear;
+				position: relative;
+				z-index: 10;
+			}
+			
+			.btn:hover {
+				color: #000000;
+			}
+			
+			.btn::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #009688;
+				z-index: -1;
+				transition: transform 0.5s;
+				transform-origin: 0 0;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+			}
+			
+			.btn1::before {
+				transform: scaleX(0);
+			}
+			
+			.btn2::before {
+				transform: scaleY(0);
+			}
+			
+			.btn1:hover::before {
+				transform: scaleX(1);
+			}
+			
+			.btn2:hover::before {
+				transform: scaleY(1);
+			}
+			.button {
+				background-color: #4CAF50;
+				/* Green */
+				border: none;
+				color: white;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+			}
+		</style>
+		<div class="bigbox" style="display: block;">
+			
+			<div id="app">
+					<div v-show="asd" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1000px;margin-left: -500px; margin-top: -300px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+					<div class="helper-dialog-header">
+						<p class="helper-dialog-title">添加信息</p>
+						<i class="helper-dialog-close helper-noselect" @click="asd=false">✕</i>
+					</div>
+					<div class="helper-dialog-content" style="overflow:auto;font-size: 15px; height:400px;">
+
+						<div class="box">
+							设备物品：
+							<input v-model="goodsname"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text"/>
+						</div>
+
+						<div class="box">
+							所在仓库：
+						
+							<input v-model="name"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" />
+						</div>
+						
+						<div class="box">
+							用户姓名：
+						
+							<input v-model="username"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" />
+						</div>
+						
+							<div class="box">
+							用户电话：
+							<input v-model="phone" style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text"/>
+						</div>
+							<div class="box">
+							设备数量：
+							<input v-model="weight" style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" />
+						</div>
+					</div>
+					<div class="helper-dialog-footer helper-noselect">
+						<div class="helper-dialog-yes" @click="addAll">添加</div>
+						<div class="helper-dialog-yes" @click="asd=false">关闭</div>
+
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<div v-show="most" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1000px;margin-left: -500px; margin-top: -300px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+					<div class="helper-dialog-header">
+						<p class="helper-dialog-title">修改信息</p>
+						<i class="helper-dialog-close helper-noselect" @click="most=false">✕</i>
+					</div>
+					<div class="helper-dialog-content" style="overflow:auto;font-size: 15px; height:400px;">
+
+						<div class="box">
+							设备物品：
+							<input v-model="goodsname"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="goodsname" />
+						</div>
+
+						<div class="box">
+							所在仓库：
+						
+							<input v-model="name"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="name" />
+						</div>
+						
+						<div class="box">
+							用户姓名：
+						
+							<input v-model="username"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="username" />
+						</div>
+						
+							<div class="box">
+							用户电话：
+						
+							<input v-model="phone" style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="phone" />
+						</div>
+						<div class="box">
+							<label style="color:white;width: 90px;position: absolute;left: 77px;top: 215px;">计量单位：</label>
+
+							<select class="select" v-model="state">
+								
+								<option :value="0">未存放或者交接状态</option>
+								<option :value="1">已存放</option>
+								<option :value="2">已取</option>
+							</select>
+						</div>
+						
+							<div class="box">
+							设备数量：
+						
+							<input v-model="weight" style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="weight" />
+						</div>
+					</div>
+					<div class="helper-dialog-footer helper-noselect">
+						<div class="helper-dialog-yes" @click="upall" >修改</div>
+						<div class="helper-dialog-yes" @click="most=false">关闭</div>
+					</div>
+				</div>
+				
+				
+				<button class="btn btn1" @click="tianj">添加订单</button>
+				<table cellspacing="0" cellpadding="10" style="z-index:12;width: 100%; text-align: center;margin-top: 40px;">
+					<thead>
+
+						<tr>
+							<th>设备物品</th>
+							<th>所在仓库</th>
+							<th>用户姓名</th>
+							<th>用户电话</th>
+							<th>订单状态</th>
+							<th>设备数量</th>
+							<th>订单时间</th>
+							<th v-show="worktypesName==='管理'">操作</th>
+
+						</tr>
+					</thead>
+					<tbody id="table_proindex">
+						
+						<tr v-for="(item,i) in tips" class="second_tr">
+							<td style="width: 200px;height: 90px; vertical-align: middle;display: table-cell;">
+								{{item.goodsname}}
+								
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.warehouses.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.username}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.userphone}}
+							</td>
+
+							<td style="vertical-align: middle;display: table-cell;" v-show="item.state===0">
+								未存放或者交接状态
+							</td>
+							<td style="vertical-align: middle;display: table-cell;" v-show="item.state===1">
+								已存放
+							</td>
+							<td style="vertical-align: middle;display: table-cell;" v-show="item.state===2">
+								已取
+							</td>
+
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.weight}}{{item.metering.name}}
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.createtime | formatDate}}
+							</td>
+
+							<td v-if="worktypesName==='管理'"  style="vertical-align: middle;display: table-cell;">
+								<button   class="btn btn1" @click="btu(item)">修改</button>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<script>
+			new Vue({
+				el: "#app",
+				data: {
+					gsid: "",
+					tips: [],
+					goodsname:"",
+					name:"",
+					username:"",
+					phone:"",
+					state:"",
+					weight:"",
+					most:false,
+					meteid:"",
+					worktypesName:"",
+					asd:false
+
+				},
+				mounted: function() {
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
+					console.log(this.worktypesName)
+					var that = this;
+					$.ajax({
+						type: "post",
+						url: "http://120.79.46.8:8080/storage/storage/goods/selectGoods",
+						data: {
+							companyid: that.gsid
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log(data)
+							that.tips = data.extend.tips
+
+						}
+						//
+					})
+				},
+
+				methods: {
+					addAll:function(){
+						var that = this;
+						$.ajax({
+						type: "post",
+						url: "http://120.79.46.8:8080/storage/storage/goods/addtGoods",
+						data: {
+							companyid: that.gsid,
+							goodsname: that.goodsname,
+							meteringid: that.meteid,
+							state:0,
+							username: that.username,
+							userphone: that.phone,
+							
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log(data)
+							that.tips = data.extend.tips
+							that.most=false
+
+						}
+						
+					})
+					},
+					tianj:function(item){
+							this.meteid=item.metering.id
+						this.asd=true
+					},
+					selectAll:function(){
+						var that = this;
+							$.ajax({
+						type: "post",
+						url: "http://120.79.46.8:8080/storage/storage/goods/selectGoods",
+						data: {
+							companyid: that.gsid
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							console.log(data)
+							that.tips = data.extend.tips
+							that.most=false
+
+						}
+						
+					})
+					},
+					btu:function(item){
+						 console.log(item)
+						this.goodsname=item.goodsname;
+						this.name=item.warehouses.name;
+						this.username=item.username;
+						this.phone=item.userphone;
+						this.state=item.state;
+						this.weight=item.weight;
+						this.meteid=item.metering.id
+						this.wareid=item.warehouses.meteringid
+						this.id=item.id
+						this.most=true
+						
+					},
+					upall:function(){
+					var that = this;
+					console.log(that.gsid,that.goodsname, that.meteid,that.state,that.username,that.phone,that.wareid,that.weight)
+					$.ajax({
+						type: "post",
+						url: "http://120.79.46.8:8080/storage/storage/goods/updGoods",
+						data: {
+							companyid: that.gsid,
+							goodsname:that.goodsname,
+							id:that.id,
+							meteringid:that.meteid,
+							state:that.state,
+							username:that.username,
+							userphone:that.phone,
+							warehouseid:that.wareid,
+							weight:that.weight
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+						console.log("添加成功")
+						that.selectAll()
+						}
+						
+					})
+					}
+				},
+				filters: {
+					formatDate: function(value) {
+						let date = new Date(value);
+						let y = date.getFullYear();
+						let MM = date.getMonth() + 1;
+						MM = MM < 10 ? ('0' + MM) : MM;
+						let d = date.getDate();
+						d = d < 10 ? ('0' + d) : d;
+						let h = date.getHours();
+						h = h < 10 ? ('0' + h) : h;
+						let m = date.getMinutes();
+						m = m < 10 ? ('0' + m) : m;
+						let s = date.getSeconds();
+						s = s < 10 ? ('0' + s) : s;
+						return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
