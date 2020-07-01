@@ -80,6 +80,7 @@
 		.app
 		{
 			height: 1000px;
+			
 		}
 		::-webkit-scrollbar {
 				display: none;
@@ -126,7 +127,7 @@
 							<li>
 								<a class="waves-effect" href="javascript:;" @click="btu" ><i class="menu-icon mdi mdi-view-dashboard"></i><span>导航栏</span></a>
 							</li>
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-desktop-mac"></i><span>公司信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									<li>
@@ -144,7 +145,7 @@
 								</ul>
 								<!-- /.sub-menu js__content -->
 							</li>
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-cube-outline"></i><span>设备信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									<li>
@@ -161,7 +162,7 @@
 
 							</li>
 
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-table"></i><span>员工信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									
@@ -176,53 +177,35 @@
 							<!--<li class="current">
 					<a class="waves-effect" href="calendar.html"><i class="menu-icon mdi mdi-calendar"></i><span>Calendar</span></a>
 				</li>-->
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-fire"></i><span>仓库信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									<li>
 										<a href="javascript:;" @click="btu6">仓库信息</a>
 									</li>
-									
+									<li>
+											<a href="javascript:;"  @click="btu7">仓库Charts图表</a>
+										</li>
 								</ul>
 
 							</li>
 			
-							
-								<li>
+							<!--<ul class="menu js__accordion">-->
+								<li v-if="cha1">
 									<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-chart-areaspline"></i><span>Charts</span><span class="menu-arrow fa fa-angle-down"></span></a>
 									<ul class="sub-menu js__content">
 										<li>
-											<a href="chart-3d.html">3D Charts</a>
+											<a href="javascript:;"  @click="btu7">仓库Charts图表</a>
 										</li>
 										<li>
 											<a href="chart-chartist.html">Chartist Charts</a>
 										</li>
-										<li>
-											<a href="chart-chartjs.html">Chartjs Chart</a>
-										</li>
-										<li>
-											<a href="chart-dynamic.html">Dynamic Chart</a>
-										</li>
-										<li>
-											<a href="chart-flot.html">Flot Chart</a>
-										</li>
-										<li>
-											<a href="chart-knob.html">Knob Chart</a>
-										</li>
-										<li>
-											<a href="chart-morris.html">Morris Chart</a>
-										</li>
-										<li>
-											<a href="chart-sparkline.html">Sparkline Chart</a>
-										</li>
-										<li>
-											<a href="chart-other.html">Other Chart</a>
-										</li>
-								
+										
+									<!--</ul>-->
 
 								</li>
-								<li>
-									<!--<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-pencil-box"></i><span>Forms</span><span class="notice notice-blue">7</span></a>
+								<!--<li>
+									<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-pencil-box"></i><span>Forms</span><span class="notice notice-blue">7</span></a>
 					<ul class="sub-menu js__content">
 						<li><a href="form-elements.html">General Elements</a></li>
 						<li><a href="form-advanced.html">Advanced Form</a></li>
@@ -422,7 +405,9 @@
 					gsid:"",
 					name:"",
 					worktypesName:"",
-					html:"index.html"
+					html:"index.html",
+					cha1:false,
+					cha2:true,
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
@@ -431,8 +416,21 @@
 						swal("登录失败！","当前未登录!正在跳转登录","error");
 						window.location.href="http://120.79.46.8/storage/login.html";
 					}
+					swal("当前网速较慢!(网速检测)","请稍等页面加载！","error");
 					this.name = JSON.parse(localStorage.getItem("name"));
-					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
+					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"))+"人员";
+					
+					if (this.worktypesName=="管理人员") {
+						//this.cha1=true
+						this.cha1=false
+						this.cha2=true
+						
+					} else{
+						this.cha1=true
+						this.cha2=false
+					}
+					
+					
 					console.log(this.gsid);
 					
 				},
@@ -458,6 +456,9 @@
 					},
 					btu6:function(){
 						this.html="warehouse.html";
+					},
+					btu7:function(){
+						this.html="charts.html";
 					}
 				}
 			})
