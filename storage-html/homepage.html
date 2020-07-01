@@ -126,7 +126,7 @@
 							<li>
 								<a class="waves-effect" href="javascript:;" @click="btu" ><i class="menu-icon mdi mdi-view-dashboard"></i><span>导航栏</span></a>
 							</li>
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-desktop-mac"></i><span>公司信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									<li>
@@ -144,7 +144,7 @@
 								</ul>
 								<!-- /.sub-menu js__content -->
 							</li>
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-cube-outline"></i><span>设备信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									<li>
@@ -161,7 +161,7 @@
 
 							</li>
 
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-table"></i><span>员工信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									
@@ -176,19 +176,21 @@
 							<!--<li class="current">
 					<a class="waves-effect" href="calendar.html"><i class="menu-icon mdi mdi-calendar"></i><span>Calendar</span></a>
 				</li>-->
-							<li>
+							<li v-if="cha2">
 								<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-fire"></i><span>仓库信息管理</span><span class="menu-arrow fa fa-angle-down"></span></a>
 								<ul class="sub-menu js__content">
 									<li>
 										<a href="javascript:;" @click="btu6">仓库信息</a>
 									</li>
-									
+									<li>
+											<a href="javascript:;"  @click="btu7">仓库Charts图表</a>
+										</li>
 								</ul>
 
 							</li>
 			
 							<!--<ul class="menu js__accordion">-->
-								<li>
+								<li v-if="cha1">
 									<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-chart-areaspline"></i><span>Charts</span><span class="menu-arrow fa fa-angle-down"></span></a>
 									<ul class="sub-menu js__content">
 										<li>
@@ -402,7 +404,9 @@
 					gsid:"",
 					name:"",
 					worktypesName:"",
-					html:"index.html"
+					html:"index.html",
+					cha1:false,
+					cha2:true,
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
@@ -411,8 +415,20 @@
 						swal("登录失败！","当前未登录!正在跳转登录","error");
 						window.location.href="http://120.79.46.8/storage/login.html";
 					}
+					swal("请稍等页面加载！","当前网速较慢!(网速检测)","error");
 					this.name = JSON.parse(localStorage.getItem("name"));
-					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"));
+					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"))+"人员";
+					
+					if (this.worktypesName=="管理人员") {
+//						this.cha1=true
+						
+						
+					} else{
+						this.cha2=false
+						this.cha1=true
+					}
+					
+					
 					console.log(this.gsid);
 					
 				},
