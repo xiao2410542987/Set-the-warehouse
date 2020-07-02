@@ -84,7 +84,12 @@ public class WarehousesController {
         Page<Warehouses> page = new Page<>(start, state);
         return warehousesMapper.QueryWarehouse(page,new QueryWrapper<Warehouses>(),companyid);
     }
-
+    @ApiOperation("查询所有仓库(包括可使用)")
+    @RequestMapping(value = "/QueryWarehouseAll", method = RequestMethod.GET)
+    public IPage<Warehouses> QueryWarehouseAll(int start,int state,int companyid){
+        Page<Warehouses> page = new Page<>(start, state);
+        return warehousesMapper.QueryWarehouseAll(page,new QueryWrapper<Warehouses>(),companyid);
+    }
 
     @ApiOperation("修改仓库基本信息")
     @RequestMapping(value = "/repairWarehouse", method = RequestMethod.GET)
