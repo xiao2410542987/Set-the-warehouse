@@ -1,269 +1,309 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>图表</title>
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/echarts.js"></script>
+		<style>
+			.box1 {
+				width: 1710px;
+				height: 1160px;
+				position: relative;
+				left: 252px;
+    			top: -40px;
+    			background-size:cover ;
+				background-image: url(assets/images/photo1.png);
+			}
+				.bigbox {
+				width: 100%;
+    			height: 90%;
+				background-color: rgb(13, 16, 21);
+				overflow: hidden;
+				box-sizing: border-box;
+				color: white;
+				border-radius: 6px;
+				margin: auto auto;
+				position: relative;
+				opacity: 0.9;
+				box-shadow: 0 0 50px rgb(255, 255, 255);
+				top: 100px;
+			}
+		</style>
 	</head>
+
 	<body>
-		<div  style="width:2000px;height:800px%;margin-left: 12%;margin-top: 2%;background-image: url(assets/images/photo1.png); background-size: cover;">
+		<div class="box1">
+<div class="bigbox">
+	
+			<select class="wh1" style="width: 300px;height: 40px;background-color: rgb(13, 16, 21);color: white;border: 1px solid white;position: relative;top:10px;left: 61%;">
+			</select>
+
+			<div id="main1" style="width: 890px;height:600px;position: relative;float: right;40px;top:60px;left: -70px;">
+
+			</div>
+			<div id="main2" style="width: 820px;height:560px;top: 10px;">
+
+			</div>
+</div>
 			
-		<select class="wh1" style="margin-left: 21%;margin-top: 10%;">
-			
-		</select>
-		
-		<div id="main1" style="width: 1000px;height:700px;">
-			
-		</div>
-		<div id="main2" style="width: 1000px;height:700px;">
-			
-		</div>
 		</div>
 		<script type="text/javascript">
-		
-		$(function()
-		{
-			var gsid=JSON.parse(localStorage.getItem("comid"));
-			var goods;
-			var good = new Array();
-			good=[];
-			var record1;
-			var wareh;
-			$.ajax({
-				type:"get",
-				url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
-						data: {
-							companyid: gsid,
-							start: 1,
-							state: 9999
-						},
-						xhrFields: {
-							withCredentials: true
-						},
-						crossDomain: true,
-						async: false,
-						success: function(data) {
-							
-							record1=data.records;
-							wareh=data.records[0];
-							$.each(data.records, function(index,el) {
-								$(".wh1").append("<option value='"+el.id+"'>"+el.name+"</option>");
-								
-							});
-							
+			$(function() {
+				var gsid = JSON.parse(localStorage.getItem("comid"));
+				var goods;
+				var good = new Array();
+				good = [];
+				var record1;
+				var wareh;
+				$.ajax({
+					type: "get",
+					url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+					data: {
+						companyid: gsid,
+						start: 1,
+						state: 9999
+					},
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					async: false,
+					success: function(data) {
+
+						record1 = data.records;
+						wareh = data.records[0];
+						$.each(data.records, function(index, el) {
+							$(".wh1").append("<option value='" + el.id + "'>" + el.name + "</option>");
+
+						});
+
+					}
+				});
+
+				$.ajax({
+					type: "post",
+					url: "http://120.79.46.8:8080/storage/storage/goods/selectGoods",
+					data: {
+						companyid: gsid,
+					},
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					async: false,
+					success: function(data) {
+
+						goods = data.extend.tips;
+						var i = 0;
+						$.each(goods, function(index, el) {
+							if(el.warehouseid == $(".wh1").val()) {
+								good[i] = el;
+								i++;
+							}
+
+						});
+						chart1(record1, wareh, good);
+						chart2(record1);
+					}
+				});
+
+				$(".wh1").on("change", function() {
+
+					good = [];
+					$.each(record1, function(index, el) {
+						if($(".wh1").val() == el.id) {
+							wareh = el;
 						}
-			});
-			
-			$.ajax({
-				type:"post",
-				url:"http://120.79.46.8:8080/storage/storage/goods/selectGoods",
-						data: {
-							companyid: gsid,
-						},
-						xhrFields: {
-							withCredentials: true
-						},
-						crossDomain: true,
-						async: false,
-						success: function(data)
-						{
-							
-							goods=data.extend.tips;
-							var i=0;
-							$.each(goods, function(index,el) {
-								if (el.warehouseid==$(".wh1").val()) {
-									good[i]=el;
-									i++;
-								}
-								
-							});
-							chart1(record1,wareh,good);
-							chart2(record1);
+					});
+
+					var i = 0;
+					$.each(goods, function(index, el) {
+						if(el.warehouseid == $(".wh1").val()) {
+							good[i] = el
+							i++;
 						}
-			});
-			
-			
-			
-			$(".wh1").on("change",function()
-			{
-				
-				good=[];
-							$.each(record1, function(index,el) {
-								if ($(".wh1").val()==el.id) {
-									wareh=el;
-								}
-							});
-							
-							var i=0;
-							$.each(goods, function(index,el) {
-								if (el.warehouseid==$(".wh1").val()) {
-									good[i]=el
-									i++;
-								}
-								
-							});
-				chart1(record1,wareh,good);
-					
+
+					});
+					chart1(record1, wareh, good);
+
+				})
+
 			})
-			
-			
-		})
-		
 
-		
-		function chart1(el1,el2,el3)
-		{
-			// 基于准备好的dom，初始化echarts实例
-        var myChart1 = echarts.init(document.getElementById('main1'));
-		
-		var goodsnames = new Array();
-		var goods1 = new Array();
-		goodsnames=[];
-		goods1=[];
-		
-        $.each(el3, function(index,el) {
-        	goodsnames[index]=el.goodsname;
-        });
-			goodsnames[el3.length]="空闲空间";
-			
-			$.each(el3, function(index,el) {
-				goods1[index]={value: el.weight, name: el.goodsname+"(单位:"+el2.metering.name+")"};
-			});
-			goods1[el3.length]={value: el2.unusesize, name: "空闲空间(单位:"+el2.metering.name+")"};
-			
-	option1 = {
-    tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
-    },
-    legend: {
-        orient: 'vertical',
-        left: goodsnames.length,
-        data: goodsnames
-    },
-    series: [
-        {
-            name: '数量',
-            type: 'pie',
-            selectedMode: 'single',
-            radius: [0, '30%'],
+			function chart1(el1, el2, el3) {
+				// 基于准备好的dom，初始化echarts实例
+				var myChart1 = echarts.init(document.getElementById('main1'));
 
-            label: {
-                position: 'inner'
-            },
-            labelLine: {
-                show: false
-            },
-            data: goods1
-        },
-        {
-            name: '数量',
-            type: 'pie',
-            radius: ['40%', '55%'],
-            label: {
-                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
-                backgroundColor: '#eee',
-                borderColor: '#aaa',
-                borderWidth: 1,
-                borderRadius: 4,
-                // shadowBlur:3,
-                // shadowOffsetX: 2,
-                // shadowOffsetY: 2,
-                // shadowColor: '#999',
-                // padding: [0, 7],
-                rich: {
-                    a: {
-                        color: '#999',
-                        lineHeight: 22,
-                        align: 'center'
-                    },
-                    // abg: {
-                    //     backgroundColor: '#333',
-                    //     width: '100%',
-                    //     align: 'right',
-                    //     height: 22,
-                    //     borderRadius: [4, 4, 0, 0]
-                    // },
-                    hr: {
-                        borderColor: '#aaa',
-                        width: '100%',
-                        borderWidth: 0.5,
-                        height: 0
-                    },
-                    b: {
-                        fontSize: 16,
-                        lineHeight: 33
-                    },
-                    per: {
-                        color: '#eee',
-                        backgroundColor: '#334455',
-                        padding: [2, 4],
-                        borderRadius: 2
-                    }
-                }
-            },
-            data: goods1
-	        }
-	    ]
-	};
-        // 使用刚指定的配置项和数据显示图表。
-        myChart1.setOption(option1);
-		}
+				var goodsnames = new Array();
+				var goods1 = new Array();
+				goodsnames = [];
+				goods1 = [];
+
+				$.each(el3, function(index, el) {
+					goodsnames[index] = el.goodsname;
+				});
+				goodsnames[el3.length] = "空闲空间";
+				
+				$.each(el3, function(index, el) {
+					goods1[index] = {
+						value: el.weight,
+						name: el.goodsname + "(单位:" + el2.metering.name + ")"
+					};
+				});
+				console.log("goodsnames");
+				
+				
+				goods1[el3.length] = {
+					value: el2.unusesize,
+					name: "空闲空间(单位:" + el2.metering.name + ")"
+				};
+
+				option1 = {
+					tooltip: {
+						trigger: 'item',
+						formatter: '{a} <br/>{b}: {c} ({d}%)'
+					},
+					legend: {
+						orient: 'vertical',
+        				left: 10,
+        				textStyle: {
+        				color: "rgba(231, 27, 27, 1)"
+        				},
+        				data: goodsnames
+					},
+					
+					series: [{
+							name: '数量',
+							type: 'pie',
+							selectedMode: 'single',
+							radius: [0, '30%'],
+
+							label: {
+								position: 'inner',
+								color: "#dd1a1a"
+							},
+							labelLine: {
+								show: false
+							},
+							data: goods1
+						},
+						{
+							name: '数量',
+							type: 'pie',
+							radius: ['40%', '55%'],
+							label: {
+								formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+								backgroundColor: '#eee',
+								borderColor: '#aaa',
+								borderWidth: 1,
+								borderRadius: 4,
+								// shadowBlur:3,
+								// shadowOffsetX: 2,
+								// shadowOffsetY: 2,
+								// shadowColor: '#999',
+								// padding: [0, 7],
+								rich: {
+									a: {
+										color: '#dd1a1a',
+										lineHeight: 22,
+										align: 'center'
+									},
+									// abg: {
+									//     backgroundColor: '#333',
+									//     width: '100%',
+									//     align: 'right',
+									//     height: 22,
+									//     borderRadius: [4, 4, 0, 0]
+									// },
+									hr: {
+										borderColor: '#aaa',
+										width: '100%',
+										borderWidth: 0.5,
+										height: 0
+									},
+									b: {
+										fontSize: 16,
+										lineHeight: 33
+									},
+									per: {
+										color: '#eee',
+										backgroundColor: '#334455',
+										padding: [2, 4],
+										borderRadius: 2
+									}
+								}
+							},
+							data: goods1
+						}
+					]
+				};
+				// 使用刚指定的配置项和数据显示图表。
+				myChart1.setOption(option1);
+			}
+
+			function chart2(el1) {
+				console.log(el1);
+				var goods2 = new Array();
+				var goodsname2 = new Array();
+				$.each(el1, function(index, el) {
+					goods2[2 * index] = {
+						value: el.waresize,
+						name: el.name + "已使用空间" + "(单位:" + el.metering.name + ")"
+					};
+					goods2[2 * index + 1] = {
+						value: el.unusesize,
+						name: el.name + "未使用空间" + "(单位:" + el.metering.name + ")"
+					};
+				});
+				$.each(el1, function(index, el) {
+					goodsname2[2 * index] = el.name + "已使用空间" + "(单位:" + el.metering.name + ")";
+					goodsname2[2 * index + 1] = el.name + "未使用空间" + "(单位:" + el.metering.name + ")";
+				});
+				console.log(goods2);
 		
-        function chart2(el1)
-        {
-        	console.log(el1);
-        	var goods2 = new Array();
-        	var goodsname2 = new Array();
-        	$.each(el1, function(index,el) {
-        		goods2[2*index] = {value: el.waresize, name: el.name+"已使用空间"+"(单位:"+el.metering.name+")"};
-        		goods2[2*index+1] = {value: el.unusesize, name: el.name+"未使用空间"+"(单位:"+el.metering.name+")"};
-        	});
-        	$.each(el1, function(index,el) {
-        		goodsname2[2*index] = el.name+"已使用空间"+"(单位:"+el.metering.name+")";
-        		goodsname2[2*index+1] = el.name+"未使用空间"+"(单位:"+el.metering.name+")";
-        	});
-        	console.log(goods2);
-        	console.log(goodsname2);
-        	var myChart2 = echarts.init(document.getElementById('main2'));
-			        	option2 = {
-			    	tooltip: {
-			        trigger: 'item',
-			        formatter: '{a} <br/>{b}: {c} ({d}%)'
-			    },
-			    legend: {
-			        orient: 'vertical',
-			        left: 10,
-			        data: goodsname2
-			    },
-			    series: [
-			        {
-			            name: '仓库情况',
-			            type: 'pie',
-			            radius: ['50%', '70%'],
-			            avoidLabelOverlap: false,
-			            label: {
-			                show: false,
-			                position: 'center'
-			            },
-			            emphasis: {
-			                label: {
-			                    show: true,
-			                    fontSize: '30',
-			                    fontWeight: 'bold'
-			                }
-			            },
-			            labelLine: {
-			                show: false
-			            },
-			            data: goods2
-			        }
-			    ]
-			};
-        	myChart2.setOption(option2);
-        }
-    	</script>
+				console.log(goodsname2);
+				var myChart2 = echarts.init(document.getElementById('main2'));
+				option2 = {
+					tooltip: {
+						trigger: 'item',
+						formatter: '{a} <br/>{b}: {c} ({d}%)'
+					},
+					legend: {
+						orient: 'vertical',
+						left: 10,
+						data: goodsname2,
+						textStyle: {
+					      color: "rgba(255, 255, 255, 1)"
+					    }
+					},
+					series: [{
+						name: '仓库情况',
+						type: 'pie',
+						radius: ['50%', '70%'],
+						avoidLabelOverlap: false,
+						label: {
+							show: false,
+							position: 'center',
+							color: "#fff"
+						},
+						emphasis: {
+							label: {
+								show: true,
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						},
+						labelLine: {
+							show: false
+						},
+						data: goods2
+					}]
+				};
+				myChart2.setOption(option2);
+			}
+		</script>
 	</body>
-	
+
 </html>
