@@ -336,8 +336,9 @@
 					meteid:"",
 					worktypesName:"",
 					asd:false,
-					meterings:""
-
+					meterings:"",
+					wareh:[],
+					i:""
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
@@ -440,7 +441,7 @@
 						
 					},
 					btu:function(item){
-						 console.log(item)
+						console.log(item)
 						this.goodsname=item.goodsname;
 						this.name=item.warehouses.name;
 						this.username=item.username;
@@ -451,6 +452,36 @@
 						this.wareid=item.warehouses.meteringid
 						this.id=item.id
 						this.most=true
+						
+						
+						$.ajax({
+							type:"get",
+							url:"http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							data: {
+							companyid: this.gsid,
+							start: 1,
+							state: 9999
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data.records);
+								this.i=0;
+								
+								$.each(data.records, function(index,el) {
+									console.log(this.i);
+									if(el.unusesize>=item.weight)
+									{
+										
+										this.wareh[this.i]=el;
+										this.i++;
+									}
+								});
+								console.log(this.wareh);
+								}
+							});
 						
 					},
 					upall:function(){
