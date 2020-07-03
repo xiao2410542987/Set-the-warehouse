@@ -284,7 +284,7 @@
 						</div>
 					</div>
 					<div class="helper-dialog-footer helper-noselect">
-						<div class="helper-dialog-yes" @click="upall" >修改</div>
+						<div class="helper-dialog-yes" @click="upall2" >修改</div>
 						<div class="helper-dialog-yes" @click="most2=false">关闭</div>
 					</div>	
 					</div>
@@ -374,7 +374,8 @@
 					i:0,
 					ckid:"",
 					metename:"",
-					wareid:""
+					wareid:"",
+					wareid2:""
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
@@ -479,7 +480,6 @@
 					btu:function(item){
 						console.log(item)
 						this.goodsname=item.goodsname;
-						
 						this.name=item.warehouses.name;
 						this.username=item.username;
 						this.phone=item.userphone;
@@ -490,6 +490,7 @@
 						this.metename=item.metering.name
 						this.wareid=item.warehouses.id
 						this.id=item.id
+						this.wareid2=item.warehouses.id
 						this.most=true
 						console.log(this.wareid,this.name,this.meteid,this.metename)
 						var that = this;
@@ -511,7 +512,6 @@
 							crossDomain: true,
 							success: function(data) {
 							
-								console.log(data.records);
 								
 								this.wareh=[];
 								that.i=0
@@ -525,17 +525,6 @@
 									}
 									
 								});
-									if(that.wareh.length==0)
-									{
-										$.each(data.records, function(index,el) {
-											/*if(el.)
-											{
-												that.wareh[0]=
-											}*/
-											console.log(el);
-										});
-									}
-								
 								}
 							});
 						
@@ -553,6 +542,7 @@
 						this.meteid=item.metering.id
 						this.metename=item.metering.name
 						this.wareid=item.warehouses.id
+						this.wareid2=item.warehouses.id
 						this.id=item.id
 						this.most2=true
 						
@@ -593,16 +583,267 @@
 										
 									}
 								});
-								
+								if(that.wareh.length==0)
+									{
+										$.each(data.records, function(index,el) {
+											if(el.id==that.wareid)
+											{
+												that.wareh[0]=el;
+											}
+											
+										});
+									}
 								
 								}
 							});
 						
 					},
+					upall2:function(){
+					var that = this;
+					console.log(that.gsid,that.goodsname, that.meteid,that.state,that.username,that.phone,that.wareid,that.wareid2,that.weight,that.weight2,that.weight2-that.weight)
+					$.ajax({
+						type: "post",
+						url: "http://120.79.46.8:8080/storage/storage/goods/updGoods",
+						data: {
+							companyid: that.gsid,
+							goodsname:that.goodsname,
+							id:that.id,
+							meteringid:that.meteid,
+							state:that.state,
+							username:that.username,
+							userphone:that.phone,
+							warehouseid:that.wareid,
+							weight:that.weight
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+						console.log("添加成功")
+						
+							
+						$.ajax({
+							type:"get",
+							url:"http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							async:false,
+							data: {
+							companyid: that.gsid,
+							start: 1,
+							state: 99
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							$.each(data, function(index,el) {
+								if(el.id==that.wareid)
+								{
+									$.ajax({
+										type:"get",
+										url:"http://120.79.46.8:8080/storage/storage/warehouses/repairWarehouse",
+										async:false,
+										data: {
+											companyid: that.gsid,
+											id: el.id,
+											meteringid: el.meteringid,
+											name: el.name,
+											unusesize: el.unusesize-that.weight,
+											warehousetypeid: el.warehousetypeid,
+											waresize: el.waresize,
+											workerid: el.workerid
+			
+										},
+										xhrFields: {
+											withCredentials: true
+										},
+										crossDomain: true,
+										success: function(data) {
+											
+										}
+										});
+								}
+							});
+						}
+						});
+						$.ajax({
+							type:"get",
+							url:"http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							async:false,
+							data: {
+							companyid: that.gsid,
+							start: 1,
+							state: 99
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							$.each(data, function(index,el) {
+								if(el.id==that.wareid2)
+								{
+									$.ajax({
+										type:"get",
+										url:"http://120.79.46.8:8080/storage/storage/warehouses/repairWarehouse",
+										async:false,
+										data: {
+											companyid: that.gsid,
+											id: el.id,
+											meteringid: el.meteringid,
+											name: el.name,
+											unusesize: el.unusesize+that.weight,
+											warehousetypeid: el.warehousetypeid,
+											waresize: el.waresize,
+											workerid: el.workerid
+			
+										},
+										xhrFields: {
+											withCredentials: true
+										},
+										crossDomain: true,
+										success: function(data) {
+											
+										}
+										});
+								}
+							});
+						}
+						});
+						
+						that.selectAll()
+						}
+						
+					})
+					},
 					upall:function(){
 					var that = this;
 					console.log(that.gsid,that.goodsname, that.meteid,that.state,that.username,that.phone,that.wareid,that.weight,that.weight2,that.weight2-that.weight)
-					/*$.ajax({
+					
+					if ((that.weight2-that.weight)!=0) {
+						$.ajax({
+						type: "post",
+						url: "http://120.79.46.8:8080/storage/storage/goods/updGoods",
+						data: {
+							companyid: that.gsid,
+							goodsname:that.goodsname,
+							id:that.id,
+							meteringid:that.meteid,
+							state:that.state,
+							username:that.username,
+							userphone:that.phone,
+							warehouseid:that.wareid,
+							weight:that.weight
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							
+						$.ajax({
+							type:"get",
+							url:"http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							async:false,
+							data: {
+							companyid: that.gsid,
+							start: 1,
+							state: 99
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							$.each(data, function(index,el) {
+								if(el.id==that.wareid)
+								{
+									$.ajax({
+										type:"get",
+										url:"http://120.79.46.8:8080/storage/storage/warehouses/repairWarehouse",
+										async:false,
+										data: {
+											companyid: that.gsid,
+											id: el.id,
+											meteringid: el.meteringid,
+											name: el.name,
+											unusesize: el.unusesize-(that.weight2-that.weight),
+											warehousetypeid: el.warehousetypeid,
+											waresize: el.waresize,
+											workerid: el.workerid
+			
+										},
+										xhrFields: {
+											withCredentials: true
+										},
+										crossDomain: true,
+										success: function(data) {
+											
+										}
+										});
+								}
+							});
+						}
+						});
+						$.ajax({
+							type:"get",
+							url:"http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							async:false,
+							data: {
+							companyid: that.gsid,
+							start: 1,
+							state: 99
+
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							$.each(data, function(index,el) {
+								if(el.id==that.wareid2)
+								{
+									$.ajax({
+										type:"get",
+										url:"http://120.79.46.8:8080/storage/storage/warehouses/repairWarehouse",
+										async:false,
+										data: {
+											companyid: that.gsid,
+											id: el.id,
+											meteringid: el.meteringid,
+											name: el.name,
+											unusesize: el.unusesize+(that.weight2-that.weight),
+											warehousetypeid: el.warehousetypeid,
+											waresize: el.waresize,
+											workerid: el.workerid
+			
+										},
+										xhrFields: {
+											withCredentials: true
+										},
+										crossDomain: true,
+										success: function(data) {
+											
+										}
+										});
+								}
+							});
+						}
+						});
+						
+						
+						that.selectAll();
+						}
+						
+						})
+					} else{
+						$.ajax({
 						type: "post",
 						url: "http://120.79.46.8:8080/storage/storage/goods/updGoods",
 						data: {
@@ -626,7 +867,8 @@
 						that.selectAll()
 						}
 						
-					})*/
+					})
+					}
 					}
 				},
 				filters: {
