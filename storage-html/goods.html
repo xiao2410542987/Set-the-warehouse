@@ -167,7 +167,7 @@
 			<div id="app">
 					<div v-show="asd" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1000px;margin-left: -500px; margin-top: -300px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
 					<div class="helper-dialog-header">
-						<p class="helper-dialog-title">添加信息</p>
+						<p class="helper-dialog-title" >添加信息</p>
 						<i class="helper-dialog-close helper-noselect" @click="asd=false">✕</i>
 					</div>
 					<div class="helper-dialog-content" style="overflow:auto;font-size: 15px; height:400px;">
@@ -216,7 +216,7 @@
 							<input v-model="goodsname"  style="width: 202px;height: 25px;border-radius:5px;position: relative ;left:8px;text-align: center;" type="text" value="goodsname" />
 						</div>
 
-						<div class="box">
+						<!--<div class="box">
 							<label style="color:white;width: 90px;position: absolute;left: 577px;top: 55px;">选择仓库：</label>
 							<select style="position: absolute;left: 680px;" class="select2" v-model="wareid">
 								
@@ -224,7 +224,7 @@
 								
 							</select>
 							
-						</div>
+						</div>-->
 						
 						<div class="box">
 							用户姓名：
@@ -269,7 +269,28 @@
 				</div>
 				
 				
-				<button class="btn btn1" @click="tianj">添加订单</button>
+				
+					<div v-show="most2" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1000px;margin-left: -500px; margin-top: -300px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+					<div class="helper-dialog-header">
+						<p class="helper-dialog-title">更换仓库</p>
+						<i class="helper-dialog-close helper-noselect" @click="most2=false">✕</i>
+					</div>
+					<div class="helper-dialog-content" style="overflow:auto;font-size: 15px; height:400px;">
+						<div class="box">
+							<label style="color:white;width: 90px;position: absolute;left: 327px;top: 55px;">选择仓库：</label>
+							<select style="position: absolute;left: 430px;top: 55px;" class="select2" v-model="wareid">								
+								<option v-for="item in wareh" :value="item.id">{{item.name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="helper-dialog-footer helper-noselect">
+						<div class="helper-dialog-yes" @click="upall" >修改</div>
+						<div class="helper-dialog-yes" @click="most2=false">关闭</div>
+					</div>	
+					</div>
+				
+				
+				<button class="btn btn1" @click="tianj" v-show="worktypesName==='管理'||worktypesName==='前台销售'">添加订单</button>
 				<table cellspacing="0" cellpadding="10" style="z-index:12;width: 100%; text-align: center;margin-top: 40px;">
 					<thead>
 
@@ -320,7 +341,8 @@
 							</td>
 
 							<td v-if="worktypesName==='管理'"  style="vertical-align: middle;display: table-cell;">
-								<button   class="btn btn1" @click="btu(item)">修改</button>
+								<button   class="btn btn1" @click="btu(item)">修改信息</button>
+								<button   class="btn btn1" @click="btu2(item)">更换仓库存放</button>
 							</td>
 
 						</tr>
@@ -341,7 +363,9 @@
 					phone:"",
 					state:"",
 					weight:"",
+					weight2:"",
 					most:false,
+					most2:false,
 					meteid:"",
 					worktypesName:"",
 					asd:false,
@@ -461,12 +485,77 @@
 						this.phone=item.userphone;
 						this.state=item.state;
 						this.weight=item.weight;
+						this.weight2=item.weight;
 						this.meteid=item.metering.id
 						this.metename=item.metering.name
 						this.wareid=item.warehouses.id
 						this.id=item.id
 						this.most=true
 						console.log(this.wareid,this.name,this.meteid,this.metename)
+						var that = this;
+						
+						console.log("xxx");
+						console.log(that.wareh);
+						$.ajax({
+							type:"get",
+							url:"http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							data: {
+							companyid: that.gsid,
+							start: 1,
+							state: 9999
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+							
+								console.log(data.records);
+								
+								this.wareh=[];
+								that.i=0
+								
+								$.each(data.records, function(index,el) {
+									
+									if(el.unusesize>=item.weight)
+									{																			
+										that.wareh[that.i]=el;									
+										that.i++;										
+									}
+									
+								});
+									if(that.wareh.length==0)
+									{
+										$.each(data.records, function(index,el) {
+											/*if(el.)
+											{
+												that.wareh[0]=
+											}*/
+											console.log(el);
+										});
+									}
+								
+								}
+							});
+						
+					},
+					btu2:function(item){
+						console.log(item)
+						this.goodsname=item.goodsname;
+						
+						this.name=item.warehouses.name;
+						this.username=item.username;
+						this.phone=item.userphone;
+						this.state=item.state;
+						this.weight=item.weight;
+						this.weight2=item.weight;
+						this.meteid=item.metering.id
+						this.metename=item.metering.name
+						this.wareid=item.warehouses.id
+						this.id=item.id
+						this.most2=true
+						
 						var that = this;
 						
 						console.log("xxx");
@@ -512,8 +601,8 @@
 					},
 					upall:function(){
 					var that = this;
-					console.log(that.gsid,that.goodsname, that.meteid,that.state,that.username,that.phone,that.wareid,that.weight)
-					$.ajax({
+					console.log(that.gsid,that.goodsname, that.meteid,that.state,that.username,that.phone,that.wareid,that.weight,that.weight2,that.weight2-that.weight)
+					/*$.ajax({
 						type: "post",
 						url: "http://120.79.46.8:8080/storage/storage/goods/updGoods",
 						data: {
@@ -537,7 +626,7 @@
 						that.selectAll()
 						}
 						
-					})
+					})*/
 					}
 				},
 				filters: {
