@@ -27,4 +27,7 @@ public interface WarehousesMapper extends BaseMapper<Warehouses> {
     IPage<Warehouses> QueryWarehouse(IPage<Warehouses> page, @Param(Constants.WRAPPER) Wrapper<Warehouses> QueryWrapper,int companyid);
 
     IPage<Warehouses> QueryWarehouseAll(IPage<Warehouses> page, @Param(Constants.WRAPPER) Wrapper<Warehouses> QueryWrapper,int companyid);
+
+    int stockChange(int id,int unusesize);
+    int stockChangePlus(int id,int unusesize);
 }

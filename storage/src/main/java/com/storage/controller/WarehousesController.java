@@ -4,7 +4,9 @@ package com.storage.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.storage.mapper.GoodsMapper;
 import com.storage.mapper.WarehousesMapper;
+import com.storage.pojo.Goods;
 import com.storage.pojo.Msg;
 import com.storage.pojo.Warehouses;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +36,9 @@ public class WarehousesController {
 
     @Autowired
     private WarehousesMapper warehousesMapper;
+
+    @Autowired
+    private GoodsMapper GoodsMapper;
     @ApiOperation("根据仓库类型查询仓库")
     @RequestMapping(value = "/selectWarehouse", method = RequestMethod.GET)
     public Msg selectWarehouse(
@@ -118,5 +123,44 @@ public class WarehousesController {
         }
         return Msg.fail();
     }
+
+    @ApiOperation("仓库的存量改变")
+    @RequestMapping(value = "/stockChange", method = RequestMethod.POST)
+    public Msg stockChange(@RequestParam @ApiParam(name = "id", value = "仓库id(要搬走的仓库id)") int id,
+                           @RequestParam @ApiParam(name = "unusesize", value = "要搬走的量") int unusesize,
+                           @RequestParam @ApiParam(name = "ids", value = "仓库id(要搬进去的仓库id)") int ids,
+                           @RequestParam @ApiParam(name = "unusesizes", value = "要搬进去的量") int unusesizes){
+        int i = warehousesMapper.stockChange(id, unusesize);
+        if(i == 1){
+            int i1 = warehousesMapper.stockChangePlus(ids, unusesizes);
+            if(i1 == 1){
+                return Msg.success();
+            }else {
+                return Msg.fail();
+            }
+        }
+        return Msg.fail();
+    }
+
+    @ApiOperation("确定仓库空闲的余量")
+    @RequestMapping(value = "/idle", method = RequestMethod.POST)
+    public Msg idle(@RequestParam @ApiParam(name = "id", value = "仓库id") int id,
+                    @RequestParam @ApiParam(name = "ids", value = "货物id") int ids){
+        Warehouses warehouses = warehousesMapper.selectById(id);
+        Goods goods = GoodsMapper.selectById(ids);
+        int i = warehouses.getWaresize()-goods.getWeight();
+        System.out.println(i);
+        if (i> 0){
+            Warehouses warehouses1 = new Warehouses();
+            warehouses1.setId(id);
+            warehouses1.setUnusesize(i);
+            int updateById = warehousesMapper.updateById(warehouses1);
+            if(updateById == 1){
+                return Msg.success();
+            }
+        }
+        return Msg.fail().add("存量错误",i);
+    }
+
 }
 

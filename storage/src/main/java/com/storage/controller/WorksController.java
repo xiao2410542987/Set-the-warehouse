@@ -1,6 +1,9 @@
 package com.storage.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.storage.mapper.WorkersMapper;
 import com.storage.mapper.WorksMapper;
 import com.storage.pojo.Msg;
@@ -34,34 +37,54 @@ public class WorksController {
 
     @ApiOperation("查询没有分配工作的员工")
     @RequestMapping(value = "/noWork",method = RequestMethod.GET)
-    public Msg noWork(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
-        List<Workers> workers = worksMapper.noWork(companyid);
-        return Msg.success().add("work",workers);
+    public IPage<Workers> noWork(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid,
+                      int start,int state){
+        Page<Workers> workersPage = new Page<>(start,state);
+        return  worksMapper.noWork(workersPage, new QueryWrapper<Workers>(), companyid);
     }
 
     @ApiOperation("查询已分配工作的员工")
     @RequestMapping(value = "/haveWork",method = RequestMethod.GET)
-    public Msg haveWork(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
-        List<Workers> workers = worksMapper.haveWork(companyid);
-        return Msg.success().add("work",workers);
+    public IPage<Workers> haveWork(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid,
+                        int start,int state){
+        Page<Workers> workersPage = new Page<>(start,state);
+        return worksMapper.haveWork(workersPage,new QueryWrapper<Workers>(),companyid);
     }
 
     @ApiOperation("查询工作任务的日期")
     @RequestMapping(value = "/workData",method = RequestMethod.GET)
-    public Msg workData(){
-        return Msg.success().add("data",worksMapper.workData());
+    public Msg workData(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
+        return Msg.success().add("data",worksMapper.workData(companyid));
     }
 
     @ApiOperation("根据日期查询工作任务(未完成)")
     @RequestMapping(value = "/workDataOne",method = RequestMethod.GET)
-    public Msg workDataOne(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime){
-        return Msg.success().add("data",worksMapper.workDataOne(0,createtime));
+    public IPage<Workers> workDataOne(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime
+            ,int start,int state,@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
+        Page<Workers> workersPage = new Page<>(start,state);
+        return worksMapper.workDataOne(workersPage,new QueryWrapper<Workers>(),companyid,createtime,0);
     }
 
     @ApiOperation("根据日期查询工作任务(已完成)")
-    @RequestMapping(value = "/workDataOneFinish",method = RequestMethod.GET)
-    public Msg workDataOneFinish(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime){
-        return Msg.success().add("data",worksMapper.workDataOne(1,createtime));
+    @RequestMapping(value = "/workDataOneDone",method = RequestMethod.GET)
+    public IPage<Workers> workDataOneDone(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime
+            ,int start,int state,@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
+        Page<Workers> workersPage = new Page<>(start,state);
+        return worksMapper.workDataOne(workersPage,new QueryWrapper<Workers>(),companyid,createtime,1);
+    }
+    @ApiOperation("根据日期查询工作任务(撤销任务)")
+    @RequestMapping(value = "/workDataNoFinish",method = RequestMethod.GET)
+    public IPage<Workers> workDataNoFinish(@RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime
+                                            ,int start,int state,@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid){
+        Page<Workers> workersPage = new Page<>(start,state);
+        return worksMapper.workDataOne(workersPage,new QueryWrapper<Workers>(),companyid,createtime,2);
+}
+    @ApiOperation("根据日期查询工作任务")
+    @RequestMapping(value = "/workDataOneAll",method = RequestMethod.GET)
+    public IPage<Workers> workDataOneAll(@RequestParam @ApiParam(name = "companyid" ,value = "公司的id(外键)") int companyid,int start,int state,
+                                         @RequestParam @ApiParam(name = "createtime" ,value = "日期格式（例20200601）") String createtime){
+        Page<Workers> workersPage = new Page<>(start,state);
+        return worksMapper.workDataOneAll(workersPage,new QueryWrapper<Workers>(),companyid,createtime);
     }
 
     @ApiOperation("添加任务")
