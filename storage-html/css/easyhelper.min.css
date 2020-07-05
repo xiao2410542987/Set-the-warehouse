@@ -58,9 +58,7 @@ a {
 	transition: color .15s
 }
 
-a:hover {
-	color: #6cb3ff
-}
+
 
 body.helper-body-noscroll {
 	position: relative;
@@ -148,15 +146,15 @@ input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 button:hover {
-	color: #2285ee;
-	border-color: #71b6ff
+	/*color: #2285ee;*/
+	
 }
 
 input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active,
 button:active {
-	color: #2285ee;
+	
 	border-color: #2285ee
 }
 
@@ -1854,7 +1852,7 @@ i.helper-datepicker-now {
 }
 
 .helper-dialog-content>div {
-	
+	overflow: hidden;
 	margin: 0 15px
 }
 
