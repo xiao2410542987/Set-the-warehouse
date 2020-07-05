@@ -150,7 +150,7 @@ public class WorksController {
     @RequestMapping(value = "/delWork",method = RequestMethod.POST)
     public Msg delWork(@RequestParam @ApiParam(name = "id" ,value = "id") int id)
     {
-        int i = worksMapper.deleteById(6);
+        int i = worksMapper.deleteById(id);
         if(i==0)
         {
             return Msg.fail().add("tips","删除失败");
