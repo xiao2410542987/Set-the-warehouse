@@ -89,15 +89,15 @@
 										<input type="number" placeholder="电话" v-model="phone" name="phone" required />
 									</div>
 									<div class="input" >
-										<span style="width: 35px;" aria-hidden="true" v-if="flag">公司</span>
+										<span style="width: 35px;color: #757575;font-size: 14px;left: 10px;position: relative;" aria-hidden="true" v-if="flag">公司</span>
 										<select @click="btun" v-model="prov" @change="updatework">
-											<option    v-for="(item,i) in companys" :key='i' :value="item.id">{{item.name}}</option>
+											<option v-for="(item,i) in companys" :key='i' :value="item.id">{{item.name}}</option>
 
 										</select>
 									</div>
 									<div class="input">
-										<span aria-hidden="true"></span>
-										<select v-model="pro" >
+										<span style="width: 35px;color: #757575;font-size: 14px;left: 10px;position: relative;" aria-hidden="true" v-if="fl">职位</span>
+										<select @click="bt" v-model="pro" >
 											
 											<option v-for="item in worktypes" :value="item.id">{{item.name}}</option>
 											<option >职务</option>
@@ -136,8 +136,8 @@
 			</div>
 			<!-- copyright -->
 			<div class="copyright">
-				<h2>&copy; 2019 Triple Forms. All rights reserved | Design by
-				<a href="http://w3layouts.com" target="_blank">W3layouts</a>
+				<h2><a  target="_blank">欢迎使用集仓库!</a>&copy; 我们远景发展规划是利用中国快速成长的互联网软硬技术,成长为一家科技服务型公司,向成为中国集仓库的领军企业奋进！
+				
 			</h2>
 			</div>
 		</div>
@@ -151,6 +151,7 @@
 				comid:"",
 				name:"",
 				worktypesName:""
+			
 			},
 
 			methods: {
@@ -221,12 +222,16 @@
 				prov: "",
 				pro:"公司职务",
 				worktypes: [],
-				flag: true
+				flag:true,
+				fl:true,
 	
 			},
 			methods: {
 				btun:function(){
-					this.flag=!this.flag
+					this.flag=false
+				},
+				bt:function(){
+					this.fl=false
 				},
 				sign:function(){					
 							$.ajax({

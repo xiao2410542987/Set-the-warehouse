@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<link href="css/easyhelper.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/proindex.css" />
+	<link rel="stylesheet" href="css/feny.css" />
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+	<body>
+		<style>
+			.sel_wrap {
+			height: 40px;
+			background: #fff;
+			color: #a1a1a1;
+			font-size: 16px;
+			border: 1px solid #E4E4E4;
+			cursor: pointer;
+			position: relative;
+			width: 150px;
+			left: 520px;
+			top: -42px;
+			border-radius: 5px;
+			border: 1px solid rgb(0, 0, 0);
+		}
+		
+		.sel_wrap label {
+			padding-left: 10px;
+			font-size: 16px;
+			z-index: 2;
+			color: #a1a1a1;
+			line-height: 40px;
+			height: 40px;
+		}
+		
+		.sel_wrap .select {
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			position: absolute;
+			border-radius: 5px;
+			border: 1px solid rgb(0, 0, 0);
+			margin: 0;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		.text{
+			width: 300px;
+			height: 38px;
+			top: -70px;
+			left: 57%;
+			position: relative;
+		
+		}
+		.demo-carousel {
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+			}
+			
+			.btna {
+				display: block;
+				position: relative;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #e15f41;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+				float: left;
+				text-align: center;
+				line-height: 50px;
+				left: 15px;
+				margin: 10px;
+			}
+				.btnz {
+				display: block;
+				position: relative;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #e15f41;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+				float: left;
+				text-align: center;
+				line-height: 50px;
+				left: 77px;
+				margin: 10px;
+			}
+			
+			.btnc {
+				display: block;
+				position: relative;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #009688;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+				float: right;
+				text-align: center;
+				line-height: 50px;
+				right: 15px;
+				margin: 10px;
+			}
+			.btnd {
+				display: block;
+				position: relative;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #009688;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+				float: right;
+				text-align: center;
+				line-height: 50px;
+				right: 15px;
+				margin: 10px;
+			}
+			.btnd:hover {
+    transform: rotateY(-15deg);
+    box-shadow: 15px 0 15px #0088ff;
+}
+			
+			.btna3 {
+				display: block;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #0088ff;
+				color: #fff;
+				position: relative;
+				left: 10px;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+			}
+			
+			.btn3:hover {
+				transform: rotateX(15deg);
+				box-shadow: 0 15px 15px #e15f4190;
+			}
+			
+			.btna1 {
+				display: block;
+				width: 120px;
+				height: 50px;
+				border: none;
+				background-color: #009688;
+				color: #fff;
+				position: relative;
+				left: 10px;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+			}
+			
+			.btn1:hover {
+				transform: rotateX(15deg);
+				box-shadow: 0 15px 15px #e15f4190;
+			}
+			
+			.btn2:hover {
+				transform: rotateX(-15deg);
+				box-shadow: 0 -15px 15px #e15f4190;
+			}
+			
+			.btnb:hover {
+				transform: rotateY(15deg);
+				box-shadow: -15px 0px 15px #e15f4190;
+			}
+			
+			.btnc:hover {
+				transform: rotateY(-15deg);
+				box-shadow: 15px 0 15px #009688;
+			}
+			
+			.bigbox {
+				width: 1610px;
+				height: 840px;
+				position: relative;
+				left: 280px;
+				top: 95px;
+			}
+			
+			.top {
+				text-align: center;
+			}
+			
+			.left {
+				float: left;
+				width: 60px;
+			}
+			
+			.right {
+				float: right;
+				width: 60px;
+			}
+			
+			.item {
+				margin: 4px;
+			}
+			
+			.left .el-tooltip__popper,
+			.right .el-tooltip__popper {
+				padding: 8px 10px;
+			}
+		}
+		</style>
+
+		<div class="bigbox" style="display: block;">
+			<div id="app">
+
+				<!--添加-->
+				
+				
+					<div v-show="addntk" class="helper-dialog-wrapper helper-dialog-dark-mode" style="width: 1250px;margin-left: -500px; margin-top: -300px;  border-radius: 6px; transform: scale(1, 1); opacity:1;display: block;z-index: 10;">
+						<div class="helper-dialog-header">
+							<p class="helper-dialog-title">更多信息</p>
+							<i class="helper-dialog-close helper-noselect" @click="addntk=false">✕</i>
+						</div>
+						<div class="helper-dialog-content" style="overflow:auto;font-size: 15px;height: 500px;">
+
+						<div class="sel_wrap" style="width: 700px;left: 25%;top:-5px">
+								<select v-model="sbname" class="select" style="width: 700px;" >
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value="0">
+											选择设备名与放置位置
+									</option>
+									<option style="width: 700px;vertical-align: middle;display: table-cell;" v-for="(item, index) in asd" :value="item.id">
+										设备名：{{item.name}}-----------放置位置：{{item.weizi}}
+									</option>
+
+								</select>
+
+							</div>
+							
+								<div class="sel_wrap" style="width: 300px;left: 25%;top:27px">
+								<select v-model="csck" class="select" style="width: 300px;" >
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value="">
+											仓库位置
+									</option>
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" v-for="(item, index) in metename" :value="item.warehousetypeid">
+										{{item.name}}
+									</option>
+
+								</select>
+
+							</div>
+							
+							<div class="sel_wrap" style="width: 300px;left: 57%;top:-15px">
+								<select v-model="sname" class="select" style="width: 300px;" >
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value="0">
+											货物名(无货物不用选择)
+									</option>
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" v-for="item in goods" :value="item.id">
+											{{item.goodsname}}
+									</option>
+
+								</select>
+
+							</div>
+							
+							<div class="sel_wrap" style="width: 300px;left: 25%;top:12px">
+								<select v-model="ygname" class="select" style="width: 300px;" >
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value="">
+											员工姓名
+									</option>
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" v-for="item in yg" :value="item.worktypeid">
+											{{item.name}}
+									</option>
+
+								</select>
+
+							</div>
+							
+							<div class="sel_wrap" style="width: 300px;left: 25%;top:38px">
+								<select v-model="zhtai"  class="select" style="width: 300px;" >
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value="">
+											设备状态
+									</option>
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value='0'>
+											未存放或者交接状态
+									</option>
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value='1'>
+											已存放
+									</option>
+									<option style="width: 300px;vertical-align: middle;display: table-cell;" value='2'>
+											已取出
+									</option>
+
+								</select>
+
+							</div>
+							<div class="text">
+									<input v-model="tex" style="width: 280px;height: 37px;border-radius:5px; display: table-cell;color: #000000;" type="text" placeholder="工作内容"/>
+
+							</div>
+							
+									
+			
+						</div>
+						<div class="helper-dialog-footer helper-noselect">
+						<div class="helper-dialog-yes" @click="add">添加</div>
+						
+							<div class="helper-dialog-no" @click="addntk=false">关闭</div>
+								
+						</div>
+					</div>
+			
+			
+			
+			
+				
+				
+				
+				
+
+				<tr>
+					<button @click="wei" style="position: absolute;" class="btna btnb">工作未完成表</button>
+					<button @click="secc" style="position: absolute;left: 170px;" class="btna1 btnc">工作已完成表</button>
+					<button @click="addwork" style="position: absolute;left: 325px;" class="btna3 btnd">添加工作</button>
+				</tr>
+				<select @click="op" v-model="data" style="width: 300px;height: 50px;font-size:23px;position: relative;top:9px;left: 31%;">
+
+					<option v-for="(item,i) in tips" :value="item.createtime | format">{{item.createtime | formatDate}}</option>
+				</select>
+
+				<table cellspacing="0" cellpadding="10" style="z-index:12;width: 100%; text-align: center;margin-top: 40px;">
+					<thead>
+
+						<tr>
+
+							<th>员工</th>
+							<th>员工电话</th>
+							<th>任务类型</th>
+							<th>目标仓库</th>
+							<th>进度</th>
+							<th>详细</th>
+							<th style="width: 300px;">操作</th>
+
+						</tr>
+					</thead>
+					<tbody id="table_proindex">
+						<tr class="second_tr" v-for="item in tip">
+							<td style="width: 200px;vertical-align: middle;display: table-cell;">
+								{{item.workers.name}}
+							</td>
+							<td style="width: 200px;vertical-align: middle;display: table-cell;">
+								{{item.workers.phone}}
+							</td>
+
+							<td v-if="item.goodsid!=null&&item.distributionid==null " style="vertical-align: middle;display: table-cell;">
+								搬运任务
+							</td>
+							<td v-if="item.distributionid!=null&&item.goodsid==null" style="vertical-align: middle;display: table-cell;">
+								设备任务
+							</td>
+							<td v-if='item.goodsid==null&&item.distributionid==null' style="vertical-align: middle;display: table-cell;">
+								清点任务
+							</td>
+
+							<td style="vertical-align: middle;display: table-cell;">
+								{{item.warehouses.name}}
+							</td>
+
+							<td v-show="item.state==0" style="vertical-align: middle;display: table-cell;">
+								未完成
+							</td>
+							<td v-show="item.state==1" style="vertical-align: middle;display: table-cell;">
+								已经完成
+							</td>
+							<td v-show="item.state==2" style="vertical-align: middle;display: table-cell;">
+								撤销任务
+							</td>
+							<td style="vertical-align: middle;display: table-cell;">
+
+								</el-tooltip>
+								<el-popover placement="top-start" title="详情信息" width="250" trigger="hover">
+									工作情况：{{item.text}} <br />
+
+									<span v-if="item.goods!=null">用户姓名：{{item.goods.username}}</span><br />
+									<span v-if="item.goods!=null">用户电话：{{item.goods.userphone}}</span><br />
+									<span v-if="item.goods!=null">设备名称：{{item.goods.goodsname}}</span><br />
+									<span v-if="item.goods!=null">设备数量：{{item.goods.weight}} {{item.goods.metering.name}}</span><br />
+
+									<a slot="reference">更多信息</a>
+								</el-popover>
+
+							</td>
+							<td style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
+							
+								<a class="btnz btnb" @click="del(item.id,item.createtime)">删除</a>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+		<script>
+			new Vue({
+				el: "#app",
+				data: {
+					gsid: "",
+					pageNO: 1,
+					rows: 5,
+					tips: [],
+					pages: "",
+					index: 1,
+					data: "",
+					tip: [],
+					goodsid: "",
+					disid: "",
+					gb: true,
+					ntk: false,
+					yg: "",
+					xs: false,
+					asd: "",
+					tips1: [],
+					t: 0,
+					goods: "",
+					metename: "",
+					sbname:"",
+					csck:"",
+					sname:"",
+					ygname:"",
+					tex:"",
+					zhtai:"",
+					addntk:false,
+					upntk:false,
+					upall:false,
+					addall:false,
+					diskg:true,
+					goodkg:false,
+					distribution:"",
+					warehouses:"",
+					eqname:"",
+					distrid:""
+
+				},
+				mounted: function() {
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					var that = this;
+					$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workData",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+								console.log("这个")
+								console.log(data)
+								that.tips = data.extend.data;
+								console.log(that.tips[that.tips.length - 1].createtime)
+								that.data = that.tips[that.tips.length - 1].createtime;
+								console.log("这个")
+								
+					
+								
+								let date = new Date(that.data);
+								let y = date.getFullYear();
+								let MM = date.getMonth() + 1;
+								MM = MM < 10 ? ('0' + MM) : MM;
+								let d = date.getDate();
+								d = d < 10 ? ('0' + d) : d;
+								
+								that.data = y + MM + d;
+								console.log(that.data)
+							}
+						}),
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workDataOne",
+							data: {
+								companyid: that.gsid,
+								createtime: that.data,
+								start: that.pageNO,
+								state: that.rows
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								that.tip = data.records;
+								console.log("？？？？")
+								console.log(that.tip)
+							}
+						})
+
+				},
+
+				methods: {
+					
+					addwork: function() {
+						this.addntk = true
+						
+					
+					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					var that = this;
+					$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/equipmenttypes/selectEquipmenttype",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+
+								console.log(data.extend.tips)
+								/*console.log(data.extend.tips[0].equipments.distribution[0].warehouses.name)*/
+								that.t = 0;
+								$.each(data.extend.tips, function(index, el) {
+
+									if(el.equipments.distribution.length == 0) {
+
+									} else {
+
+										$.each(el.equipments.distribution, function(index2, el2) {
+											that.tips1[that.t] = {
+												id: el2.id,
+												weizi: el2.warehouses.name + "(" + el2.name + "号位置)",
+												name: el2.equipments.equipmenttypes.name
+											};
+											that.t++;
+										});
+
+									}
+
+								});
+
+								console.log(that.tips1)
+								that.asd = that.tips1
+
+							}
+						}),
+						$.ajax({
+							//						货物订单
+							type: "post",
+							url: "http://120.79.46.8:8080/storage/storage/goods/selectGoods",
+							data: {
+								companyid: that.gsid,
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+
+								that.goods = data.extend.tips
+							}
+						}),
+
+						$.ajax({
+							//							仓库外键
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/warehouses/QueryWarehouse",
+							data: {
+								companyid: that.gsid,
+								start: 1,
+								state: 1000
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								console.log("这个")
+								that.metename = data.records
+
+							}
+						}),
+						$.ajax({
+							//							员工
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/workers/checked",
+							data: {
+								companyid: that.gsid,
+								start: 1,
+								state: 1000
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								console.log("员工")
+								that.yg = data.records
+
+							}
+						})
+
+				
+					},
+						add:function(){
+						
+						console.log("设备外键id"+this.sbname)
+						console.log("货物订单id"+this.sname,this.csck,this.ygname)
+							var that = this;
+						
+						
+							$.ajax({
+							//员工
+							type: "post",
+							url: "http://120.79.46.8:8080/storage/storage/works/addWork",
+							data: {
+								companyid: that.gsid,
+								distributionid:that.sbname,
+								goodsid:that.sname,
+								state:that.zhtai,
+								txt:that.tex,
+								warehouseid:that.csck,
+								workerid:that.ygname
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+							console.log("添加成功了吧")
+							}
+						})
+						
+					},
+					del:function(id,time){
+						console.log("id"+id)
+						console.log(time)
+						var that = this;
+						console.log(time)
+						let date = new Date(time);
+								let y = date.getFullYear();
+								let MM = date.getMonth() + 1;
+								MM = MM < 10 ? ('0' + MM) : MM;
+								let d = date.getDate();
+								d = d < 10 ? ('0' + d) : d;
+								
+								that.data = y + MM + d;
+								
+						$.ajax({
+							type: "post",
+							url: "http://120.79.46.8:8080/storage/storage/works/delWork",
+							data: {
+								id:id
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log("删除成功")
+								that.cha()
+							}
+						})
+					},
+					cha:function(){
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workData",
+							data: {
+								companyid: that.gsid
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+								console.log("这个")
+								console.log(data)
+								that.tips = data.extend.data;
+								console.log(that.tips[that.tips.length - 1].createtime)
+								that.data = that.tips[that.tips.length - 1].createtime;
+								console.log("这个")
+								let date = new Date(that.data);
+								let y = date.getFullYear();
+								let MM = date.getMonth() + 1;
+								MM = MM < 10 ? ('0' + MM) : MM;
+								let d = date.getDate();
+								d = d < 10 ? ('0' + d) : d;
+								
+								that.data = y + MM + d;
+								console.log(that.data)
+							}
+						}),
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workDataOne",
+							data: {
+								companyid: that.gsid,
+								createtime: that.data,
+								start: that.pageNO,
+								state: that.rows
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								that.tip = data.records;
+							
+								console.log(that.tip)
+								
+							}
+						})
+					},
+					op: function() {
+						console.log(this.data)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workDataOne",
+							data: {
+								companyid: that.gsid,
+								createtime: that.data,
+								start: that.pageNO,
+								state: that.rows
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								that.tip = data.records;
+								console.log(that.tip)
+							}
+						})
+					},
+					wei:function(){
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workDataOne",
+							data: {
+								companyid: that.gsid,
+								createtime: that.data,
+								start: that.pageNO,
+								state: that.rows
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								console.log("上面")
+								that.tip = data.records;
+								console.log(that.tip)
+							}
+						})
+					},
+				
+					secc: function() {
+						console.log(this.data)
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: "http://120.79.46.8:8080/storage/storage/works/workDataOneDone",
+							data: {
+								companyid: that.gsid,
+								createtime: that.data,
+								start: that.pageNO,
+								state: that.rows
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								console.log(data)
+								console.log("上面")
+								that.tip = data.records;
+								console.log(that.tip)
+							}
+						})
+					}
+
+				},
+				filters: {
+					formatDate: function(value) {
+						let date = new Date(value);
+						let y = date.getFullYear();
+						let MM = date.getMonth() + 1;
+						MM = MM < 10 ? ('0' + MM) : MM;
+						let d = date.getDate();
+						d = d < 10 ? ('0' + d) : d;
+
+						return y + '-' + MM + '-' + d;
+					},
+
+					format: function(value) {
+					let date = new Date(value);
+						let y = date.getFullYear();
+						let MM = date.getMonth() + 1;
+						MM = MM < 10 ? ('0' + MM) : MM;
+						let d = date.getDate();
+						d = d < 10 ? ('0' + d) : d;
+						let h = date.getHours();
+						h = h < 10 ? ('0' + h) : h;
+						let m = date.getMinutes();
+						m = m < 10 ? ('0' + m) : m;
+						let s = date.getSeconds();
+						s = s < 10 ? ('0' + s) : s;
+						return y + MM + d;
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
