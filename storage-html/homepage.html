@@ -427,12 +427,15 @@
 					if(this.gsid==null)
 					{
 						swal("登录失败！","当前未登录!正在跳转登录","error");
-						window.location.href="http://120.79.46.8/storage/login.html";
+						setTimeout(function() {
+							window.location.href="http://120.79.46.8/storage/login.html";
+						},1500)
+						
 					}
-					swal("当前网速较慢!(网速检测)","请稍等页面加载！","error");
+					
 					this.name = JSON.parse(localStorage.getItem("name"));
 					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"))+"人员";
-					
+					swal("当前网速较慢!(网速检测)","请稍等页面加载！","error");
 					if (this.worktypesName=="管理人员") {
 						//this.cha1=true
 						this.cha1=false
