@@ -9,11 +9,15 @@
         select id,name,sex,phone,worktypeid,state,createtime from workers where state=1 and working=1 and companyid=#{companyid}
     </select>
     <select id="workData" resultType="com.storage.pojo.Works">
-        SELECT createtime FROM works GROUP BY DATE_FORMAT(createtime,'%Y%m%d')
+        SELECT createtime FROM works where companyid=#{companyid} GROUP BY DATE_FORMAT(createtime,'%Y%m%d')
     </select>
     <select id="workDataOne" resultMap="cwgdw">
-        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime
-        FROM works where state=#{state} and DATE_FORMAT(createtime,'%Y%m%d') =#{createtime}
+        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime,state
+        FROM works where state=#{state} and DATE_FORMAT(createtime,'%Y%m%d') =#{createtime} and companyid=#{companyid}
+    </select>
+    <select id="workDataOneAll" resultMap="cwgdw">
+        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime,state
+        FROM works where DATE_FORMAT(createtime,'%Y%m%d') =#{createtime} and companyid=#{companyid}
     </select>
     <resultMap id="cwgdw" type="com.storage.pojo.Works">
         <id column="id" property="id"></id>

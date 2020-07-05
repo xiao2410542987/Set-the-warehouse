@@ -1,5 +1,8 @@
 package com.storage.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.storage.pojo.Companys;
 import com.storage.pojo.Workers;
 import com.storage.pojo.Works;
@@ -19,8 +22,11 @@ import java.util.List;
 @Mapper
 public interface WorksMapper extends BaseMapper<Works> {
 
-    List<Workers> noWork(int companyid);
-    List<Workers> haveWork(int companyid);
-    List<Works> workData();
-    List<Works> workDataOne(Integer state,String createtime);
+    IPage<Workers> noWork(Page<Workers> workersPage, QueryWrapper<Workers> workersQueryWrapper, int companyid);
+    IPage<Workers> haveWork(Page<Workers> workersPage, QueryWrapper<Workers> workersQueryWrapper, int companyid);
+    List<Works> workData(int companyid);
+    IPage<Workers> workDataOne(Page<Workers> workersPage, QueryWrapper<Workers> workersQueryWrapper, int companyid,String createtime,int state);
+    IPage<Workers> workDataOneAll(Page<Workers> workersPage, QueryWrapper<Workers> workersQueryWrapper, int companyid,String createtime);
+
+    //List<Works> workDataOne(Integer state,String createtime);
 }
