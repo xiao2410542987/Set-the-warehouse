@@ -76,7 +76,7 @@ public class GoodsController {
         {
             return Msg.fail().add("tips","修改失败");
         }
-        return Msg.success().add("tips","修失败成功");
+        return Msg.success().add("tips","修改成功");
     }
     @ApiOperation("查询订单")
     @RequestMapping(value = "/selectGoods",method = RequestMethod.POST)

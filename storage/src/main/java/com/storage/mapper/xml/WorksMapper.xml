@@ -3,17 +3,21 @@
 <mapper namespace="com.storage.mapper.WorksMapper">
 
     <select id="noWork" resultMap="work">
-        select id,name,sex,phone,worktypeid,createtime from workers where state=1 and working=0 and companyid=#{companyid}
+        select id,name,sex,phone,worktypeid,state,createtime from workers where state=1 and working=0 and companyid=#{companyid}
     </select>
     <select id="haveWork" resultMap="work">
-        select id,name,sex,phone,worktypeid,createtime from workers where state=1 and working=1 and companyid=#{companyid}
+        select id,name,sex,phone,worktypeid,state,createtime from workers where state=1 and working=1 and companyid=#{companyid}
     </select>
     <select id="workData" resultType="com.storage.pojo.Works">
-        SELECT createtime FROM works GROUP BY DATE_FORMAT(createtime,'%Y%m%d')
+        SELECT createtime FROM works where companyid=#{companyid} GROUP BY DATE_FORMAT(createtime,'%Y%m%d')
     </select>
     <select id="workDataOne" resultMap="cwgdw">
-        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime
-        FROM works where state=#{state} and DATE_FORMAT(createtime,'%Y%m%d') =#{createtime}
+        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime,state
+        FROM works where state=#{state} and DATE_FORMAT(createtime,'%Y%m%d') =#{createtime} and companyid=#{companyid}
+    </select>
+    <select id="workDataOneAll" resultMap="cwgdw">
+        SELECT id,text,companyid,workerid,goodsid,distributionid,warehouseid,createtime,updatetime,state
+        FROM works where DATE_FORMAT(createtime,'%Y%m%d') =#{createtime} and companyid=#{companyid}
     </select>
     <resultMap id="cwgdw" type="com.storage.pojo.Works">
         <id column="id" property="id"></id>
@@ -22,6 +26,7 @@
         <result column="workerid" property="workerid"></result>
         <result column="goodsid" property="goodsid"></result>
         <result column="distributionid" property="distributionid"></result>
+        <result column="state" property="state"></result>
         <result column="warehouseid" property="warehouseid"></result>
         <association property="companys" column="companyid" select="com.storage.mapper.CompanysMapper.auditcps"></association>
         <association property="workers" column="workerid" select="com.storage.mapper.WorkersMapper.QueryW"></association>
@@ -35,6 +40,7 @@
         <result column="sex" property="sex"></result>
         <result column="phone" property="phone"></result>
         <result column="worktypeid" property="worktypeid"></result>
+        <result column="state" property="state"></result>
         <result column="createtime" property="createtime"></result>
         <association property="worktypes" column="worktypeid" select="com.storage.mapper.WorktypesMapper.loginWorkTypes"></association>
     </resultMap>

@@ -29,7 +29,7 @@ class StorageApplicationTests {
     @Autowired
     private EquipmenttypesMapper equipmenttypesMapper;*/
     @Autowired
-    private WorkersMapper workersMapper;
+    private WorksMapper worksMapper;
 
     /*@Autowired
     private WorkersService workersService=new WorkersServiceImpl;*/
@@ -95,10 +95,15 @@ class StorageApplicationTests {
     @Test
     public void  Test6()
     {
-        Workers workers = new Workers();
-        workers.setPhone("123");
-        workers.setPassword("123");
-        Workers workers1 = workersMapper.queryWorkersList(workers);
-        System.out.println(workers1);
+        Works works = new Works();
+        works.setCompanyid(1);
+        works.setDistributionid(null);
+        works.setGoodsid(null);
+        works.setState(1);
+        works.setText("123456");
+        works.setWarehouseid(1);
+        works.setWorkerid(1);
+        int insert = worksMapper.insert(works);
+        System.out.println(insert);
     }
 }
