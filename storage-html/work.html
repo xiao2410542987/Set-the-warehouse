@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 	<!-- 引入组件库 -->
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+		<script type="text/javascript" src="https://www.huangwx.cn/js/sweetalert-dev.js"></script>
 
 	<body>
 		<style>
@@ -54,7 +56,7 @@
 		.text{
 			width: 300px;
 			height: 38px;
-			top: -70px;
+			top: -28px;
 			left: 57%;
 			position: relative;
 		
@@ -101,6 +103,25 @@
 				text-align: center;
 				line-height: 50px;
 				left: 77px;
+				margin: 10px;
+			}
+				.btnf {
+				display: block;
+				position: relative;
+				width: 80px;
+				height: 45px;
+				border: none;
+				background-color: #e15f41;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 6px;
+				outline: none;
+				cursor: pointer;
+				transition: .3s linear;
+				float: left;
+				text-align: center;
+				line-height: 50px;
+			
 				margin: 10px;
 			}
 			
@@ -248,7 +269,7 @@
 							<p class="helper-dialog-title">更多信息</p>
 							<i class="helper-dialog-close helper-noselect" @click="addntk=false">✕</i>
 						</div>
-						<div class="helper-dialog-content" style="overflow:auto;font-size: 15px;height: 500px;">
+						<div class="helper-dialog-content" style="overflow:auto;font-size: 15px;height: 400px;">
 
 						<div class="sel_wrap" style="width: 700px;left: 25%;top:-5px">
 								<select v-model="sbname" class="select" style="width: 700px;" >
@@ -302,7 +323,7 @@
 
 							</div>
 							
-							<div class="sel_wrap" style="width: 300px;left: 25%;top:38px">
+							<!--<div class="sel_wrap" style="width: 300px;left: 25%;top:38px">
 								<select v-model="zhtai"  class="select" style="width: 300px;" >
 									<option style="width: 300px;vertical-align: middle;display: table-cell;" value="">
 											设备状态
@@ -319,11 +340,14 @@
 
 								</select>
 
-							</div>
+							</div>-->
 							<div class="text">
 									<input v-model="tex" style="width: 280px;height: 37px;border-radius:5px; display: table-cell;color: #000000;" type="text" placeholder="工作内容"/>
 
 							</div>
+							
+									
+			
 						</div>
 						<div class="helper-dialog-footer helper-noselect">
 						<div class="helper-dialog-yes" @click="add">添加</div>
@@ -344,7 +368,7 @@
 				<tr>
 					<button @click="wei" style="position: absolute;" class="btna btnb">工作未完成表</button>
 					<button @click="secc" style="position: absolute;left: 170px;" class="btna1 btnc">工作已完成表</button>
-					<button @click="addwork" style="position: absolute;left: 325px;" class="btna3 btnd">添加工作</button>
+					<button v-if="gly" @click="addwork" style="position: absolute;left: 325px;" class="btna3 btnd">添加工作</button>
 				</tr>
 				<select @click="op" v-model="data" style="width: 300px;height: 50px;font-size:23px;position: relative;top:9px;left: 31%;">
 
@@ -414,8 +438,11 @@
 
 							</td>
 							<td style="width: 300px;vertical-align: middle;display: table-cell; float: left;">
+							<a v-if="pt"  class="btnf btnb" @click="rw(0,item)">未完成</a>
+							<a v-if="pt" class="btnf btnb" @click="rw(1,item)">已完成</a>
+							<a v-if="pt" class="btnf btnb" @click="rw(2,item)">撤销任务</a>
 							
-								<a class="btnz btnb" @click="del(item.id,item.createtime)">删除</a>
+								<a v-if="gly" class="btnz btnb" @click="del(item.id,item.createtime)">删除</a>
 							</td>
 
 						</tr>
@@ -464,11 +491,24 @@
 					distribution:"",
 					warehouses:"",
 					eqname:"",
-					distrid:""
+					distrid:"",
+					worktypesName:"",
+					gly:false,
+					pt:false
 
 				},
 				mounted: function() {
 					this.gsid = JSON.parse(localStorage.getItem("comid"));
+					this.worktypesName = JSON.parse(localStorage.getItem("worktypesName"))
+		
+					console.log("这个是"+this.worktypesName)
+					if(this.worktypesName=="管理"){
+						this.gly=true
+						this.pt=false
+					}else{
+						this.gly=false
+						this.pt=true
+					}
 					var that = this;
 					$.ajax({
 							type: "get",
@@ -526,6 +566,60 @@
 				},
 
 				methods: {
+					rw:function(id,item){
+						console.log(0,item)
+						if(item.distributionid==null&&item.goodsid!=null){
+							this.distid = 0
+							this.goodid=item.goodsid
+						}else if(item.goodsid==null&&item.distributionid!=null){
+							this.goodid = 0
+							this.distid = item.distributionid
+						}else if(item.distributionid==null&&item.goodsid==null){
+							this.distid = 0
+							this.goodid = 0
+						}
+						
+						this.rwid=item.id
+						this.te=item.text
+						this.wareid=item.warehouseid
+						this.workid=item.workerid
+						
+						console.log(this.gsid,this.distid,this.goodid,id,this.rwid,this.te,this.wareid,this.workid)
+						
+							var that = this;
+
+							$.ajax({
+							//员工
+							type: "post",
+							url: "http://120.79.46.8:8080/storage/storage/works/updWork",
+							data: {
+								companyid: that.gsid,
+								distributionid:that.distid,
+								goodsid:that.goodid,
+								state:id,
+								id:that.rwid,
+								text:that.te,
+								warehouseid:that.wareid,
+								workerid:that.workid
+
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							async: false,
+							crossDomain: true,
+							success: function(data) {
+							console.log("修改成功了吧")
+							swal("修改成功！");
+							that.cha()
+							}
+						})
+						
+						
+						
+						
+						
+					},
 					
 					addwork: function() {
 						this.addntk = true
@@ -666,7 +760,7 @@
 							async: false,
 							crossDomain: true,
 							success: function(data) {
-							console.log("添加成功了吧")
+							swal("添加成功！");
 							}
 						})
 						
