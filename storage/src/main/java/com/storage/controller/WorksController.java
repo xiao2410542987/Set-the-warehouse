@@ -88,7 +88,7 @@ public class WorksController {
     }
 
     @ApiOperation("添加任务")
-    @RequestMapping(value = "/addWork",method = RequestMethod.GET)
+    @RequestMapping(value = "/addWork",method = RequestMethod.POST)
     public Msg addWork(@RequestParam @ApiParam(name = "txt" ,value = "工作内容") String txt
             ,@RequestParam @ApiParam(name = "companyid" ,value = "所属公司外键") int companyid,@RequestParam @ApiParam(name = "workerid" ,value = "工作人员外键id") int workerid
             ,@RequestParam @ApiParam(name = "goodsid" ,value = "货物订单id,没有就传个0") int goodsid,@RequestParam @ApiParam(name = "distributionid" ,value = "设备分配外键id,没有就传个0") int distributionid
